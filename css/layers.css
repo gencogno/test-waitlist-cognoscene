@@ -1,0 +1,242 @@
+/* Cognoscene layer index component
+   Shared component styles + mobile motion.
+   Desktop keeps the existing static 3-column cards.
+*/
+
+.layers-index {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.layers-index-label {
+  text-align: center;
+}
+
+.layer-index-item {
+  background: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 16px;
+  padding: 16px 14px;
+}
+
+.layer-index-item .layer-action {
+  display: block;
+  font-size: 11px;
+  color: var(--black);
+  opacity: 0.62;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.layer-index-item .layer-name {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+
+.solution-bridge h2 {
+  text-align: center !important;
+  font-size: 0 !important;
+  margin: 0 auto 16px !important;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+}
+
+.solution-bridge h2::before,
+.solution-bridge h2::after {
+  font-family: var(--serif);
+  font-size: clamp(1.6875rem, 4vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+}
+
+.solution-bridge h2::before {
+  content: "hence, we built an extension to prevent you from shopping destructively using ";
+  color: var(--black);
+  font-weight: 400;
+}
+
+.solution-bridge h2::after {
+  content: "friction.";
+  color: var(--lime);
+  font-weight: 800;
+}
+
+.waitlist-platform-field {
+  margin: 14px 0 8px;
+}
+
+.waitlist-platform-label {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: left;
+  color: var(--black);
+}
+
+.waitlist-platform-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+}
+
+.waitlist-platform-options .radio-pill {
+  min-width: 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: transparent;
+  color: var(--mid);
+  font-size: 13px;
+  transition: background 0.15s ease, color 0.15s ease, font-weight 0.15s ease;
+}
+
+.waitlist-platform-options .radio-pill:has(input:checked) {
+  background: var(--black);
+  color: var(--lime);
+  font-weight: 700;
+}
+
+.waitlist-platform-options .radio-pill:has(input:focus-visible) {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+}
+
+.waitlist-mobile-caveat {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--lime);
+  background: var(--white);
+  color: var(--mid);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+@media (min-width: 761px) {
+  .waitlist-platform-field {
+    margin-top: 16px;
+    margin-bottom: 10px;
+  }
+
+  .waitlist-platform-label {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .waitlist-platform-options {
+    gap: 8px;
+    padding: 5px;
+  }
+
+  .waitlist-platform-options .radio-pill {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero { padding-bottom: 0; }
+  .hero-visual { min-height: 71px; }
+  .hero-screenshot-stack { min-height: 71px !important; }
+  .solution-bridge h2::before,
+  .solution-bridge h2::after { font-size: 1.625rem; }
+  .waitlist-platform-options { gap: 4px; padding: 3px; }
+  .waitlist-platform-options .radio-pill { padding: 9px 8px; font-size: 12px; }
+  .waitlist-mobile-caveat { font-size: 11px; }
+  .layers-index-label { text-align: center; margin-bottom: 4px; }
+  .solution-bridge-sub { text-align: center; margin-bottom: 16px; }
+  .layers-index { grid-template-columns: 1fr; gap: 12px; max-width: 100%; margin: 0; }
+
+  .layer-index-item {
+    position: relative;
+    overflow: hidden;
+    width: 82%;
+    padding: 8px 10px;
+    text-align: center;
+    background: var(--white);
+    animation-name: layer-slide;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  .layer-index-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--lime) 0%, var(--lime-muted) 35%, transparent 100%);
+    opacity: 1;
+    animation-name: gradient-left;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    mix-blend-mode: normal;
+  }
+
+  .layer-index-item::before { display: none; }
+
+  .layer-index-item .layer-action,
+  .layer-index-item .layer-name {
+    position: relative;
+    z-index: 1;
+    color: var(--black);
+  }
+
+  .layer-index-item .layer-action { margin-bottom: 2px; }
+  .layer-index-item .layer-name {
+    font-family: var(--sans);
+    letter-spacing: -0.25px;
+    font-size: 19.6875px;
+    line-height: 1.05;
+  }
+
+  .layer-index-item:nth-child(odd) { animation-direction: alternate; }
+  .layer-index-item:nth-child(odd)::after { animation-direction: alternate; }
+  .layer-index-item:nth-child(even) { animation-direction: alternate-reverse; }
+  .layer-index-item:nth-child(even)::after { animation-direction: alternate-reverse; }
+  .layer-index-item:nth-child(even)::after {
+    background: linear-gradient(270deg, var(--lime) 0%, var(--lime-muted) 35%, transparent 100%);
+  }
+
+  @keyframes layer-slide {
+    0% { margin-left: 0; }
+    100% { margin-left: 18%; }
+  }
+
+  /* Opacity-only edge gradient: 1s out, 2s clear, 1s in. */
+  @keyframes gradient-left {
+    0%, 100% { opacity: 1; }
+    25% { opacity: 0; }
+    75% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .layer-index-item,
+    .layer-index-item::after { animation: none; }
+  }
+}
+
+@media (min-width: 761px) {
+  .step-title { font-size: 1.15rem; }
+}
+
+@media (max-width: 760px) {
+  .step-title { font-size: 1.05rem; }
+}
+
+.form-band .form-check:last-of-type {
+  margin-top: 16px;
+}

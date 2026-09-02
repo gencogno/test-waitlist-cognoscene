@@ -1,0 +1,5 @@
+<svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Infinity/recycle loop in black (original design, color only changed) -->
+  <path d="M 27 12 C 35.2843 12 42 18.7157 42 27 C 42 35.2843 35.2843 42 27 42 C 18.7157 42 12 35.2843 12 27 C 12 18.7157 18.7157 12 27 12 M 27 15 C 20.3726 15 15 20.3726 15 27 C 15 33.6274 20.3726 39 27 39 C 33.6274 39 39 33.6274 39 27 C 39 20.3726 33.6274 15 27 15" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M 22 22 L 26 18 L 30 22 M 32 32 L 28 36 L 24 32" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

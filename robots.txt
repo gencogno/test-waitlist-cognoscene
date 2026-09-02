@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cognoscene.com/sitemap.xml
