@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>disrupt shopping impulses | cognoscene — founding waitlist · 100 spots</title>
   <meta name="description" content="98% of regretful buying happens before you pay. cognoscene — a chrome extension that pauses impulse checkout. join the founding beta waitlist." />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="assets/cognoscene-mark.png" type="image/png" />
   <link rel="canonical" href="https://cognoscene.com/waitlist" />
   <meta property="og:type" content="website" />
@@ -24,8 +25,7 @@
   <meta name="twitter:image:alt" content="cognoscene founding waitlist — disrupt unexpected shopping urges causing financial strain." />
   <meta name="theme-color" content="#111111" />
   <link rel="stylesheet" href="css/layers.css?v=d60691d">
-  <script src="js/waitlist-form.js?v=27da922"></script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="js/waitlist-form.js?v=27da922" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;800&display=swap" rel="stylesheet" />
@@ -2645,14 +2645,13 @@
         <p class="hero-lead">you buy to feel good, then the package arrives after you've already moved on — cognoscene puts the pause on checkout, not your whole life.</p>
         <div class="hero-cta-row">
         <a class="btn-primary" href="#waitlist">i need this!</a>
-          <button type="button" class="hero-info-btn mobile-only" id="heroInfoBtn" aria-label="mobile apps roadmap" aria-expanded="false" aria-controls="heroRoadmapSheet">i</button>
         </div>
         <p class="hero-meta">first 100 get early access</p>
       </div>
 
         <div class="hero-visual" aria-label="product ui mockups">
         <div class="hero-screenshot-stack">
-          <div class="hero-shot hero-shot--growth" role="button" tabindex="0" aria-pressed="false" aria-label="growth dashboard view — click to bring to front">
+          <div class="hero-shot hero-shot--growth hero-journey-card" data-journey="4" aria-label="purchase rationalised dashboard">
             <div class="hero-mock-head hero-mock-head--brand">
               <div class="hero-mock-brand" aria-label="cognoscene">
                 <img class="hero-mock-mark" src="assets/cognoscene-mark.png" alt="" />
@@ -2684,7 +2683,7 @@
             </div>
         </div>
 
-          <div class="hero-shot hero-shot--soft" role="button" tabindex="0" aria-pressed="false" aria-label="soft nudge view — click to bring to front">
+          <div class="hero-shot hero-shot--soft hero-journey-card" data-journey="0" aria-label="impulse interrupted">
             <div class="hero-mock-head hero-mock-head--brand">
               <div class="hero-mock-brand" aria-label="cognoscene">
                 <img class="hero-mock-mark" src="assets/cognoscene-mark.png" alt="" />
@@ -2701,7 +2700,20 @@
             </div>
           </div>
 
-          <div class="hero-shot hero-shot--hold" role="button" tabindex="0" aria-pressed="false" aria-label="checkout hold view — click to bring to front">
+          <div class="hero-shot hero-journey-card hero-shot--continue" data-journey="1" aria-label="continue browsing">
+            <div class="hero-mock-head hero-mock-head--brand">
+              <div class="hero-mock-brand" aria-label="cognoscene">
+                <img class="hero-mock-mark" src="assets/cognoscene-mark.png" alt="" />
+                <img class="hero-mock-wordmark" src="assets/cognoscene-wordmark.png" alt="cognoscene" />
+              </div>
+            </div>
+            <div class="hero-mock-body hero-mock-body--soft">
+              <p class="mock-soft-copy">okay — keep browsing. we’ll be here when checkout calls.</p>
+              <div class="mock-soft-actions"><div class="mock-soft-btn mock-soft-btn--primary">continue browsing</div></div>
+            </div>
+          </div>
+
+          <div class="hero-shot hero-shot--hold hero-journey-card" data-journey="2" aria-label="48 hour checkout hold">
             <div class="hero-mock-head hero-mock-head--brand">
               <div class="hero-mock-brand" aria-label="cognoscene">
                 <img class="hero-mock-mark" src="assets/cognoscene-mark.png" alt="" />
@@ -2720,8 +2732,44 @@
           </div>
           </div>
 
+          <div class="hero-shot hero-journey-card hero-shot--decision" data-journey="3" aria-label="decision window">
+            <div class="hero-mock-head hero-mock-head--brand">
+              <div class="hero-mock-brand" aria-label="cognoscene">
+                <img class="hero-mock-mark" src="assets/cognoscene-mark.png" alt="" />
+                <img class="hero-mock-wordmark" src="assets/cognoscene-wordmark.png" alt="cognoscene" />
+              </div>
+            </div>
+            <div class="hero-mock-body hero-mock-body--soft">
+              <p class="mock-soft-copy">48 hours passed. do you still want this?</p>
+              <div class="mock-soft-actions"><div class="mock-soft-btn mock-soft-btn--primary">save this purchase</div><div class="mock-soft-btn">buy anyway</div></div>
+            </div>
+          </div>
+          </div>
+
           <span class="hero-shot-tag">how it works — on any digital store</span>
         </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-band" id="demo" aria-labelledby="demo-heading">
+      <div class="wrap demo-layout">
+        <div class="demo-copy">
+          <p class="section-eyebrow">product demo · see it in action</p>
+          <h2 id="demo-heading">watch cognoscene interrupt the impulse.</h2>
+          <p>see how each layer adds friction between the urge to buy and the decision to pay.</p>
+        </div>
+        <div class="demo-slider" data-demo-slider aria-label="cognoscene product demo">
+          <div class="demo-slides">
+            <figure class="demo-slide is-active" data-demo-slide="0"><video muted loop playsinline preload="metadata"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><figcaption>notice the impulse while you browse.</figcaption></figure>
+            <figure class="demo-slide" data-demo-slide="1" hidden><video muted loop playsinline preload="metadata"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><figcaption>pause checkout for 48 hours.</figcaption></figure>
+            <figure class="demo-slide" data-demo-slide="2" hidden><video muted loop playsinline preload="metadata"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><figcaption>see purchases rationalised over time.</figcaption></figure>
+          </div>
+          <div class="demo-controls" aria-label="demo controls">
+            <button type="button" data-demo-prev aria-label="previous demo">‹</button>
+            <div role="tablist" aria-label="demo slides"><button type="button" data-demo-dot="0" aria-selected="true" role="tab">observer</button><button type="button" data-demo-dot="1" aria-selected="false" role="tab">48h hold</button><button type="button" data-demo-dot="2" aria-selected="false" role="tab">growth</button></div>
+            <button type="button" data-demo-next aria-label="next demo">›</button>
+          </div>
         </div>
       </div>
     </section>
@@ -2749,8 +2797,8 @@
           </div>
         </div>
 
-        <aside class="problem-loop-visual" aria-label="see, buy, regret loop">
-          <div class="lc-circle-stage" aria-hidden="true">
+        <aside class="problem-loop-visual" role="button" tabindex="0" aria-pressed="false" aria-label="see, buy, regret loop. click to pause animation.">
+          <div class="lc-circle-stage">
             <div class="lc-circle-inner">
               <div class="lc-hub-img-wrap" aria-hidden="true">
                 <img src="assets/canva-loop.png" alt="" class="lc-hub-img" width="54" height="54" decoding="async" />
@@ -2780,6 +2828,13 @@
             </div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <section class="proof-band" aria-label="what impulse buying can cost">
+      <div class="wrap proof-cards">
+        <figure class="proof-card"><blockquote>“literally wasted nearly $230 on clothes because of FOMO.”</blockquote><figcaption>adam h.</figcaption></figure>
+        <figure class="proof-card"><blockquote>“577,500 Malaysians got into debt because of an addiction of buying stuff they don’t need.”</blockquote><figcaption>akpk, 2024.</figcaption></figure>
       </div>
     </section>
 
@@ -2924,7 +2979,6 @@
               <span>i agree to the <a href="privacy.html">privacy policy</a> and <a href="terms.html">terms of use</a>.</span>
             </label>
 
-            <div class="cf-turnstile" id="waitlistTurnstile" data-sitekey="0x4AAAAAAEZ4oFult9RKXCxw" data-action="waitlist_signup" data-appearance="interaction-only"></div>
             <button class="btn-submit" id="submitBtn" type="submit">join the waitlist</button>
           </form>
 
@@ -3043,24 +3097,7 @@
             <p class="psm-error" id="psmErrorVariants" role="alert" hidden></p>
             <div class="psm-actions">
               <button class="psm-back" type="button" data-action="back">&larr; back</button>
-              <button class="psm-btn-primary" type="button" data-action="next-review">next</button>
-            </div>
-          </div>
-
-          <div class="psm-step" data-step="review">
-            <p class="psm-kicker">final check</p>
-            <h3 id="psmReviewTitle" tabindex="-1">are you sure these answers are right?</h3>
-            <div class="psm-review" aria-label="your answers">
-              <p class="psm-review-row"><span>country</span><strong id="psmReviewCountry"></strong></p>
-              <p class="psm-review-row"><span>found us</span><strong id="psmReviewReferral"></strong></p>
-              <p class="psm-review-row"><span>versions</span><strong id="psmReviewExpansion"></strong></p>
-              <p class="psm-review-row" id="psmReviewPlatformsRow"><span>platforms</span><strong id="psmReviewPlatforms"></strong></p>
-            </div>
-            <p class="psm-lock-note">once submitted, you won’t be able to edit these answers.</p>
-            <p class="psm-error" id="psmErrorReview" role="alert" hidden></p>
-            <div class="psm-actions">
-              <button class="psm-back" type="button" data-action="review-back">&larr; edit answers</button>
-              <button class="psm-btn-primary" type="button" data-action="confirm">submit answers</button>
+              <button class="psm-btn-primary" type="button" data-action="submit-answers">submit answers</button>
             </div>
           </div>
 
@@ -3091,6 +3128,15 @@
 
   <div class="mobile-cta-bar" aria-label="quick action">
     <a href="#waitlist">i need this!</a>
+  </div>
+
+  <div class="waitlist-modal" id="waitlistModal" aria-hidden="true">
+    <button type="button" class="waitlist-modal-backdrop" data-waitlist-close aria-label="close waitlist"></button>
+    <div class="waitlist-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="waitlistModalTitle">
+      <button type="button" class="waitlist-modal-close" data-waitlist-close aria-label="close waitlist">×</button>
+      <p class="visually-hidden" id="waitlistModalTitle">join the cognoscene waitlist</p>
+      <div id="waitlistModalContent"></div>
+    </div>
   </div>
 
   <div class="video-lightbox" id="videoLightbox" aria-hidden="true">
@@ -3129,9 +3175,67 @@
     }
   </style>
 
+  <style>
+    /* 2026 waitlist interaction batch */
+    .hero-screenshot-stack { height: 420px; perspective: 1200px; isolation: isolate; }
+    .hero-screenshot-stack::after { content: ''; position: absolute; inset: 0; z-index: 12; pointer-events: none; opacity: 0; background: radial-gradient(180px circle at var(--hero-glare-x, 50%) var(--hero-glare-y, 50%), rgba(255,255,255,.72), rgba(255,255,255,.15) 26%, transparent 64%); transition: opacity .2s ease; mix-blend-mode: screen; }
+    .hero-screenshot-stack:hover::after { opacity: 1; }
+    .hero-screenshot-stack .hero-shot { left: 50% !important; top: 50% !important; bottom: auto !important; width: min(100%, 400px) !important; min-height: 218px; opacity: 0; pointer-events: none; transform: translate(-50%, -50%) rotateY(-70deg) translateZ(-120px) !important; transition: opacity .5s ease, transform .8s cubic-bezier(.2,.7,.2,1); box-shadow: 0 20px 52px rgba(17,17,17,.16) !important; }
+    .hero-screenshot-stack .hero-shot.is-journey-active { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) rotateY(0) translateZ(0) !important; z-index: 5; }
+    .hero-screenshot-stack .hero-shot.is-journey-exiting { opacity: 0; transform: translate(-50%, -50%) rotateY(70deg) translateZ(-120px) !important; z-index: 4; }
+    .hero-shot--continue, .hero-shot--decision { border: 1px solid var(--black) !important; }
+    .hero-screenshot-stack .hero-shot-tag { bottom: 0; z-index: 13; }
+    .mobile-h1 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.05em; }
+
+    .demo-band { padding: 44px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .demo-layout { display: grid; gap: 24px; align-items: center; }
+    .demo-copy h2 { margin: 8px 0 12px; font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.65rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.05em; }
+    .demo-copy > p:last-child { max-width: 460px; color: var(--mid); }
+    .demo-slider { max-width: 430px; margin: 0 auto; }
+    .demo-slides { border: 2px solid var(--black); border-radius: 24px; overflow: hidden; background: var(--white); box-shadow: 0 16px 40px rgba(17,17,17,.09); }
+    .demo-slide { margin: 0; }
+    .demo-slide video { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--cream); }
+    .demo-slide figcaption { padding: 10px 14px; font-size: 12px; color: var(--mid); text-align: center; }
+    .demo-controls { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; }
+    .demo-controls button { min-height: 32px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: var(--cream); color: var(--black); font: inherit; font-size: 11px; cursor: pointer; }
+    .demo-controls > button { width: 32px; padding: 0; font-size: 20px; }
+    .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
+
+    .problem-loop-visual { cursor: pointer; }
+    .lc-circle-inner { animation: problem-wheel 13s linear infinite; transform-origin: 50% 50%; }
+    .lc-circle-card, .lc-hub-img-wrap { animation: problem-wheel-counter 13s linear infinite; }
+    .problem-loop-visual.is-paused .lc-circle-inner, .problem-loop-visual.is-paused .lc-circle-card, .problem-loop-visual.is-paused .lc-hub-img-wrap { animation-play-state: paused; }
+    @keyframes problem-wheel { to { transform: rotate(360deg); } }
+    @keyframes problem-wheel-counter { to { transform: translate(-50%, -100%) rotate(-360deg); } }
+    .lc-hub-img-wrap { transform: translate(-50%, -50%); }
+    @keyframes problem-hub-counter { to { transform: translate(-50%, -50%) rotate(-360deg); } }
+    .lc-hub-img-wrap { animation-name: problem-hub-counter; }
+
+    .proof-band { padding: 0 0 44px; }
+    .proof-cards { display: grid; gap: 14px; }
+    .proof-card { margin: 0; padding: 20px; border: 1px solid var(--black); border-radius: 16px; background: var(--white); }
+    .proof-card blockquote { font-family: var(--serif); font-size: 1.22rem; line-height: 1.2; }
+    .proof-card figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; font-weight: 800; }
+
+    .waitlist-modal { position: fixed; inset: 0; z-index: 9500; display: grid; place-items: center; padding: 20px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease, visibility .2s ease; }
+    .waitlist-modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .waitlist-modal-backdrop { position: absolute; inset: 0; border: 0; background: rgba(17,17,17,.62); cursor: pointer; }
+    .waitlist-modal-dialog { position: relative; z-index: 1; width: min(960px, 100%); max-height: min(800px, calc(100vh - 40px)); overflow: auto; border: 1px solid var(--black); border-radius: 24px; background: var(--cream); box-shadow: 0 24px 80px rgba(0,0,0,.25); }
+    .waitlist-modal-dialog .form-conversion { padding: 48px 28px; }
+    .waitlist-modal-close { position: sticky; top: 14px; float: right; z-index: 4; margin: 14px 14px -46px 0; width: 36px; height: 36px; border: 1px solid var(--black); border-radius: 999px; background: var(--cream); color: var(--black); font: inherit; font-size: 22px; cursor: pointer; }
+    .psm { z-index: 9700; }
+    body.waitlist-modal-open { overflow: hidden; }
+    body.waitlist-modal-open .mobile-cta-bar { display: none; }
+
+    @media (min-width: 761px) { .demo-layout { grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr); gap: 48px; } .proof-cards { grid-template-columns: repeat(2, 1fr); } .form-conversion { grid-template-areas: "offer form"; } }
+    @media (max-width: 760px) { .hero-screenshot-stack { height: 290px !important; min-height: 290px !important; margin-top: 0 !important; } .hero-screenshot-stack .hero-shot { width: 86% !important; min-height: 192px; } .hero-visual { min-height: 320px; } .demo-band { padding: 36px 0; } .waitlist-modal { align-items: end; padding: 0; } .waitlist-modal-dialog { width: 100%; max-height: calc(100vh - 12px); border-radius: 24px 24px 0 0; } .waitlist-modal-dialog .form-conversion { padding: 40px 24px 48px; } }
+    @media (prefers-reduced-motion: reduce) { .hero-screenshot-stack .hero-shot { transition: none; } .lc-circle-inner, .lc-circle-card, .lc-hub-img-wrap { animation: none !important; } .hero-screenshot-stack::after { display: none; } }
+  </style>
+
   <script>
     // ——— site config (edit these) ———
     var SITE_URL = 'https://cognoscene.com/waitlist';
+    var TEST_MODE = window.location.hostname === 'gencogno.github.io' || window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
     var waitlistIsOpen = false;
     var formSubmitted = false;
 
@@ -3185,6 +3289,15 @@
 
       if (!form.checkValidity()) {
         form.reportValidity();
+        return;
+      }
+
+      if (TEST_MODE) {
+        formSubmitted = true;
+        formPanel.classList.add('is-hidden');
+        formSuccessCopy.textContent = 'test mode: no details were submitted.';
+        formSuccess.classList.add('is-visible');
+        openPostSignupModal('test-preview');
         return;
       }
 
@@ -4223,6 +4336,11 @@
       }
 
       function loadGate() {
+        if (TEST_MODE) {
+          gateState = { state: 'open', closes_at: new Date(Date.now() + 86400000).toISOString() };
+          renderState();
+          return;
+        }
         if (gateTimer) {
           clearInterval(gateTimer);
           gateTimer = null;
@@ -4283,32 +4401,6 @@
         });
       }
     })();
-
-    document.addEventListener('DOMContentLoaded', function () {
-      var heroInfoBtn = document.getElementById('heroInfoBtn');
-      var heroSheet = document.getElementById('heroRoadmapSheet');
-      var heroSheetDismiss = document.getElementById('heroSheetDismiss');
-
-      function openHeroSheet() {
-        heroSheet.classList.add('is-open');
-        heroSheet.setAttribute('aria-hidden', 'false');
-        heroInfoBtn.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeHeroSheet() {
-        heroSheet.classList.remove('is-open');
-        heroSheet.setAttribute('aria-hidden', 'true');
-        heroInfoBtn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-
-      if (heroInfoBtn) heroInfoBtn.addEventListener('click', openHeroSheet);
-      if (heroSheetDismiss) heroSheetDismiss.addEventListener('click', closeHeroSheet);
-      if (heroSheet) heroSheet.addEventListener('click', function (e) {
-        if (e.target === heroSheet) closeHeroSheet();
-        });
-    });
 
   </script>
 
@@ -4454,7 +4546,7 @@
         modal.querySelectorAll('.psm-btn-primary').forEach(function (button) {
           var label = button.getAttribute('data-action');
           button.disabled = false;
-          button.textContent = label === 'start' ? 'sure' : label === 'confirm' ? 'submit answers' : label === 'close' ? 'close' : 'next';
+          button.textContent = label === 'start' ? 'sure' : label === 'submit-answers' ? 'submit answers' : label === 'close' ? 'close' : 'next';
         });
         hideError();
       }
@@ -4541,6 +4633,14 @@
         button.disabled = true;
         button.textContent = 'saving';
 
+        if (TEST_MODE) {
+          submitted = true;
+          currentSurveyToken = '';
+          showStep('done');
+          window.setTimeout(closeModal, 5000);
+          return;
+        }
+
         fetch('/api/waitlist/survey', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -4563,10 +4663,11 @@
           submitted = true;
           currentSurveyToken = '';
           showStep('done');
+          window.setTimeout(closeModal, 5000);
         }).catch(function (error) {
           showError(error.message || 'we could not save this right now. check your connection and try again.', errorId);
           button.disabled = false;
-          button.textContent = button.getAttribute('data-action') === 'confirm' ? 'submit answers' : 'next';
+          button.textContent = button.getAttribute('data-action') === 'submit-answers' ? 'submit answers' : 'next';
         }).finally(function () {
           isSubmitting = false;
         });
@@ -4655,15 +4756,13 @@
               document.getElementById('psmMobileVariants').hidden = !wantsMobile;
               showStep('variants');
             } else {
-              showReview('3');
+              submitAnswers(event.target, 'psmError3');
             }
           }
         }
-        else if (action === 'next-review') {
-          if (validateStep('variants')) showReview('variants');
+        else if (action === 'submit-answers') {
+          if (validateStep('variants')) submitAnswers(event.target, 'psmErrorVariants');
         }
-        else if (action === 'review-back') showStep(reviewReturnStep);
-        else if (action === 'confirm') submitAnswers(event.target, 'psmErrorReview');
         else if (action === 'close' && submitted) closeModal();
       });
 
@@ -4818,13 +4917,103 @@
     })();
   </script>
 
-  <div class="hero-roadmap-sheet mobile-only" id="heroRoadmapSheet" aria-hidden="true">
-    <div class="hero-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="heroSheetTitle">
-      <h3 id="heroSheetTitle">mobile apps are on the roadmap</h3>
-      <p>cognoscene is desktop chrome today. we're building native apps for android and ios, targeting late 2027. join the waitlist now — we'll email you when desktop beta opens, and you'll hear about mobile when it's ready. rest assured.</p>
-      <button type="button" class="hero-sheet-dismiss" id="heroSheetDismiss">got it</button>
-    </div>
-  </div>
-  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4935758c68641948885a5a85782d773"}'></script><!-- End Cloudflare Web Analytics -->
+  <script>
+    (function () {
+      var modal = document.getElementById('waitlistModal');
+      var modalContent = document.getElementById('waitlistModalContent');
+      var conversion = document.querySelector('.form-conversion');
+      if (!modal || !modalContent || !conversion) return;
+      var originalParent = conversion.parentNode;
+      var placeholder = document.createComment('waitlist conversion location');
+      var returnFocus = null;
+      function closeModal() {
+        if (!modal.classList.contains('is-open')) return;
+        originalParent.insertBefore(conversion, placeholder);
+        placeholder.remove();
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('waitlist-modal-open');
+        if (returnFocus) returnFocus.focus();
+      }
+      function openModal(trigger) {
+        returnFocus = trigger;
+        originalParent.insertBefore(placeholder, conversion);
+        modalContent.appendChild(conversion);
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('waitlist-modal-open');
+        modal.querySelector('.waitlist-modal-close').focus();
+      }
+      document.querySelectorAll('.hero .btn-primary, .mobile-cta-bar a').forEach(function (trigger) {
+        trigger.addEventListener('click', function (event) { event.preventDefault(); openModal(trigger); });
+      });
+      modal.querySelectorAll('[data-waitlist-close]').forEach(function (control) { control.addEventListener('click', closeModal); });
+      document.addEventListener('keydown', function (event) { if (event.key === 'Escape') closeModal(); });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var journey = document.querySelector('.hero-screenshot-stack');
+      if (journey) {
+        var cards = Array.prototype.slice.call(journey.querySelectorAll('.hero-journey-card'));
+        var index = 0;
+        function showJourney(next) {
+          cards.forEach(function (card, cardIndex) {
+            var isCurrent = cardIndex === next;
+            card.classList.toggle('is-journey-active', isCurrent);
+            card.classList.toggle('is-journey-exiting', !isCurrent && cardIndex === index);
+          });
+          index = next;
+        }
+        showJourney(0);
+        window.setInterval(function () { showJourney((index + 1) % cards.length); }, 3600);
+        journey.addEventListener('pointermove', function (event) {
+          var rect = journey.getBoundingClientRect();
+          journey.style.setProperty('--hero-glare-x', (event.clientX - rect.left) + 'px');
+          journey.style.setProperty('--hero-glare-y', (event.clientY - rect.top) + 'px');
+        });
+      }
+
+      var loop = document.querySelector('.problem-loop-visual');
+      if (loop) {
+        function toggleLoop() {
+          var paused = loop.classList.toggle('is-paused');
+          loop.setAttribute('aria-pressed', paused ? 'true' : 'false');
+          loop.setAttribute('aria-label', 'see, buy, regret loop. click to ' + (paused ? 'resume' : 'pause') + ' animation.');
+        }
+        loop.addEventListener('click', toggleLoop);
+        loop.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleLoop(); }
+        });
+      }
+
+      var slider = document.querySelector('[data-demo-slider]');
+      if (!slider) return;
+      var slides = Array.prototype.slice.call(slider.querySelectorAll('[data-demo-slide]'));
+      var dots = Array.prototype.slice.call(slider.querySelectorAll('[data-demo-dot]'));
+      var slideIndex = 0;
+      var timer;
+      function setSlide(next) {
+        slideIndex = (next + slides.length) % slides.length;
+        slides.forEach(function (slide, position) {
+          var active = position === slideIndex;
+          slide.hidden = !active;
+          slide.classList.toggle('is-active', active);
+          var video = slide.querySelector('video');
+          if (video) { if (active) video.play().catch(function () {}); else video.pause(); }
+        });
+        dots.forEach(function (dot, position) { dot.setAttribute('aria-selected', position === slideIndex ? 'true' : 'false'); });
+      }
+      function resetTimer() { window.clearInterval(timer); timer = window.setInterval(function () { setSlide(slideIndex + 1); }, 5000); }
+      slider.querySelector('[data-demo-prev]').addEventListener('click', function () { setSlide(slideIndex - 1); resetTimer(); });
+      slider.querySelector('[data-demo-next]').addEventListener('click', function () { setSlide(slideIndex + 1); resetTimer(); });
+      dots.forEach(function (dot) { dot.addEventListener('click', function () { setSlide(Number(dot.getAttribute('data-demo-dot'))); resetTimer(); }); });
+      slider.addEventListener('pointerdown', function () { window.clearInterval(timer); }, { passive: true });
+      slider.addEventListener('pointerup', resetTimer, { passive: true });
+      setSlide(0); resetTimer();
+    })();
+  </script>
+
 </body>
 </html>
