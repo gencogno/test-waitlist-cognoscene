@@ -1356,7 +1356,7 @@
     .lc-circle-card {
       position: absolute;
       width: 72px;
-      transform: translate(-50%, -100%);
+      transform: translate(-50%, -50%);
       z-index: 3;
     }
     .problem-loop-visual .loop-icon-card {
@@ -2779,17 +2779,19 @@
         <div class="demo-slider" data-demo-slider aria-label="cognoscene product demo">
           <div class="demo-slides">
             <figure class="demo-slide is-active" data-demo-slide="0">
-              <video muted loop playsinline preload="metadata"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer demo; click to pause or play"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand showcase-video-hit" data-master-index="5" aria-label="expand observer demo">⛶</button>
               <figcaption><strong class="demo-slide-title">intercept unnecessary impulses</strong><span class="demo-slide-copy">soft lookout pulses help you notice the urge while browsing.</span></figcaption>
             </figure>
             <figure class="demo-slide" data-demo-slide="1">
-              <video muted loop playsinline preload="metadata"><source src="assets/videos/demo.mp4" type="video/mp4" /></video>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="48-hour hold demo; click to pause or play"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><button type="button" class="demo-expand showcase-video-hit" data-master-index="6" aria-label="expand 48-hour hold demo">⛶</button>
               <figcaption><strong class="demo-slide-title">48 hours to decide if you need this</strong><span class="demo-slide-copy">checkout pauses while the immediate buying impulse has time to settle.</span></figcaption>
             </figure>
             <figure class="demo-slide" data-demo-slide="2">
-              <video muted loop playsinline preload="metadata"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="growth demo; click to pause or play"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><button type="button" class="demo-expand showcase-video-hit" data-master-index="7" aria-label="expand growth demo">⛶</button>
               <figcaption><strong class="demo-slide-title">reinforce your identity of prudence</strong><span class="demo-slide-copy">see purchases rationalised and intentional decisions over time.</span></figcaption>
             </figure>
+            <button type="button" class="demo-overlay-nav" data-demo-prev aria-label="previous demo">‹</button>
+            <button type="button" class="demo-overlay-nav" data-demo-next aria-label="next demo">›</button>
           </div>
           <div class="demo-controls" aria-label="demo controls">
             <button type="button" data-demo-prev aria-label="previous demo">‹</button>
@@ -3233,12 +3235,13 @@
     }
     .demo-slide {
       grid-area: 1 / 1;
+      position: relative;
       margin: 0;
       border: 2px solid var(--black);
-      border-radius: 24px;
+      border-radius: 28px;
       overflow: hidden;
       background: var(--white);
-      box-shadow: 0 16px 40px rgba(17,17,17,.09);
+      box-shadow: 0 20px 48px rgba(17,17,17,.14);
       opacity: 0;
       pointer-events: none;
       transform: translateX(0) scale(.82);
@@ -3248,13 +3251,17 @@
     .demo-slide.is-active { z-index: 3; opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); filter: none; }
     .demo-slide.is-prev { z-index: 2; opacity: .5; transform: translateX(-88%) scale(.88); filter: saturate(.72); }
     .demo-slide.is-next { z-index: 2; opacity: .5; transform: translateX(88%) scale(.88); filter: saturate(.72); }
-    .demo-slide video { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--cream); }
+    .demo-slide video { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--cream); cursor: pointer; }
+    .demo-expand { position: absolute; top: 14px; right: 14px; z-index: 5; width: 44px; height: 44px; border: 1px solid rgba(237,234,222,.45); border-radius: 999px; background: rgba(17,17,17,.88); color: var(--lime); font: 700 20px/1 var(--sans); display: grid; place-items: center; cursor: pointer; backdrop-filter: blur(6px); }
+    .demo-overlay-nav { position: absolute; top: calc((100% - 88px) / 2); z-index: 6; width: 48px; height: 48px; border: 1px solid rgba(237,234,222,.45); border-radius: 999px; background: rgba(17,17,17,.9); color: var(--lime); font: 400 30px/1 var(--serif); display: grid; place-items: center; cursor: pointer; box-shadow: 0 8px 22px rgba(17,17,17,.22); transform: translateY(-50%); }
+    .demo-overlay-nav[data-demo-prev] { left: 12px; }
+    .demo-overlay-nav[data-demo-next] { right: 12px; }
     .demo-slide figcaption { min-height: 88px; padding: 14px 18px 16px; color: var(--mid); text-align: left; }
     .demo-slide-title { display: block; margin-bottom: 4px; font-family: var(--serif); font-size: 18px; line-height: 1.2; color: var(--black); }
     .demo-slide-copy { display: block; font-size: 12px; line-height: 1.5; }
     .demo-controls { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; }
     .demo-controls button { min-height: 32px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: var(--cream); color: var(--black); font: inherit; font-size: 11px; cursor: pointer; }
-    .demo-controls > button { width: 32px; padding: 0; font-size: 20px; }
+    .demo-controls > button { display: none; }
     .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
     @media (max-width: 760px) {
       .demo-slides { width: calc(100% - 64px); }
@@ -3274,24 +3281,18 @@
       transform-origin: 50% 50%;
       animation: problem-wheel 13s linear infinite;
     }
-    .lc-circle-card {
-      animation: problem-wheel-counter 13s linear infinite;
-    }
+    .lc-circle-card .loop-icon-card { animation: problem-wheel-counter 13s linear infinite; transform-origin: 50% 50%; }
     .problem-loop-visual.is-anticlockwise .lc-orbit,
-    .problem-loop-visual.is-anticlockwise .lc-circle-card {
-      animation-direction: reverse;
-    }
+    .problem-loop-visual.is-anticlockwise .lc-circle-card .loop-icon-card { animation-direction: reverse; }
     .problem-loop-visual.is-paused .lc-orbit,
-    .problem-loop-visual.is-paused .lc-circle-card {
-      animation-play-state: paused;
-    }
+    .problem-loop-visual.is-paused .lc-circle-card .loop-icon-card { animation-play-state: paused; }
     @keyframes problem-wheel {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
     @keyframes problem-wheel-counter {
-      from { transform: translate(-50%, -100%) rotate(0deg); }
-      to { transform: translate(-50%, -100%) rotate(-360deg); }
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
     }
     .lc-hub-img-wrap { transform: translate(-50%, -50%); }
 
@@ -3483,7 +3484,10 @@
           pill: 'hold demo'
         },
         SLIDER_CLIPS.layer3[0],
-        SLIDER_CLIPS.layer3[1]
+        SLIDER_CLIPS.layer3[1],
+        { src: 'assets/videos/observer-1.mp4', label: 'enlarge observer product demo', caption: 'product demo · observer', pill: 'observer' },
+        { src: 'assets/videos/demo.mp4', label: 'enlarge rationalisation product demo', caption: 'product demo · 48h hold', pill: '48h hold' },
+        { src: 'assets/videos/growth-smol.mp4', label: 'enlarge growth product demo', caption: 'product demo · growth', pill: 'growth' }
       ];
       var currentMasterIndex = 0;
       var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -4019,6 +4023,8 @@
       }
 
       function getMasterIndexForTrigger(trigger, sliderKey) {
+        var explicitIndex = trigger.getAttribute('data-master-index');
+        if (explicitIndex !== null) return Number(explicitIndex);
         var localIndex = 0;
         if (sliderKey && sliderRegistry[sliderKey]) {
           localIndex = sliderRegistry[sliderKey].index;
@@ -4030,6 +4036,7 @@
 
       function openLightbox(trigger) {
         var inlineVideo = trigger.querySelector('.showcase-video.is-active') || trigger.querySelector('.showcase-video');
+        if (!inlineVideo && trigger.classList.contains('demo-expand')) inlineVideo = trigger.closest('.demo-slide').querySelector('.demo-video');
         if (!inlineVideo) return;
 
         var src = getVideoSrc(inlineVideo);
@@ -5107,6 +5114,7 @@
       var dots = Array.prototype.slice.call(slider.querySelectorAll('[data-demo-dot]'));
       var slideIndex = 0;
       var timer;
+      var pointerStartX = null;
       function setSlide(next) {
         slideIndex = (next + slides.length) % slides.length;
         var previousIndex = (slideIndex - 1 + slides.length) % slides.length;
@@ -5124,11 +5132,19 @@
         dots.forEach(function (dot, position) { dot.setAttribute('aria-selected', position === slideIndex ? 'true' : 'false'); });
       }
       function resetTimer() { window.clearInterval(timer); timer = window.setInterval(function () { setSlide(slideIndex + 1); }, 5000); }
-      slider.querySelector('[data-demo-prev]').addEventListener('click', function () { setSlide(slideIndex - 1); resetTimer(); });
-      slider.querySelector('[data-demo-next]').addEventListener('click', function () { setSlide(slideIndex + 1); resetTimer(); });
+      slider.querySelectorAll('[data-demo-prev]').forEach(function (button) { button.addEventListener('click', function () { setSlide(slideIndex - 1); resetTimer(); }); });
+      slider.querySelectorAll('[data-demo-next]').forEach(function (button) { button.addEventListener('click', function () { setSlide(slideIndex + 1); resetTimer(); }); });
       dots.forEach(function (dot) { dot.addEventListener('click', function () { setSlide(Number(dot.getAttribute('data-demo-dot'))); resetTimer(); }); });
-      slider.addEventListener('pointerdown', function () { window.clearInterval(timer); }, { passive: true });
-      slider.addEventListener('pointerup', resetTimer, { passive: true });
+      slider.addEventListener('pointerdown', function (event) { pointerStartX = event.clientX; window.clearInterval(timer); }, { passive: true });
+      slider.addEventListener('pointerup', function (event) {
+        if (pointerStartX !== null && Math.abs(event.clientX - pointerStartX) > 48) setSlide(slideIndex + (event.clientX < pointerStartX ? 1 : -1));
+        pointerStartX = null; resetTimer();
+      }, { passive: true });
+      slides.forEach(function (slide) {
+        var video = slide.querySelector('.demo-video');
+        if (!video) return;
+        video.addEventListener('click', function () { if (video.paused) video.play().catch(function () {}); else video.pause(); window.clearInterval(timer); });
+      });
       setSlide(0); resetTimer();
 
       var proofStat = document.querySelector('.proof-stat');
