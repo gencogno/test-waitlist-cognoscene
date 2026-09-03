@@ -2778,7 +2778,7 @@
           <h2 id="demo-heading">watch cognoscene interrupt the impulse.</h2>
           <p>see how each layer adds friction between the urge to buy and the decision to pay.</p>
         </div>
-        <div class="demo-slider" data-demo-slider aria-label="cognoscene product demo">
+        <div class="demo-slider" data-demo-slider tabindex="0" aria-label="cognoscene product demo; use left and right arrow keys to change layers">
           <div class="demo-slides">
             <figure class="demo-slide is-active" data-demo-slide="0">
               <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer demo; click to pause or play"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="5" aria-label="expand observer demo">view larger</button>
@@ -5192,6 +5192,12 @@
       slider.querySelectorAll('[data-demo-prev]').forEach(function (button) { button.addEventListener('click', function () { setSlide(slideIndex - 1); resetTimer(); }); });
       slider.querySelectorAll('[data-demo-next]').forEach(function (button) { button.addEventListener('click', function () { setSlide(slideIndex + 1); resetTimer(); }); });
       dots.forEach(function (dot) { dot.addEventListener('click', function () { setSlide(Number(dot.getAttribute('data-demo-dot'))); resetTimer(); }); });
+      slider.addEventListener('keydown', function (event) {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        setSlide(slideIndex + (event.key === 'ArrowRight' ? 1 : -1));
+        resetTimer();
+      });
       slider.addEventListener('pointerdown', function (event) { pointerStartX = event.clientX; window.clearInterval(timer); }, { passive: true });
       slider.addEventListener('pointerup', function (event) {
         if (pointerStartX !== null && Math.abs(event.clientX - pointerStartX) > 48) setSlide(slideIndex + (event.clientX < pointerStartX ? 1 : -1));
