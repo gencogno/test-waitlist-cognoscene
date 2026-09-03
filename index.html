@@ -2779,15 +2779,15 @@
         <div class="demo-slider" data-demo-slider aria-label="cognoscene product demo">
           <div class="demo-slides">
             <figure class="demo-slide is-active" data-demo-slide="0">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer demo; click to pause or play"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand showcase-video-hit" data-master-index="5" aria-label="expand observer demo">⛶</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer demo; click to pause or play"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="5" aria-label="expand observer demo">⛶</button>
               <figcaption><strong class="demo-slide-title">intercept unnecessary impulses</strong><span class="demo-slide-copy">soft lookout pulses help you notice the urge while browsing.</span></figcaption>
             </figure>
             <figure class="demo-slide" data-demo-slide="1">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="48-hour hold demo; click to pause or play"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><button type="button" class="demo-expand showcase-video-hit" data-master-index="6" aria-label="expand 48-hour hold demo">⛶</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="48-hour hold demo; click to pause or play"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="6" aria-label="expand 48-hour hold demo">⛶</button>
               <figcaption><strong class="demo-slide-title">48 hours to decide if you need this</strong><span class="demo-slide-copy">checkout pauses while the immediate buying impulse has time to settle.</span></figcaption>
             </figure>
             <figure class="demo-slide" data-demo-slide="2">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="growth demo; click to pause or play"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><button type="button" class="demo-expand showcase-video-hit" data-master-index="7" aria-label="expand growth demo">⛶</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="growth demo; click to pause or play"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="7" aria-label="expand growth demo">⛶</button>
               <figcaption><strong class="demo-slide-title">reinforce your identity of prudence</strong><span class="demo-slide-copy">see purchases rationalised and intentional decisions over time.</span></figcaption>
             </figure>
             <button type="button" class="demo-overlay-nav" data-demo-prev aria-label="previous demo">‹</button>
@@ -4056,6 +4056,8 @@
         closeBtn.focus();
       }
 
+      window.openCognosceneVideoLightbox = openLightbox;
+
       function closeLightbox() {
         lightboxOpen = false;
         activeSlider = null;
@@ -5142,8 +5144,13 @@
       }, { passive: true });
       slides.forEach(function (slide) {
         var video = slide.querySelector('.demo-video');
-        if (!video) return;
-        video.addEventListener('click', function () { if (video.paused) video.play().catch(function () {}); else video.pause(); window.clearInterval(timer); });
+        var expand = slide.querySelector('.demo-expand');
+        if (video) video.addEventListener('click', function () { if (video.paused) video.play().catch(function () {}); else video.pause(); window.clearInterval(timer); });
+        if (expand) expand.addEventListener('click', function (event) {
+          event.stopPropagation();
+          window.clearInterval(timer);
+          if (window.openCognosceneVideoLightbox) window.openCognosceneVideoLightbox(expand);
+        });
       });
       setSlide(0); resetTimer();
 
