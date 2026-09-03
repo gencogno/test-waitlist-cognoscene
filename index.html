@@ -285,6 +285,15 @@
       max-width: 420px;
       line-height: 1.6;
     }
+    .hero-copy-combined {
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--mid);
+    }
+    .hero-copy-combined strong {
+      color: var(--black);
+      font-weight: 800;
+    }
 
     .btn-primary {
       display: inline-block;
@@ -1294,6 +1303,15 @@
       border-radius: 0 12px 12px 0;
       line-height: 1.45;
     }
+    .problem-band .quote-line cite {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 800;
+      color: var(--muted);
+    }
     .problem-band .pivot-line {
       font-size: 17px;
       font-weight: 800;
@@ -1388,7 +1406,7 @@
     .lc-hub-img-wrap {
       position: absolute;
       left: 124px;
-      top: 91.9px;
+      top: 134px;
       transform: translate(-50%, -50%);
       z-index: 4;
       pointer-events: none;
@@ -2640,9 +2658,8 @@
       <div class="hero-copy">
         <h1 id="hero-heading"><span class="stat-highlight">stop</span> impulse buying unnecessarily.</h1>
         <h2 class="mobile-only mobile-h1">prevent destructive web-impulse buys.</h2>
-        <p class="hero-sub" id="hero-sub-desktop">cognoscene is a free chrome extension that adds a 48-hour pause at checkout, giving you time to rethink an impulse purchase.</p>
+        <p class="hero-sub hero-copy-combined" id="hero-sub-desktop"><strong>cognoscene is a free chrome extension that adds a 48-hour pause at checkout, giving you time to rethink an impulse purchase.</strong> you buy to feel good, then the package arrives after you've already moved on.</p>
         <p class="hero-sub mobile-only mobile-sub">we're building cognoscene, a chrome extension that prevents unexpected shopping impulses causing you to go through a <strong class="highlight-swipe">vicious cycle of guilt &amp; overspending.</strong></p>
-        <p class="hero-lead">you buy to feel good, then the package arrives after you've already moved on — cognoscene puts the pause on checkout, not your whole life.</p>
         <div class="hero-cta-row">
         <a class="btn-primary" href="#waitlist">i need this!</a>
         </div>
@@ -2761,9 +2778,18 @@
         </div>
         <div class="demo-slider" data-demo-slider aria-label="cognoscene product demo">
           <div class="demo-slides">
-            <figure class="demo-slide is-active" data-demo-slide="0"><video muted loop playsinline preload="metadata"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><figcaption>notice the impulse while you browse.</figcaption></figure>
-            <figure class="demo-slide" data-demo-slide="1" hidden><video muted loop playsinline preload="metadata"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><figcaption>pause checkout for 48 hours.</figcaption></figure>
-            <figure class="demo-slide" data-demo-slide="2" hidden><video muted loop playsinline preload="metadata"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><figcaption>see purchases rationalised over time.</figcaption></figure>
+            <figure class="demo-slide is-active" data-demo-slide="0">
+              <video muted loop playsinline preload="metadata"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video>
+              <figcaption><strong class="demo-slide-title">intercept unnecessary impulses</strong><span class="demo-slide-copy">soft lookout pulses help you notice the urge while browsing.</span></figcaption>
+            </figure>
+            <figure class="demo-slide" data-demo-slide="1" hidden>
+              <video muted loop playsinline preload="metadata"><source src="assets/videos/demo.mp4" type="video/mp4" /></video>
+              <figcaption><strong class="demo-slide-title">48 hours to decide if you need this</strong><span class="demo-slide-copy">checkout pauses while the immediate buying impulse has time to settle.</span></figcaption>
+            </figure>
+            <figure class="demo-slide" data-demo-slide="2" hidden>
+              <video muted loop playsinline preload="metadata"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video>
+              <figcaption><strong class="demo-slide-title">reinforce your identity of prudence</strong><span class="demo-slide-copy">see purchases rationalised and intentional decisions over time.</span></figcaption>
+            </figure>
           </div>
           <div class="demo-controls" aria-label="demo controls">
             <button type="button" data-demo-prev aria-label="previous demo">‹</button>
@@ -2783,10 +2809,9 @@
           <p class="section-eyebrow">the problem · how it begins</p>
           <div class="problem-beat">
             <p class="highlight-swipe-text problem-dropcap"><span class="problem-dropcap-letter">u</span>nexpected impulses — mostly from social feeds. influencers selling you gadgets you don't need, still making you feel like you're missing out. you end up buying not just the gadget — but the case, the bundle, the accessories. shopping platforms are built to keep you spending.</p>
-            <p>then the package arrives. and when you open it, it dawned on you.</p>
           </div>
 
-          <blockquote class="quote-line">"I wasted $78.49 for no reason."</blockquote>
+          <blockquote class="quote-line">“literally wasted nearly s$230 on clothes because of fomo.”<cite>— adam, founder of cognoscene</cite></blockquote>
 
           <div class="problem-beat problem-beat--cycle-pre">
             <p>and you'll do it again. despite controlling yourself, the dopamine from social media and shopping makes checkout feel irresistible.</p>
@@ -2797,12 +2822,13 @@
           </div>
         </div>
 
-        <aside class="problem-loop-visual" role="button" tabindex="0" aria-pressed="false" aria-label="see, buy, regret loop. click to pause animation.">
+        <aside class="problem-loop-visual" role="button" tabindex="0" aria-pressed="false" aria-label="see, buy, regret loop. rotating clockwise. activate to pause animation.">
           <div class="lc-circle-stage">
             <div class="lc-circle-inner">
               <div class="lc-hub-img-wrap" aria-hidden="true">
                 <img src="assets/canva-loop.png" alt="" class="lc-hub-img" width="54" height="54" decoding="async" />
               </div>
+              <div class="lc-orbit">
               <div class="lc-circle-card lc-circle-card--see">
                 <div class="loop-icon-card">
                   <svg class="loop-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="40" height="40"><rect x="14" y="6" width="20" height="36" rx="4" stroke="#111111" stroke-width="2" fill="none"/><rect x="17" y="12" width="14" height="5" rx="1.5" fill="#b8d878"/><rect x="17" y="19" width="14" height="3" rx="1" fill="#ddd5c0"/><rect x="17" y="24" width="14" height="3" rx="1" fill="#ddd5c0"/><rect x="17" y="29" width="10" height="3" rx="1" fill="#ddd5c0"/><circle cx="32" cy="10" r="5" fill="#111111"/><path d="M30 10h4M32 8v4" stroke="#b8d878" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -2824,6 +2850,7 @@
                   <span class="loop-icon-card-sub">regret · repeat</span>
                 </div>
               </div>
+              </div>
 
             </div>
           </div>
@@ -2833,8 +2860,11 @@
 
     <section class="proof-band" aria-label="what impulse buying can cost">
       <div class="wrap proof-cards">
-        <figure class="proof-card"><blockquote>“literally wasted nearly $230 on clothes because of FOMO.”</blockquote><figcaption>adam h.</figcaption></figure>
-        <figure class="proof-card"><blockquote>“577,500 Malaysians got into debt because of an addiction of buying stuff they don’t need.”</blockquote><figcaption>akpk, 2024.</figcaption></figure>
+        <figure class="proof-card">
+          <strong class="proof-stat">577,500</strong>
+          <p>of 1.5 million respondents incurred debt through buying goods and services without considering their usefulness.</p>
+          <figcaption><a href="https://www.utusan.com.my/nasional/2024/06/ketagih-berbelanja-punca-orang-muda-muflis/" target="_blank" rel="noopener noreferrer">utusan malaysia reporting akpk, 2024.</a></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -3189,33 +3219,56 @@
 
     .demo-band { padding: 44px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .demo-layout { display: grid; gap: 24px; align-items: center; }
+    .demo-copy { max-width: 680px; margin: 0 auto; text-align: center; }
     .demo-copy h2 { margin: 8px 0 12px; font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.65rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.05em; }
-    .demo-copy > p:last-child { max-width: 460px; color: var(--mid); }
-    .demo-slider { max-width: 430px; margin: 0 auto; }
+    .demo-copy > p:last-child { max-width: 520px; margin: 0 auto; color: var(--mid); }
+    .demo-slider { width: 100%; max-width: 760px; margin: 0 auto; }
     .demo-slides { border: 2px solid var(--black); border-radius: 24px; overflow: hidden; background: var(--white); box-shadow: 0 16px 40px rgba(17,17,17,.09); }
     .demo-slide { margin: 0; }
     .demo-slide video { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--cream); }
-    .demo-slide figcaption { padding: 10px 14px; font-size: 12px; color: var(--mid); text-align: center; }
+    .demo-slide figcaption { min-height: 88px; padding: 14px 18px 16px; color: var(--mid); text-align: left; }
+    .demo-slide-title { display: block; margin-bottom: 4px; font-family: var(--serif); font-size: 18px; line-height: 1.2; color: var(--black); }
+    .demo-slide-copy { display: block; font-size: 12px; line-height: 1.5; }
     .demo-controls { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; }
     .demo-controls button { min-height: 32px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: var(--cream); color: var(--black); font: inherit; font-size: 11px; cursor: pointer; }
     .demo-controls > button { width: 32px; padding: 0; font-size: 20px; }
     .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
 
     .problem-loop-visual { cursor: pointer; }
-    .lc-circle-inner { animation: problem-wheel 13s linear infinite; transform-origin: 50% 50%; }
-    .lc-circle-card, .lc-hub-img-wrap { animation: problem-wheel-counter 13s linear infinite; }
-    .problem-loop-visual.is-paused .lc-circle-inner, .problem-loop-visual.is-paused .lc-circle-card, .problem-loop-visual.is-paused .lc-hub-img-wrap { animation-play-state: paused; }
-    @keyframes problem-wheel { to { transform: rotate(360deg); } }
-    @keyframes problem-wheel-counter { to { transform: translate(-50%, -100%) rotate(-360deg); } }
+    .lc-orbit {
+      position: absolute;
+      inset: 0;
+      transform-origin: 50% 50%;
+      animation: problem-wheel 13s linear infinite;
+    }
+    .lc-circle-card {
+      animation: problem-wheel-counter 13s linear infinite;
+    }
+    .problem-loop-visual.is-anticlockwise .lc-orbit,
+    .problem-loop-visual.is-anticlockwise .lc-circle-card {
+      animation-direction: reverse;
+    }
+    .problem-loop-visual.is-paused .lc-orbit,
+    .problem-loop-visual.is-paused .lc-circle-card {
+      animation-play-state: paused;
+    }
+    @keyframes problem-wheel {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes problem-wheel-counter {
+      from { transform: translate(-50%, -100%) rotate(0deg); }
+      to { transform: translate(-50%, -100%) rotate(-360deg); }
+    }
     .lc-hub-img-wrap { transform: translate(-50%, -50%); }
-    @keyframes problem-hub-counter { to { transform: translate(-50%, -50%) rotate(-360deg); } }
-    .lc-hub-img-wrap { animation-name: problem-hub-counter; }
 
     .proof-band { padding: 0 0 44px; }
-    .proof-cards { display: grid; gap: 14px; }
-    .proof-card { margin: 0; padding: 20px; border: 1px solid var(--black); border-radius: 16px; background: var(--white); }
-    .proof-card blockquote { font-family: var(--serif); font-size: 1.22rem; line-height: 1.2; }
+    .proof-cards { display: grid; gap: 14px; max-width: 760px; margin: 0 auto; }
+    .proof-card { margin: 0; padding: 22px 24px; border: 1px solid var(--black); border-radius: 16px; background: var(--white); }
+    .proof-stat { display: block; margin-bottom: 6px; font-family: var(--serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 400; line-height: 1; color: var(--black); }
+    .proof-card p { max-width: 620px; color: var(--mid); }
     .proof-card figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .proof-card figcaption a { color: inherit; text-underline-offset: 3px; }
 
     .waitlist-modal { position: fixed; inset: 0; z-index: 9500; display: grid; place-items: center; padding: 20px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease, visibility .2s ease; }
     .waitlist-modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
@@ -3227,9 +3280,9 @@
     body.waitlist-modal-open { overflow: hidden; }
     body.waitlist-modal-open .mobile-cta-bar { display: none; }
 
-    @media (min-width: 761px) { .demo-layout { grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr); gap: 48px; } .proof-cards { grid-template-columns: repeat(2, 1fr); } .form-conversion { grid-template-areas: "offer form"; } }
+    @media (min-width: 761px) { .demo-layout { grid-template-columns: 1fr; } .proof-cards { grid-template-columns: 1fr; } .form-conversion { grid-template-areas: "offer form"; } }
     @media (max-width: 760px) { .hero-screenshot-stack { height: 290px !important; min-height: 290px !important; margin-top: 0 !important; } .hero-screenshot-stack .hero-shot { width: 86% !important; min-height: 192px; } .hero-visual { min-height: 320px; } .demo-band { padding: 36px 0; } .waitlist-modal { align-items: end; padding: 0; } .waitlist-modal-dialog { width: 100%; max-height: calc(100vh - 12px); border-radius: 24px 24px 0 0; } .waitlist-modal-dialog .form-conversion { padding: 40px 24px 48px; } }
-    @media (prefers-reduced-motion: reduce) { .hero-screenshot-stack .hero-shot { transition: none; } .lc-circle-inner, .lc-circle-card, .lc-hub-img-wrap { animation: none !important; } .hero-screenshot-stack::after { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero-screenshot-stack .hero-shot { transition: none; } .lc-orbit, .lc-circle-card { animation: none !important; } .hero-screenshot-stack::after { display: none; } }
   </style>
 
   <script>
@@ -4977,15 +5030,36 @@
 
       var loop = document.querySelector('.problem-loop-visual');
       if (loop) {
-        function toggleLoop() {
-          var paused = loop.classList.toggle('is-paused');
-          loop.setAttribute('aria-pressed', paused ? 'true' : 'false');
-          loop.setAttribute('aria-label', 'see, buy, regret loop. click to ' + (paused ? 'resume' : 'pause') + ' animation.');
+        var loopDirection = 'clockwise';
+        var loopPaused = false;
+
+        function updateLoopState() {
+          loop.classList.toggle('is-paused', loopPaused);
+          loop.classList.toggle('is-anticlockwise', loopDirection === 'anticlockwise');
+          loop.setAttribute('aria-pressed', loopPaused ? 'true' : 'false');
+          if (loopPaused) {
+            var nextDirection = loopDirection === 'clockwise' ? 'anticlockwise' : 'clockwise';
+            loop.setAttribute('aria-label', 'see, buy, regret loop. paused. activate to rotate ' + nextDirection + '.');
+          } else {
+            loop.setAttribute('aria-label', 'see, buy, regret loop. rotating ' + loopDirection + '. activate to pause animation.');
+          }
         }
+
+        function toggleLoop() {
+          if (loopPaused) {
+            loopDirection = loopDirection === 'clockwise' ? 'anticlockwise' : 'clockwise';
+            loopPaused = false;
+          } else {
+            loopPaused = true;
+          }
+          updateLoopState();
+        }
+
         loop.addEventListener('click', toggleLoop);
         loop.addEventListener('keydown', function (event) {
           if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleLoop(); }
         });
+        updateLoopState();
       }
 
       var slider = document.querySelector('[data-demo-slider]');
