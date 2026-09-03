@@ -1325,6 +1325,7 @@
       align-items: flex-start;
       align-self: center;
       margin: 0;
+      transform: translateY(-28px);
     }
     .lc-circle-stage {
       --loop-scale: 1.4125;
@@ -1400,9 +1401,9 @@
       color: var(--muted);
       line-height: 1.3;
     }
-    .lc-circle-card--see { left: 124px; top: 42px; }
-    .lc-circle-card--buy { left: 203.7px; top: 180px; }
-    .lc-circle-card--regret { left: 44.3px; top: 180px; }
+    .lc-circle-card--see { left: 124px; top: 22px; }
+    .lc-circle-card--buy { left: 221px; top: 190px; }
+    .lc-circle-card--regret { left: 27px; top: 190px; }
     .lc-hub-img-wrap {
       position: absolute;
       left: 124px;
@@ -2478,6 +2479,7 @@
         position: static;
         order: 5;
         margin: 0.5cm auto 0;
+        transform: translateY(-16px);
       }
       .problem-beat--cycle-post { order: 6; }
       .problem-loop-visual .lc-circle-stage {
@@ -2779,15 +2781,15 @@
         <div class="demo-slider" data-demo-slider aria-label="cognoscene product demo">
           <div class="demo-slides">
             <figure class="demo-slide is-active" data-demo-slide="0">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer demo; click to pause or play"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="5" aria-label="expand observer demo">⛶</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer demo; click to pause or play"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="5" aria-label="expand observer demo">view larger</button>
               <figcaption><strong class="demo-slide-title">intercept unnecessary impulses</strong><span class="demo-slide-copy">soft lookout pulses help you notice the urge while browsing.</span></figcaption>
             </figure>
             <figure class="demo-slide" data-demo-slide="1">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="48-hour hold demo; click to pause or play"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="6" aria-label="expand 48-hour hold demo">⛶</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="48-hour hold demo; click to pause or play"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="6" aria-label="expand 48-hour hold demo">view larger</button>
               <figcaption><strong class="demo-slide-title">48 hours to decide if you need this</strong><span class="demo-slide-copy">checkout pauses while the immediate buying impulse has time to settle.</span></figcaption>
             </figure>
             <figure class="demo-slide" data-demo-slide="2">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="growth demo; click to pause or play"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="7" aria-label="expand growth demo">⛶</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="growth demo; click to pause or play"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="7" aria-label="expand growth demo">view larger</button>
               <figcaption><strong class="demo-slide-title">reinforce your identity of prudence</strong><span class="demo-slide-copy">see purchases rationalised and intentional decisions over time.</span></figcaption>
             </figure>
             <button type="button" class="demo-overlay-nav" data-demo-prev aria-label="previous demo">‹</button>
@@ -3229,7 +3231,7 @@
     .demo-copy { max-width: 680px; margin: 0 auto; text-align: center; }
     .demo-copy h2 { margin: 8px 0 12px; font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.65rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.05em; }
     .demo-copy > p:last-child { max-width: 520px; margin: 0 auto; color: var(--mid); }
-    .demo-slider { width: 100%; max-width: 760px; margin: 0 auto; overflow: hidden; }
+    .demo-slider { width: 100%; max-width: 760px; margin: 0 auto; overflow: hidden; border-radius: 32px; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); }
     .demo-slides {
       position: relative;
       display: grid;
@@ -3257,7 +3259,9 @@
     .demo-slide.is-prev { z-index: 2; opacity: .5; transform: translateX(-88%) scale(.88); filter: saturate(.72); }
     .demo-slide.is-next { z-index: 2; opacity: .5; transform: translateX(88%) scale(.88); filter: saturate(.72); }
     .demo-slide video { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--cream); cursor: pointer; }
-    .demo-expand { position: absolute; top: 14px; right: 14px; z-index: 5; width: 44px; height: 44px; border: 1px solid rgba(237,234,222,.45); border-radius: 999px; background: rgba(17,17,17,.88); color: var(--lime); font: 700 20px/1 var(--sans); display: grid; place-items: center; cursor: pointer; backdrop-filter: blur(6px); }
+    .demo-expand { position: absolute; left: 50%; bottom: 104px; z-index: 5; min-height: 40px; padding: 9px 16px; border: 1px solid rgba(237,234,222,.5); border-radius: 999px; background: rgba(17,17,17,.9); color: var(--lime); font: 800 11px/1 var(--sans); cursor: pointer; backdrop-filter: blur(6px); opacity: 0; transform: translate(-50%, 8px); transition: opacity .2s ease, transform .28s cubic-bezier(.22,1,.36,1); }
+    .demo-slide.is-active:hover .demo-expand, .demo-slide.is-active:focus-within .demo-expand { opacity: 1; transform: translate(-50%, 0); }
+    @media (hover: none) { .demo-slide.is-active .demo-expand { opacity: 1; transform: translate(-50%, 0); } }
     .demo-overlay-nav { position: absolute; top: calc((100% - 88px) / 2); z-index: 6; width: 48px; height: 48px; border: 1px solid rgba(237,234,222,.45); border-radius: 999px; background: rgba(17,17,17,.9); color: var(--lime); font: 400 30px/1 var(--serif); display: grid; place-items: center; cursor: pointer; box-shadow: 0 8px 22px rgba(17,17,17,.22); transform: translateY(-50%); }
     .demo-overlay-nav[data-demo-prev] { left: 12px; }
     .demo-overlay-nav[data-demo-next] { right: 12px; }
@@ -3498,6 +3502,7 @@
         { src: 'assets/videos/growth-smol.mp4', label: 'enlarge growth product demo', caption: 'product demo · growth', pill: 'growth' }
       ];
       var currentMasterIndex = 0;
+      var lightboxMode = 'solution';
       var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
       var sliderRegistry = {};
@@ -3580,8 +3585,16 @@
         });
       }
 
+      function getLightboxIndexes() {
+        return lightboxMode === 'demo' ? [5, 6, 7] : [0, 1, 2, 3, 4];
+      }
+
       function wrapMasterIndex(index) {
-        return (index + MASTER_CLIPS.length) % MASTER_CLIPS.length;
+        var indexes = getLightboxIndexes();
+        var position = indexes.indexOf(index);
+        if (position !== -1) return index;
+        if (index < indexes[0]) return indexes[indexes.length - 1];
+        return indexes[0];
       }
 
       function getLightboxSlides() {
@@ -3830,7 +3843,8 @@
         currentMasterIndex = startIdx;
 
         lightboxPills.innerHTML = '';
-        MASTER_CLIPS.forEach(function (clip, clipIndex) {
+        getLightboxIndexes().forEach(function (clipIndex) {
+          var clip = MASTER_CLIPS[clipIndex];
           var pill = document.createElement('button');
           pill.type = 'button';
           pill.className = 'slider-pill' + (clipIndex === startIdx ? ' is-active' : '');
@@ -4058,6 +4072,7 @@
         lastTrigger = trigger;
 
         var masterIdx = getMasterIndexForTrigger(trigger, sliderKey);
+        lightboxMode = trigger.hasAttribute('data-master-index') ? 'demo' : 'solution';
         buildMasterLightboxNav(masterIdx);
         lightboxOpen = true;
         lightbox.classList.add('is-open');
