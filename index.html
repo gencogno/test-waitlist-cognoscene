@@ -3185,6 +3185,11 @@
       </div>
       <div class="video-lightbox-nav" id="videoLightboxNav" hidden>
         <div class="slider-pills" id="videoLightboxPills" role="tablist"></div>
+        <div class="video-lightbox-playback" role="group" aria-label="video playback controls">
+          <button type="button" id="videoLightboxBack5" aria-label="go back 5 seconds">−5s</button>
+          <button type="button" id="videoLightboxPlay" aria-label="pause video">pause</button>
+          <button type="button" id="videoLightboxForward5" aria-label="go forward 5 seconds">+5s</button>
+        </div>
         <div class="video-lightbox-arrow-group" role="group" aria-label="enlarged video controls">
           <button type="button" class="slider-arrow slider-prev" id="videoLightboxPrev" aria-label="previous clip">‹</button>
           <button type="button" class="slider-arrow slider-next" id="videoLightboxNext" aria-label="next clip">›</button>
@@ -3256,6 +3261,9 @@
     .demo-overlay-nav { position: absolute; top: calc((100% - 88px) / 2); z-index: 6; width: 48px; height: 48px; border: 1px solid rgba(237,234,222,.45); border-radius: 999px; background: rgba(17,17,17,.9); color: var(--lime); font: 400 30px/1 var(--serif); display: grid; place-items: center; cursor: pointer; box-shadow: 0 8px 22px rgba(17,17,17,.22); transform: translateY(-50%); }
     .demo-overlay-nav[data-demo-prev] { left: 12px; }
     .demo-overlay-nav[data-demo-next] { right: 12px; }
+    .video-lightbox-playback { display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .video-lightbox-playback button { min-width: 52px; min-height: 40px; padding: 8px 12px; border: 1px solid var(--cream); border-radius: 999px; background: var(--black); color: var(--lime); font: 800 11px/1 var(--sans); cursor: pointer; }
+    .video-lightbox-playback button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
     .demo-slide figcaption { min-height: 88px; padding: 14px 18px 16px; color: var(--mid); text-align: left; }
     .demo-slide-title { display: block; margin-bottom: 4px; font-family: var(--serif); font-size: 18px; line-height: 1.2; color: var(--black); }
     .demo-slide-copy { display: block; font-size: 12px; line-height: 1.5; }
@@ -3510,6 +3518,9 @@
       var lightboxPills = document.getElementById('videoLightboxPills');
       var lightboxPrev = document.getElementById('videoLightboxPrev');
       var lightboxNext = document.getElementById('videoLightboxNext');
+      var lightboxBack5 = document.getElementById('videoLightboxBack5');
+      var lightboxPlay = document.getElementById('videoLightboxPlay');
+      var lightboxForward5 = document.getElementById('videoLightboxForward5');
       var lastTrigger = null;
       var lightboxTransitioning = false;
       var lightboxTransitionTimer = null;
@@ -4096,6 +4107,35 @@
         trigger.addEventListener('click', function () {
           openLightbox(trigger);
         });
+      });
+
+      function updateLightboxPlayControl() {
+        var video = getCurrentLightboxVideo();
+        if (!video || !lightboxPlay) return;
+        lightboxPlay.textContent = video.paused ? 'play' : 'pause';
+        lightboxPlay.setAttribute('aria-label', video.paused ? 'play video' : 'pause video');
+      }
+
+      if (lightboxBack5) lightboxBack5.addEventListener('click', function (event) {
+        event.stopPropagation();
+        var video = getCurrentLightboxVideo();
+        if (video) video.currentTime = Math.max(0, video.currentTime - 5);
+      });
+      if (lightboxForward5) lightboxForward5.addEventListener('click', function (event) {
+        event.stopPropagation();
+        var video = getCurrentLightboxVideo();
+        if (video) video.currentTime = Math.min(Number.isFinite(video.duration) ? video.duration : video.currentTime + 5, video.currentTime + 5);
+      });
+      if (lightboxPlay) lightboxPlay.addEventListener('click', function (event) {
+        event.stopPropagation();
+        var video = getCurrentLightboxVideo();
+        if (!video) return;
+        if (video.paused) video.play().catch(function () {}); else video.pause();
+        window.setTimeout(updateLightboxPlayControl, 0);
+      });
+      lightboxVideos.forEach(function (video) {
+        video.addEventListener('play', updateLightboxPlayControl);
+        video.addEventListener('pause', updateLightboxPlayControl);
       });
 
       if (lightboxPrev) {
