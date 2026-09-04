@@ -2387,12 +2387,11 @@
       background: transparent;
       border: 0;
       backdrop-filter: none;
+      opacity: 1;
+    }
+    .mobile-cta-bar.is-contextual-hidden {
       opacity: 0;
       pointer-events: none;
-    }
-    .mobile-cta-bar.is-active {
-      opacity: 1;
-      pointer-events: auto;
     }
     .mobile-cta-bar a {
       display: block;
@@ -2611,7 +2610,7 @@
         right: 0.5cm;
         bottom: calc(0.5cm + env(safe-area-inset-bottom, 0px));
       }
-      .mobile-cta-bar.is-active a { animation: mobile-cta-shockwave 1.2s ease-out infinite; }
+      .mobile-cta-bar a { animation: mobile-cta-shockwave 1.2s ease-out infinite; }
       .site-footer { padding: 14px 0 calc(16px + 0.5cm); }
     }
 
@@ -4542,38 +4541,31 @@
     (function initMobileCtaVisibility() {
       var mobileCta = document.querySelector('.mobile-cta-bar');
       var waitlist = document.getElementById('waitlist');
-      var heroCta = document.querySelector('.hero .btn-primary');
       var ctaLink = mobileCta && mobileCta.querySelector('a');
       var mobileViewport = window.matchMedia('(max-width: 760px)');
-      var heroCtaIsVisible = true;
-      var waitlistIsVisible = false;
+      var formIsVisible = false;
 
-      if (!mobileCta || !waitlist || !heroCta || !('IntersectionObserver' in window)) return;
+      if (!mobileCta || !waitlist || !('IntersectionObserver' in window)) return;
 
-      function renderCtaVisibility() {
-        var shouldShow = mobileViewport.matches && !heroCtaIsVisible && !waitlistIsVisible;
-        mobileCta.classList.toggle('is-active', shouldShow);
-        mobileCta.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+      function setCtaVisibility(inView) {
+        formIsVisible = inView;
+        var shouldHide = mobileViewport.matches && inView;
+        mobileCta.classList.toggle('is-contextual-hidden', shouldHide);
+        mobileCta.setAttribute('aria-hidden', shouldHide ? 'true' : 'false');
         if (ctaLink) {
-          if (shouldShow) ctaLink.removeAttribute('tabindex');
-          else ctaLink.setAttribute('tabindex', '-1');
+          if (shouldHide) ctaLink.setAttribute('tabindex', '-1');
+          else ctaLink.removeAttribute('tabindex');
         }
       }
 
       var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.target === heroCta) heroCtaIsVisible = entry.isIntersecting;
-          if (entry.target === waitlist) waitlistIsVisible = entry.isIntersecting;
-        });
-        renderCtaVisibility();
+        setCtaVisibility(entries[0].isIntersecting);
       }, { threshold: 0 });
-      observer.observe(heroCta);
       observer.observe(waitlist);
-      renderCtaVisibility();
 
       if (mobileViewport.addEventListener) {
         mobileViewport.addEventListener('change', function () {
-          renderCtaVisibility();
+          setCtaVisibility(formIsVisible);
         });
       }
     })();
