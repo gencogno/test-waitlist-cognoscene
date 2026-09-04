@@ -459,6 +459,12 @@
     }
     .showcase-video-hint::after {
       content: "click to enlarge";
+      opacity: 0.68;
+      animation: showcase-video-hint-text-pulse 3s ease-in-out infinite;
+    }
+    @keyframes showcase-video-hint-text-pulse {
+      0%, 100% { opacity: 0.68; }
+      50% { opacity: 1; }
     }
     .showcase-video-frame:hover .showcase-video-hint,
     .showcase-video-frame:focus-within .showcase-video-hint,
@@ -474,6 +480,12 @@
       }
       .showcase-video-hint::after {
         content: "tap to enlarge";
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .showcase-video-hint::after {
+        animation: none;
+        opacity: 1;
       }
     }
     .showcase-video-frame--hero {
@@ -751,6 +763,8 @@
       display: none !important;
     }
     .video-lightbox-nav .slider-arrow {
+      width: 44px;
+      height: 44px;
       background: rgba(245, 240, 232, 0.12);
       border-color: rgba(245, 240, 232, 0.28);
       color: var(--cream);
@@ -3509,6 +3523,9 @@
       var activeSlider = null;
       var lightboxOpen = false;
       var transitionMs = 650;
+      var peekTravelMs = 360;
+      var peekHoldMs = 420;
+      var peekSettleMs = 430;
 
       var lightbox = document.getElementById('videoLightbox');
       var backdrop = document.getElementById('videoLightboxBackdrop');
@@ -3530,6 +3547,7 @@
       var lightboxTransitioning = false;
       var lightboxTransitionTimer = null;
       var lightboxTransitionEndHandler = null;
+      var lightboxPeekHoldTimer = null;
 
       function ensureLoop(video) {
         video.muted = true;
@@ -3630,12 +3648,25 @@
         return lightboxTrack.getBoundingClientRect().width || lightboxFrame.clientWidth || 1;
       }
 
-      function setLightboxTrackPosition(offset, animate) {
+      function setLightboxTrackPosition(offset, animate, durationMs) {
         if (!lightboxTrack) return;
+        var duration = typeof durationMs === 'number' ? durationMs : transitionMs;
         lightboxTrack.style.transition = animate && !reducedMotion.matches
-          ? 'transform ' + transitionMs + 'ms cubic-bezier(0.22, 1, 0.36, 1)'
+          ? 'transform ' + duration + 'ms cubic-bezier(0.22, 1, 0.36, 1)'
           : 'none';
         lightboxTrack.style.transform = 'translate3d(' + offset + 'px, 0, 0)';
+      }
+
+      function getLightboxTrackOffset() {
+        if (!lightboxTrack) return 0;
+        var transform = window.getComputedStyle(lightboxTrack).transform;
+        if (!transform || transform === 'none') return -getLightboxFrameWidth();
+        try {
+          return new DOMMatrixReadOnly(transform).m41;
+        } catch (error) {
+          var matrix = transform.match(/^matrix\((.+)\)$/);
+          return matrix ? Number(matrix[1].split(',')[4]) || 0 : -getLightboxFrameWidth();
+        }
       }
 
       function clearLightboxTransitionCompletion() {
@@ -3649,8 +3680,9 @@
         }
       }
 
-      function completeLightboxTransition(callback) {
+      function completeLightboxTransition(callback, durationMs) {
         clearLightboxTransitionCompletion();
+        var duration = typeof durationMs === 'number' ? durationMs : transitionMs;
         var completed = false;
         function complete() {
           if (completed) return;
@@ -3662,7 +3694,41 @@
           if (event.target === lightboxTrack && event.propertyName === 'transform') complete();
         };
         lightboxTrack.addEventListener('transitionend', lightboxTransitionEndHandler);
-        lightboxTransitionTimer = window.setTimeout(complete, transitionMs + 80);
+        lightboxTransitionTimer = window.setTimeout(complete, duration + 80);
+      }
+
+      function clearLightboxPeekHold() {
+        if (!lightboxPeekHoldTimer) return;
+        window.clearTimeout(lightboxPeekHoldTimer);
+        lightboxPeekHoldTimer = null;
+      }
+
+      function runHalfPeekTransition(direction, target) {
+        var frameWidth = getLightboxFrameWidth();
+        var halfDestination = direction > 0 ? -1.5 * frameWidth : -0.5 * frameWidth;
+        var finalDestination = direction > 0 ? -2 * frameWidth : 0;
+        var currentOffset = getLightboxTrackOffset();
+        var alreadySawHalf = direction > 0
+          ? currentOffset <= halfDestination
+          : currentOffset >= halfDestination;
+
+        function landIncomingSlide() {
+          clearLightboxPeekHold();
+          setLightboxTrackPosition(finalDestination, true, peekSettleMs);
+          completeLightboxTransition(function () {
+            finishLightboxSlide(direction, target);
+          }, peekSettleMs);
+        }
+
+        if (alreadySawHalf) {
+          landIncomingSlide();
+          return;
+        }
+
+        setLightboxTrackPosition(halfDestination, true, peekTravelMs);
+        completeLightboxTransition(function () {
+          lightboxPeekHoldTimer = window.setTimeout(landIncomingSlide, peekHoldMs);
+        }, peekTravelMs);
       }
 
       function setLightboxTransitionState(isTransitioning) {
@@ -3681,7 +3747,10 @@
         var clip = MASTER_CLIPS[currentMasterIndex];
         titleEl.textContent = clip.label;
         if (lightboxPills) {
-          updatePills(lightboxPills.querySelectorAll('.slider-pill'), currentMasterIndex);
+          updatePills(
+            lightboxPills.querySelectorAll('.slider-pill'),
+            getLightboxIndexes().indexOf(currentMasterIndex)
+          );
         }
       }
 
@@ -3762,6 +3831,7 @@
         currentMasterIndex = wrapMasterIndex(targetIndex);
         setLightboxTransitionState(false);
         clearLightboxTransitionCompletion();
+        clearLightboxPeekHold();
 
         syncLightboxSlots();
         resetLightboxTrack();
@@ -3785,33 +3855,16 @@
 
         setLightboxTransitionState(true);
         setLightboxVideoClip(targetVideo, target, 'auto');
+        if (lightboxFrame) lightboxFrame.classList.add('is-peeking');
 
-        var started = false;
-        function startSlide() {
-          if (started || !lightboxOpen || !lightboxTransitioning) return;
-          started = true;
-          var destination = direction > 0 ? -2 * getLightboxFrameWidth() : 0;
-          if (lightboxFrame) lightboxFrame.classList.add('is-peeking');
-
-          if (reducedMotion.matches) {
-            finishLightboxSlide(direction, target);
-            return;
-          }
-
-          window.requestAnimationFrame(function () {
-            setLightboxTrackPosition(destination, true);
-            completeLightboxTransition(function () {
-              finishLightboxSlide(direction, target);
-            });
-          });
+        if (reducedMotion.matches) {
+          finishLightboxSlide(direction, target);
+          return;
         }
 
-        if (targetVideo.readyState >= 2) {
-          startSlide();
-        } else {
-          targetVideo.addEventListener('loadeddata', startSlide, { once: true });
-          window.setTimeout(startSlide, 600);
-        }
+        /* Commit the centred position before beginning the physical two-stage move. */
+        lightboxTrack.getBoundingClientRect();
+        runHalfPeekTransition(direction, target);
       }
 
       function syncLightboxPlayer(clip) {
@@ -4094,6 +4147,7 @@
         activeSlider = null;
         setLightboxTransitionState(false);
         clearLightboxTransitionCompletion();
+        clearLightboxPeekHold();
         lightbox.classList.remove('is-open');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('video-lightbox-open');
@@ -4229,7 +4283,7 @@
 
         function snapLightboxTrackToCentre() {
           setLightboxTransitionState(true);
-          setLightboxTrackPosition(-getLightboxFrameWidth(), true);
+          setLightboxTrackPosition(-getLightboxFrameWidth(), true, peekSettleMs);
           if (reducedMotion.matches) {
             setLightboxTransitionState(false);
             settleLightboxPeek();
@@ -4238,7 +4292,7 @@
           completeLightboxTransition(function () {
             setLightboxTransitionState(false);
             settleLightboxPeek();
-          });
+          }, peekSettleMs);
         }
 
         function finishWheelGesture() {
