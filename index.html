@@ -5234,5 +5234,335 @@
     })();
   </script>
 
+  <!-- Public test harness: one-page post-signup survey. No answers leave this page. -->
+  <div class="tpsm" id="testSurveyModal" role="dialog" aria-modal="true" aria-labelledby="tpsmTitle" aria-describedby="tpsmIntro">
+    <div class="tpsm-backdrop" aria-hidden="true"></div>
+    <div class="tpsm-card">
+      <div class="tpsm-form" data-survey-view="form">
+        <h3 id="tpsmTitle" tabindex="-1">help shape cognoscene.</h3>
+        <p class="tpsm-intro" id="tpsmIntro"><strong>this takes less than 30 seconds.</strong> all questions are shown below.</p>
+
+        <section class="tpsm-section" aria-labelledby="tpsmCountryQuestion">
+          <p class="tpsm-kicker">country</p>
+          <p class="tpsm-question" id="tpsmCountryQuestion">where are you based?</p>
+          <label class="tpsm-label" for="tpsmCountry">country or region</label>
+          <select class="tpsm-select" id="tpsmCountry" aria-required="true" aria-describedby="tpsmCountryError">
+            <option value="">select one</option>
+            <option value="SG">singapore</option>
+            <option value="MY">malaysia</option>
+            <option value="US">united states</option>
+            <option value="GB">united kingdom</option>
+            <optgroup label="all countries" id="tpsmCountries"></optgroup>
+          </select>
+          <p class="tpsm-error" id="tpsmCountryError" role="alert" aria-live="polite" hidden></p>
+        </section>
+
+        <section class="tpsm-section" aria-labelledby="tpsmReferralQuestion">
+          <p class="tpsm-kicker">where</p>
+          <p class="tpsm-question" id="tpsmReferralQuestion">how did you find cognoscene?</p>
+          <div class="tpsm-chips" id="tpsmReferral" role="radiogroup" aria-required="true" aria-labelledby="tpsmReferralQuestion" aria-describedby="tpsmReferralError">
+            <button type="button" role="radio" aria-checked="false" data-value="reddit">reddit</button>
+            <button type="button" role="radio" aria-checked="false" data-value="linkedin">linkedin</button>
+            <button type="button" role="radio" aria-checked="false" data-value="x">x / twitter</button>
+            <button type="button" role="radio" aria-checked="false" data-value="tiktok">tiktok</button>
+            <button type="button" role="radio" aria-checked="false" data-value="instagram">instagram</button>
+            <button type="button" role="radio" aria-checked="false" data-value="friend">friend</button>
+            <button type="button" role="radio" aria-checked="false" data-value="community">community</button>
+            <button type="button" role="radio" aria-checked="false" data-value="search">search</button>
+            <button type="button" role="radio" aria-checked="false" data-value="other">other</button>
+          </div>
+          <div class="tpsm-conditional" id="tpsmCommunityWrap" hidden><label class="tpsm-label" for="tpsmCommunity">which community?</label><input class="tpsm-input" id="tpsmCommunity" maxlength="80" placeholder="community name" /></div>
+          <div class="tpsm-conditional" id="tpsmOtherWrap" hidden><label class="tpsm-label" for="tpsmOther">where did you find us?</label><input class="tpsm-input" id="tpsmOther" maxlength="80" placeholder="write it here" /></div>
+          <p class="tpsm-error" id="tpsmReferralError" role="alert" aria-live="polite" hidden></p>
+        </section>
+
+        <section class="tpsm-section" aria-labelledby="tpsmVersionsQuestion">
+          <p class="tpsm-kicker">versions</p>
+          <p class="tpsm-question" id="tpsmVersionsQuestion">after chrome, which cognoscene versions would you use? select all that apply.</p>
+          <div class="tpsm-chips tpsm-stack" id="tpsmVersions" role="group" aria-required="true" aria-labelledby="tpsmVersionsQuestion" aria-describedby="tpsmVersionsError">
+            <button type="button" data-value="desktop" aria-pressed="false">other desktop browser extensions</button>
+            <button type="button" data-value="mobile_app" aria-pressed="false">mobile app</button>
+            <button type="button" data-value="chrome" aria-pressed="false">chrome is enough</button>
+          </div>
+          <div class="tpsm-platform" id="tpsmDesktop" hidden>
+            <p class="tpsm-label">which desktop browsers?</p>
+            <div class="tpsm-checks">
+              <label><input type="checkbox" name="tpsm_desktop" value="edge" /> microsoft edge</label>
+              <label><input type="checkbox" name="tpsm_desktop" value="firefox" /> mozilla firefox</label>
+              <label><input type="checkbox" name="tpsm_desktop" value="brave" /> brave</label>
+              <label><input type="checkbox" name="tpsm_desktop" value="opera" /> opera</label>
+              <label><input type="checkbox" name="tpsm_desktop" value="safari_macos" /> safari on mac</label>
+            </div>
+          </div>
+          <div class="tpsm-platform" id="tpsmMobile" hidden>
+            <p class="tpsm-label">which mobile apps?</p>
+            <div class="tpsm-checks">
+              <label><input type="checkbox" name="tpsm_mobile" value="android_google_play" /> android app · google play</label>
+              <label><input type="checkbox" name="tpsm_mobile" value="ios_app_store" /> iphone / ipad app · app store</label>
+            </div>
+          </div>
+          <p class="tpsm-error" id="tpsmVersionsError" role="alert" aria-live="polite" hidden></p>
+        </section>
+
+        <section class="tpsm-section" aria-labelledby="tpsmPriceQuestion">
+          <p class="tpsm-kicker">annual pricing</p>
+          <p class="tpsm-question" id="tpsmPriceQuestion">what is the most you would realistically pay for cognoscene each year?</p>
+          <div class="tpsm-chips tpsm-stack tpsm-prices" id="tpsmPrices" role="radiogroup" aria-required="true" aria-labelledby="tpsmPriceQuestion" aria-describedby="tpsmPriceError">
+            <button type="button" role="radio" aria-checked="false" data-value="free_only">free only</button>
+            <button type="button" role="radio" aria-checked="false" data-value="usd_9_99">US$9.99 / year</button>
+            <button type="button" role="radio" aria-checked="false" data-value="usd_19_99">US$19.99 / year</button>
+            <button type="button" role="radio" aria-checked="false" data-value="usd_29_99">US$29.99 / year</button>
+            <button type="button" role="radio" aria-checked="false" data-value="usd_49_99_plus">US$49.99+ / year</button>
+            <button type="button" role="radio" aria-checked="false" data-value="unsure_until_trial">not sure until i try it</button>
+          </div>
+          <p class="tpsm-error" id="tpsmPriceError" role="alert" aria-live="polite" hidden></p>
+        </section>
+
+        <p class="tpsm-error" id="tpsmSubmitError" role="alert" aria-live="polite" hidden></p>
+        <button class="tpsm-submit" type="button">submit answers</button>
+        <p class="tpsm-note">test preview · no answers are submitted or stored.</p>
+      </div>
+
+      <div class="tpsm-done" data-survey-view="done" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12.5l4 4L19 7"></path></svg>
+        <h3>you’re on the waitlist for cognoscene’s chrome extension.</h3>
+        <p>thank you for helping shape what comes next. we look forward to building a worldwide ecosystem where you shop with prudence!</p>
+        <p class="tpsm-clover" aria-label="green clover">🍀</p>
+        <button class="tpsm-submit" type="button" data-survey-close>close</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #psmModal { display: none !important; }
+    body.tpsm-open { overflow: hidden; }
+    .tpsm { display: none; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center; padding: 24px; }
+    .tpsm.is-open { display: flex; }
+    .tpsm-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.48); }
+    .tpsm-card { position: relative; width: min(680px, 100%); max-height: min(760px, calc(100dvh - 48px)); overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 32px 28px; border: 1px solid var(--black); border-radius: 16px; background: var(--cream); box-shadow: 0 24px 64px rgba(0,0,0,.14); animation: psmIn .2s ease; }
+    .tpsm h3 { margin: 0 0 8px; font-size: 18px; font-weight: 800; text-align: center; }
+    #tpsmTitle:focus { outline: none; }
+    .tpsm-intro { max-width: 520px; margin: 0 auto 22px; color: var(--mid); font-size: 14px; text-align: center; }
+    .tpsm-intro strong { color: var(--black); }
+    .tpsm-section { padding: 20px 0; border-top: 1px solid var(--line); }
+    .tpsm-section:first-of-type { padding-top: 0; border-top: 0; }
+    .tpsm-kicker { margin: 0 0 8px; color: var(--muted); font-size: 12px; letter-spacing: .04em; }
+    .tpsm-question { margin: 0 0 18px; color: var(--black); font-size: 16px; font-weight: 800; text-align: left; }
+    .tpsm-label { display: block; margin: 0 0 8px; color: var(--mid); font-size: 13px; }
+    .tpsm-select, .tpsm-input { box-sizing: border-box; width: 100%; padding: 12px 14px; border: 1px solid var(--black); border-radius: 10px; font: inherit; font-size: 14px; }
+    .tpsm-select { background: var(--black); color: var(--lime); }
+    .tpsm-select option { background: var(--black); color: var(--cream); }
+    .tpsm-input { margin-top: 4px; background: var(--cream); color: var(--black); }
+    .tpsm-conditional { margin-top: 12px; }
+    .tpsm-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tpsm-chips button { min-height: 40px; padding: 8px 14px; border: 1px solid var(--black); border-radius: 999px; background: transparent; color: var(--black); font: inherit; font-size: 13px; cursor: pointer; }
+    .tpsm-chips button.is-selected { border-color: var(--black); background: var(--black); color: var(--lime); }
+    .tpsm-stack { display: grid; grid-template-columns: 1fr; }
+    .tpsm-stack button { min-height: 44px; border-radius: 10px; text-align: left; }
+    .tpsm-prices { text-transform: none; }
+    .tpsm-platform { margin-top: 16px; }
+    .tpsm-checks { display: grid; gap: 8px; padding: 16px; border: 1px solid var(--black); border-left: 3px solid var(--lime); border-radius: 12px; }
+    .tpsm-checks label { display: flex; align-items: center; min-height: 32px; gap: 8px; color: var(--black); font-size: 14px; }
+    .tpsm-checks input { accent-color: var(--green); }
+    .tpsm-error { margin: 12px 0 0; color: var(--danger); font-size: 13px; font-weight: 500; }
+    .tpsm-error[hidden], .tpsm [hidden] { display: none; }
+    .tpsm-submit { display: block; width: 100%; min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; background: var(--black); color: var(--lime); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+    .tpsm-submit:disabled { cursor: wait; opacity: .72; }
+    .tpsm-note { margin: 12px 0 0; color: var(--mid); font-size: 12px; text-align: center; }
+    .tpsm-done { text-align: center; }
+    .tpsm-done > svg { width: 40px; height: 40px; margin: 0 auto 16px; }
+    .tpsm-done p { margin: 0 0 20px; color: var(--mid); font-size: 14px; }
+    .tpsm-done .tpsm-clover { margin-top: -8px; font-size: 24px; }
+    .tpsm button:focus-visible, .tpsm select:focus-visible, .tpsm input:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    @media (max-width: 760px) {
+      .tpsm { align-items: flex-end; padding: 0; }
+      .tpsm-card { width: 100%; max-height: calc(100dvh - max(12px, env(safe-area-inset-top))); padding: 28px 22px calc(32px + env(safe-area-inset-bottom)); border-radius: 20px 20px 0 0; border-bottom: 0; scrollbar-gutter: auto; animation: psmSlideUp .22s ease; }
+      .tpsm-section:not(:first-of-type) .tpsm-chips:not(.tpsm-stack) { display: grid; grid-template-columns: 1fr 1fr; }
+      .tpsm-chips button, .tpsm-checks label { min-height: 44px; }
+    }
+  </style>
+
+  <script>
+    (function initPublicSurveyPreview() {
+      var modal = document.getElementById('testSurveyModal');
+      if (!modal) return;
+      var card = modal.querySelector('.tpsm-card');
+      var formView = modal.querySelector('[data-survey-view="form"]');
+      var doneView = modal.querySelector('[data-survey-view="done"]');
+      var title = document.getElementById('tpsmTitle');
+      var country = document.getElementById('tpsmCountry');
+      var referral = document.getElementById('tpsmReferral');
+      var versions = document.getElementById('tpsmVersions');
+      var prices = document.getElementById('tpsmPrices');
+      var community = document.getElementById('tpsmCommunity');
+      var other = document.getElementById('tpsmOther');
+      var communityWrap = document.getElementById('tpsmCommunityWrap');
+      var otherWrap = document.getElementById('tpsmOtherWrap');
+      var desktop = document.getElementById('tpsmDesktop');
+      var mobile = document.getElementById('tpsmMobile');
+      var submit = modal.querySelector('.tpsm-form .tpsm-submit');
+      var close = modal.querySelector('[data-survey-close]');
+      var answers = { referral: '', versions: [], price: '' };
+      var returnFocus = null;
+      var submitting = false;
+      var closeTimer = null;
+      var codes = 'AF AL DZ AD AO AG AR AM AU AT AZ BS BH BD BB BY BE BZ BJ BT BO BA BW BR BN BG BF BI CV KH CM CA CF TD CL CN CO KM CG CD CR CI HR CU CY CZ DK DJ DM DO EC EG SV GQ ER EE SZ ET FJ FI FR GA GM GE DE GH GR GD GT GN GW GY HT HN HU IS IN ID IR IQ IE IL IT JM JP JO KZ KE KI KP KR KW KG LA LV LB LS LR LY LI LT LU MG MW MV ML MT MH MR MU MX FM MD MC MN ME MA MZ MM NA NR NP NL NZ NI NE NG MK NO OM PK PW PS PA PG PY PE PH PL PT QA RO RU RW KN LC VC WS SM ST SA SN RS SC SL SG SK SI SB SO ZA SS ES LK SD SR SE CH SY TW TJ TZ TH TL TG TO TT TN TR TM TV UG UA AE GB US UY UZ VU VA VE VN YE ZM ZW XK MY'.split(' ');
+
+      function buildCountries() {
+        var pinned = ['SG', 'MY', 'US', 'GB'];
+        var names = typeof Intl.DisplayNames === 'function' ? new Intl.DisplayNames(['en'], { type: 'region' }) : null;
+        codes.filter(function (code) { return pinned.indexOf(code) < 0; }).map(function (code) {
+          return { code: code, label: (names ? names.of(code) : code).toLowerCase() };
+        }).sort(function (a, b) { return a.label.localeCompare(b.label); }).forEach(function (item) {
+          var option = document.createElement('option');
+          option.value = item.code;
+          option.textContent = item.label;
+          document.getElementById('tpsmCountries').appendChild(option);
+        });
+      }
+
+      function selected(container, values) {
+        Array.prototype.forEach.call(container.querySelectorAll('button'), function (button, index) {
+          var on = values.indexOf(button.dataset.value) >= 0;
+          button.classList.toggle('is-selected', on);
+          if (button.getAttribute('role') === 'radio') {
+            button.setAttribute('aria-checked', on ? 'true' : 'false');
+            button.tabIndex = on || (!values.length && index === 0) ? 0 : -1;
+          } else button.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      }
+
+      function moveRadio(container, event) {
+        if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].indexOf(event.key) < 0) return;
+        var buttons = Array.prototype.slice.call(container.querySelectorAll('[role="radio"]'));
+        var current = buttons.indexOf(event.target);
+        if (current < 0) return;
+        event.preventDefault();
+        var next;
+        if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = buttons.length - 1;
+        else next = (current + ((event.key === 'ArrowLeft' || event.key === 'ArrowUp') ? -1 : 1) + buttons.length) % buttons.length;
+        buttons[next].focus();
+        buttons[next].click();
+      }
+
+      function clearErrors() {
+        modal.querySelectorAll('.tpsm-error').forEach(function (error) { error.hidden = true; error.textContent = ''; });
+        modal.querySelectorAll('[aria-invalid="true"]').forEach(function (field) { field.removeAttribute('aria-invalid'); });
+      }
+
+      function fail(id, message, target) {
+        var error = document.getElementById(id);
+        error.textContent = message;
+        error.hidden = false;
+        target.setAttribute('aria-invalid', 'true');
+        target.focus();
+        return false;
+      }
+
+      function checked(name) { return modal.querySelectorAll('input[name="' + name + '"]:checked').length; }
+
+      function updateConditionals() {
+        communityWrap.hidden = answers.referral !== 'community';
+        otherWrap.hidden = answers.referral !== 'other';
+        desktop.hidden = answers.versions.indexOf('desktop') < 0;
+        mobile.hidden = answers.versions.indexOf('mobile_app') < 0;
+        if (desktop.hidden) modal.querySelectorAll('input[name="tpsm_desktop"]').forEach(function (input) { input.checked = false; });
+        if (mobile.hidden) modal.querySelectorAll('input[name="tpsm_mobile"]').forEach(function (input) { input.checked = false; });
+      }
+
+      function validate() {
+        clearErrors();
+        if (!country.value) return fail('tpsmCountryError', 'choose your country or region.', country);
+        if (!answers.referral) return fail('tpsmReferralError', 'choose where you found cognoscene.', referral.querySelector('button'));
+        if (answers.referral === 'community' && !community.value.trim()) return fail('tpsmReferralError', 'tell us which community.', community);
+        if (answers.referral === 'other' && !other.value.trim()) return fail('tpsmReferralError', 'tell us where you found cognoscene.', other);
+        if (!answers.versions.length) return fail('tpsmVersionsError', 'choose at least one cognoscene version.', versions.querySelector('button'));
+        if (answers.versions.indexOf('desktop') >= 0 && !checked('tpsm_desktop')) return fail('tpsmVersionsError', 'choose at least one desktop browser.', desktop.querySelector('input'));
+        if (answers.versions.indexOf('mobile_app') >= 0 && !checked('tpsm_mobile')) return fail('tpsmVersionsError', 'choose at least one mobile app.', mobile.querySelector('input'));
+        if (!answers.price) return fail('tpsmPriceError', 'choose the closest annual price.', prices.querySelector('button'));
+        return true;
+      }
+
+      function reset() {
+        window.clearTimeout(closeTimer);
+        answers = { referral: '', versions: [], price: '' };
+        country.value = '';
+        community.value = '';
+        other.value = '';
+        modal.querySelectorAll('input[type="checkbox"]').forEach(function (input) { input.checked = false; });
+        selected(referral, []); selected(versions, []); selected(prices, []);
+        updateConditionals(); clearErrors();
+        formView.hidden = false; doneView.hidden = true;
+        submit.disabled = false; submit.textContent = 'submit answers';
+        submitting = false; card.scrollTop = 0;
+      }
+
+      function finish() {
+        if (submitting || !validate()) return;
+        submitting = true; submit.disabled = true; submit.textContent = 'submitting…';
+        window.setTimeout(function () {
+          formView.hidden = true; doneView.hidden = false; card.scrollTop = 0; close.focus();
+          closeTimer = window.setTimeout(closeSurvey, 5000);
+        }, 250);
+      }
+
+      function closeSurvey() {
+        if (doneView.hidden) return;
+        window.clearTimeout(closeTimer);
+        modal.classList.remove('is-open');
+        document.body.classList.remove('tpsm-open');
+        if (returnFocus && returnFocus.focus) returnFocus.focus();
+      }
+
+      window.openPostSignupModal = function () {
+        returnFocus = document.activeElement;
+        reset();
+        modal.classList.add('is-open');
+        document.body.classList.add('tpsm-open');
+        title.focus();
+      };
+
+      referral.addEventListener('click', function (event) {
+        var button = event.target.closest('button'); if (!button) return;
+        answers.referral = button.dataset.value; selected(referral, [answers.referral]); updateConditionals(); clearErrors();
+      });
+      versions.addEventListener('click', function (event) {
+        var button = event.target.closest('button'); if (!button) return;
+        var value = button.dataset.value;
+        if (value === 'chrome') answers.versions = ['chrome'];
+        else {
+          answers.versions = answers.versions.filter(function (item) { return item !== 'chrome'; });
+          var index = answers.versions.indexOf(value);
+          if (index < 0) answers.versions.push(value); else answers.versions.splice(index, 1);
+        }
+        selected(versions, answers.versions); updateConditionals(); clearErrors();
+      });
+      prices.addEventListener('click', function (event) {
+        var button = event.target.closest('button'); if (!button) return;
+        answers.price = button.dataset.value; selected(prices, [answers.price]); clearErrors();
+      });
+      referral.addEventListener('keydown', function (event) { moveRadio(referral, event); });
+      prices.addEventListener('keydown', function (event) { moveRadio(prices, event); });
+      country.addEventListener('change', clearErrors);
+      community.addEventListener('input', clearErrors);
+      other.addEventListener('input', clearErrors);
+      modal.querySelectorAll('input[type="checkbox"]').forEach(function (input) { input.addEventListener('change', clearErrors); });
+      submit.addEventListener('click', finish);
+      close.addEventListener('click', closeSurvey);
+      modal.addEventListener('keydown', function (event) {
+        if (!modal.classList.contains('is-open')) return;
+        if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); return; }
+        if (event.key !== 'Tab') return;
+        var focusable = Array.prototype.filter.call(modal.querySelectorAll('button:not([disabled]), select:not([disabled]), input:not([disabled])'), function (element) { return element.getClientRects().length > 0; });
+        if (!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === title)) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      });
+      buildCountries();
+    })();
+  </script>
+
 </body>
 </html>
