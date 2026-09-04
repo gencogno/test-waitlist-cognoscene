@@ -2388,20 +2388,14 @@
       border: 0;
       backdrop-filter: none;
       opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.24s ease, transform 0.24s ease;
     }
     .mobile-cta-bar.is-contextual-hidden {
       opacity: 0;
-      transform: translateY(12px);
       pointer-events: none;
     }
     .mobile-cta-bar a {
       display: block;
-      position: relative;
       width: 100%;
-      overflow: hidden;
-      isolation: isolate;
       text-align: center;
       background: var(--black);
       color: var(--lime);
@@ -2410,30 +2404,12 @@
       font-size: 14px;
       font-weight: 500;
       text-decoration: none;
-    }
-    .mobile-cta-bar a::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      z-index: 0;
-      width: 24px;
-      height: 24px;
-      border: 3px solid var(--lime);
-      border-radius: 50%;
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.2);
-      animation: mobile-cta-shockwave 1.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-      pointer-events: none;
-    }
-    .mobile-cta-bar a > span {
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 0 0 0 rgba(184, 216, 120, 0.58);
     }
     @keyframes mobile-cta-shockwave {
-      0% { opacity: 0.95; transform: translate(-50%, -50%) scale(0.2); }
-      58% { opacity: 0; transform: translate(-50%, -50%) scale(18); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(18); }
+      0% { box-shadow: 0 0 0 0 rgba(184, 216, 120, 0.58); }
+      62% { box-shadow: 0 0 0 12px rgba(184, 216, 120, 0); }
+      100% { box-shadow: 0 0 0 12px rgba(184, 216, 120, 0); }
     }
     body.has-mobile-cta { padding-bottom: 76px; }
 
@@ -2634,6 +2610,7 @@
         right: 0.5cm;
         bottom: calc(0.5cm + env(safe-area-inset-bottom, 0px));
       }
+      .mobile-cta-bar a { animation: mobile-cta-shockwave 1.2s ease-out infinite; }
       .site-footer { padding: 14px 0 calc(16px + 0.5cm); }
     }
 
@@ -2645,8 +2622,7 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .btn-primary:hover, .btn-submit:hover { transform: none; }
-      .mobile-cta-bar { transition: none; }
-      .mobile-cta-bar a::before { animation: none; }
+      .mobile-cta-bar a { animation: none; }
       .video-lightbox-track,
       .video-lightbox-frame,
       .video-lightbox-slide,
@@ -3029,16 +3005,16 @@
     <section class="form-band" id="waitlist" aria-labelledby="form-heading">
       <div class="form-conversion">
         <aside class="form-offer" aria-labelledby="founding-heading">
-          <p class="section-eyebrow form-offer-eyebrow"><span class="form-offer-eyebrow-desktop">founding beta</span><span class="form-offer-eyebrow-mobile">founding cohort - waitlist</span></p>
-          <h2 id="founding-heading">disrupt buying triggers before they become regret.</h2>
-          <p class="form-offer-build">we're still building the extension while you read this. when we finish, you'll be the first to try it.</p>
+          <p class="section-eyebrow form-offer-eyebrow"><span class="form-offer-eyebrow-desktop">founding beta</span><span class="form-offer-eyebrow-mobile">founding beta</span></p>
+          <h2 id="founding-heading">help test cognoscene before launch.</h2>
+          <p class="form-offer-build">join the waitlist for an invitation to test the chrome extension, report what breaks, and help shape the public release.</p>
           <p class="form-offer-benefit">free to use. no subscription, no future charge.</p>
           <p class="form-offer-status"><span class="form-offer-status-desktop">first 100 get early access.</span><span class="form-offer-status-mobile">only first 100 get early access.</span></p>
         </aside>
 
         <div class="form-inner">
-        <p class="section-eyebrow form-waitlist-eyebrow">the waitlist</p>
-        <h2 id="form-heading">first step: get on the list.</h2>
+        <p class="section-eyebrow form-waitlist-eyebrow">beta waitlist</p>
+        <h2 id="form-heading">apply to test cognoscene.</h2>
 
         <div class="waitlist-gate-status" id="waitlistGateStatus" aria-live="polite">
           <span id="waitlistGatePrefix">checking waitlist availability</span>
@@ -3056,15 +3032,15 @@
               <span>i agree to the <a href="privacy.html">privacy policy</a> and <a href="terms.html">terms of use</a>.</span>
             </label>
 
-            <button class="btn-submit" id="submitBtn" type="submit">join the waitlist</button>
+            <button class="btn-submit" id="submitBtn" type="submit">join the beta waitlist</button>
           </form>
 
-          <p class="form-pricing-guardrail"><span class="form-pricing-guardrail-desktop">free to use. if invited, test cognoscene in our private community.</span><span class="form-pricing-guardrail-mobile">free to use. test cognoscene upon invite.</span></p>
+          <p class="form-pricing-guardrail"><span class="form-pricing-guardrail-desktop">invitations are sent in batches. beta software may be incomplete and change based on testing.</span><span class="form-pricing-guardrail-mobile">invitations are sent in batches. beta software may change.</span></p>
         </div>
 
         <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-          <h3>you're on the list.</h3>
-          <p id="formSuccessCopy">we'll contact you through email when we finish building the extension. thanks and stay slow.</p>
+          <h3>you're on the beta waitlist.</h3>
+          <p id="formSuccessCopy">if selected for a testing batch, we'll send your invitation by email.</p>
           <p class="form-success-clover" aria-label="green clover">🍀</p>
         </div>
 
@@ -3204,14 +3180,14 @@
   </footer>
 
   <div class="mobile-cta-bar" aria-label="quick action">
-    <a href="#waitlist"><span>i need this!</span></a>
+    <a href="#waitlist">i need this!</a>
   </div>
 
   <div class="waitlist-modal" id="waitlistModal" aria-hidden="true">
     <button type="button" class="waitlist-modal-backdrop" data-waitlist-close aria-label="close waitlist"></button>
     <div class="waitlist-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="waitlistModalTitle">
       <button type="button" class="waitlist-modal-close" data-waitlist-close aria-label="close waitlist">×</button>
-      <p class="visually-hidden" id="waitlistModalTitle">join the cognoscene waitlist</p>
+      <p class="visually-hidden" id="waitlistModalTitle">join the cognoscene beta waitlist</p>
       <div id="waitlistModalContent"></div>
     </div>
   </div>
@@ -3374,7 +3350,8 @@
     .waitlist-modal-close { position: sticky; top: 14px; float: right; z-index: 4; margin: 14px 14px -46px 0; width: 36px; height: 36px; border: 1px solid var(--black); border-radius: 999px; background: var(--cream); color: var(--black); font: inherit; font-size: 22px; cursor: pointer; }
     .psm { z-index: 9700; }
     body.waitlist-modal-open { overflow: hidden; }
-    body.waitlist-modal-open .mobile-cta-bar { display: none; }
+    body.waitlist-modal-open .mobile-cta-bar,
+    body.tpsm-open .mobile-cta-bar { display: none !important; }
 
     @media (min-width: 761px) { .demo-layout { grid-template-columns: 1fr; } .proof-cards { grid-template-columns: 1fr; } .form-conversion { grid-template-areas: "offer form"; } }
     @media (max-width: 760px) { .hero-screenshot-stack { height: 290px !important; min-height: 290px !important; margin-top: 0 !important; } .hero-screenshot-stack .hero-shot { width: 86% !important; min-height: 192px; } .hero-visual { min-height: 320px; } .demo-band { padding: 36px 0; } .waitlist-modal { align-items: end; padding: 0; } .waitlist-modal-dialog { width: 100%; max-height: calc(100vh - 12px); border-radius: 24px 24px 0 0; } .waitlist-modal-dialog .form-conversion { padding: 40px 24px 48px; } }
@@ -3485,7 +3462,7 @@
         .then(function (data) {
           formSubmitted = true;
           formPanel.classList.add('is-hidden');
-          formSuccessCopy.textContent = "we'll contact you through email when we finish building the extension. thanks and stay slow.";
+          formSuccessCopy.textContent = "if selected for a testing batch, we'll send your invitation by email.";
           formSuccess.classList.add('is-visible');
           formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
           openPostSignupModal(data.survey_token);
@@ -3493,7 +3470,7 @@
         .catch(function (err) {
           showError(err.message || 'could not submit. check your connection and try again.');
           submitBtn.disabled = false;
-          submitBtn.textContent = 'join the waitlist';
+          submitBtn.textContent = 'join the beta waitlist';
           resetTurnstile();
         });
     });
