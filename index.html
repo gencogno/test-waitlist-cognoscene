@@ -2823,15 +2823,15 @@
         <div class="demo-slider" data-demo-slider tabindex="0" aria-label="cognoscene product demo; use left and right arrow keys to change layers">
           <div class="demo-slides">
             <figure class="demo-slide is-active" data-demo-slide="0">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer demo; click to pause or play"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="5" aria-label="expand observer demo">view larger</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer product demo"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="5" aria-label="open enlarged observer demo"></button>
               <figcaption><strong class="demo-slide-title">intercept unnecessary impulses</strong><span class="demo-slide-copy">soft lookout pulses help you notice the urge while browsing.</span></figcaption>
             </figure>
             <figure class="demo-slide" data-demo-slide="1">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="48-hour hold demo; click to pause or play"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="6" aria-label="expand 48-hour hold demo">view larger</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="48-hour hold product demo"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="6" aria-label="open enlarged 48-hour hold demo"></button>
               <figcaption><strong class="demo-slide-title">48 hours to decide if you need this</strong><span class="demo-slide-copy">checkout pauses while the immediate buying impulse has time to settle.</span></figcaption>
             </figure>
             <figure class="demo-slide" data-demo-slide="2">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="growth demo; click to pause or play"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="7" aria-label="expand growth demo">view larger</button>
+              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="growth product demo"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="7" aria-label="open enlarged growth demo"></button>
               <figcaption><strong class="demo-slide-title">reinforce your identity of prudence</strong><span class="demo-slide-copy">see purchases rationalised and intentional decisions over time.</span></figcaption>
             </figure>
             <button type="button" class="demo-overlay-nav" data-demo-prev aria-label="previous demo">‹</button>
@@ -3273,11 +3273,11 @@
     .demo-copy { max-width: 680px; margin: 0 auto; text-align: center; }
     .demo-copy h2 { margin: 8px 0 12px; font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.65rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.05em; }
     .demo-copy > p:last-child { max-width: 520px; margin: 0 auto; color: var(--mid); }
-    .demo-slider { width: 100%; max-width: 760px; margin: 0 auto; overflow: hidden; border-radius: 32px; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); }
+    .demo-slider { width: 100%; max-width: 960px; margin: 0 auto; overflow: hidden; border-radius: 32px; }
     .demo-slides {
       position: relative;
       display: grid;
-      width: calc(100% - 112px);
+      width: 50%;
       margin: 0 auto;
       overflow: visible;
       isolation: isolate;
@@ -3298,15 +3298,14 @@
       will-change: transform, opacity;
     }
     .demo-slide.is-active { z-index: 3; opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); filter: none; }
-    .demo-slide.is-prev { z-index: 2; opacity: .5; transform: translateX(-88%) scale(.88); filter: saturate(.72); }
-    .demo-slide.is-next { z-index: 2; opacity: .5; transform: translateX(88%) scale(.88); filter: saturate(.72); }
-    .demo-slide video { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--cream); cursor: pointer; }
-    .demo-expand { position: absolute; left: 50%; bottom: 104px; z-index: 5; min-height: 40px; padding: 9px 16px; border: 1px solid rgba(237,234,222,.5); border-radius: 999px; background: rgba(17,17,17,.9); color: var(--lime); font: 800 11px/1 var(--sans); cursor: pointer; backdrop-filter: blur(6px); opacity: 0; transform: translate(-50%, 8px); transition: opacity .2s ease, transform .28s cubic-bezier(.22,1,.36,1); }
-    .demo-slide.is-active:hover .demo-expand, .demo-slide.is-active:focus-within .demo-expand { opacity: 1; transform: translate(-50%, 0); }
-    @media (hover: none) { .demo-slide.is-active .demo-expand { opacity: 1; transform: translate(-50%, 0); } }
+    .demo-slide.is-prev { z-index: 2; opacity: .72; transform: translateX(-50%) scale(1); filter: saturate(.82); }
+    .demo-slide.is-next { z-index: 2; opacity: .72; transform: translateX(50%) scale(1); filter: saturate(.82); }
+    .demo-slide video { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--cream); }
+    .demo-expand { position: absolute; inset: 0 0 88px; z-index: 5; padding: 0; border: 0; border-radius: 26px 26px 0 0; background: transparent; cursor: zoom-in; }
+    .demo-expand:focus-visible { outline: 3px solid var(--lime); outline-offset: -6px; }
     .demo-overlay-nav { position: absolute; top: calc((100% - 88px) / 2); z-index: 6; width: 48px; height: 48px; border: 1px solid rgba(237,234,222,.45); border-radius: 999px; background: rgba(17,17,17,.9); color: var(--lime); font: 400 30px/1 var(--serif); display: grid; place-items: center; cursor: pointer; box-shadow: 0 8px 22px rgba(17,17,17,.22); transform: translateY(-50%); }
-    .demo-overlay-nav[data-demo-prev] { left: 12px; }
-    .demo-overlay-nav[data-demo-next] { right: 12px; }
+    .demo-overlay-nav[data-demo-prev] { left: 0; transform: translate(-50%, -50%); }
+    .demo-overlay-nav[data-demo-next] { right: 0; transform: translate(50%, -50%); }
     .video-lightbox-playback { display: flex; align-items: center; justify-content: center; gap: 8px; }
     .video-lightbox-playback button { min-width: 52px; min-height: 40px; padding: 8px 12px; border: 1px solid var(--cream); border-radius: 999px; background: var(--black); color: var(--lime); font: 800 11px/1 var(--sans); cursor: pointer; }
     .video-lightbox-playback button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
@@ -3318,9 +3317,8 @@
     .demo-controls > button { display: none; }
     .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
     @media (max-width: 760px) {
-      .demo-slides { width: calc(100% - 64px); }
-      .demo-slide.is-prev { transform: translateX(-86%) scale(.9); }
-      .demo-slide.is-next { transform: translateX(86%) scale(.9); }
+      .demo-slide figcaption { min-height: 112px; padding-inline: 12px; }
+      .demo-overlay-nav { top: calc((100% - 112px) / 2); width: 44px; height: 44px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .demo-slide { transition: none; }
@@ -3551,9 +3549,6 @@
       var activeSlider = null;
       var lightboxOpen = false;
       var transitionMs = 650;
-      var peekTravelMs = 360;
-      var peekHoldMs = 420;
-      var peekSettleMs = 430;
 
       var lightbox = document.getElementById('videoLightbox');
       var backdrop = document.getElementById('videoLightboxBackdrop');
@@ -3575,7 +3570,6 @@
       var lightboxTransitioning = false;
       var lightboxTransitionTimer = null;
       var lightboxTransitionEndHandler = null;
-      var lightboxPeekHoldTimer = null;
 
       function ensureLoop(video) {
         video.muted = true;
@@ -3676,25 +3670,12 @@
         return lightboxTrack.getBoundingClientRect().width || lightboxFrame.clientWidth || 1;
       }
 
-      function setLightboxTrackPosition(offset, animate, durationMs) {
+      function setLightboxTrackPosition(offset, animate) {
         if (!lightboxTrack) return;
-        var duration = typeof durationMs === 'number' ? durationMs : transitionMs;
         lightboxTrack.style.transition = animate && !reducedMotion.matches
-          ? 'transform ' + duration + 'ms cubic-bezier(0.22, 1, 0.36, 1)'
+          ? 'transform ' + transitionMs + 'ms cubic-bezier(0.22, 1, 0.36, 1)'
           : 'none';
         lightboxTrack.style.transform = 'translate3d(' + offset + 'px, 0, 0)';
-      }
-
-      function getLightboxTrackOffset() {
-        if (!lightboxTrack) return 0;
-        var transform = window.getComputedStyle(lightboxTrack).transform;
-        if (!transform || transform === 'none') return -getLightboxFrameWidth();
-        try {
-          return new DOMMatrixReadOnly(transform).m41;
-        } catch (error) {
-          var matrix = transform.match(/^matrix\((.+)\)$/);
-          return matrix ? Number(matrix[1].split(',')[4]) || 0 : -getLightboxFrameWidth();
-        }
       }
 
       function clearLightboxTransitionCompletion() {
@@ -3708,9 +3689,8 @@
         }
       }
 
-      function completeLightboxTransition(callback, durationMs) {
+      function completeLightboxTransition(callback) {
         clearLightboxTransitionCompletion();
-        var duration = typeof durationMs === 'number' ? durationMs : transitionMs;
         var completed = false;
         function complete() {
           if (completed) return;
@@ -3722,41 +3702,7 @@
           if (event.target === lightboxTrack && event.propertyName === 'transform') complete();
         };
         lightboxTrack.addEventListener('transitionend', lightboxTransitionEndHandler);
-        lightboxTransitionTimer = window.setTimeout(complete, duration + 80);
-      }
-
-      function clearLightboxPeekHold() {
-        if (!lightboxPeekHoldTimer) return;
-        window.clearTimeout(lightboxPeekHoldTimer);
-        lightboxPeekHoldTimer = null;
-      }
-
-      function runHalfPeekTransition(direction, target) {
-        var frameWidth = getLightboxFrameWidth();
-        var halfDestination = direction > 0 ? -1.5 * frameWidth : -0.5 * frameWidth;
-        var finalDestination = direction > 0 ? -2 * frameWidth : 0;
-        var currentOffset = getLightboxTrackOffset();
-        var alreadySawHalf = direction > 0
-          ? currentOffset <= halfDestination
-          : currentOffset >= halfDestination;
-
-        function landIncomingSlide() {
-          clearLightboxPeekHold();
-          setLightboxTrackPosition(finalDestination, true, peekSettleMs);
-          completeLightboxTransition(function () {
-            finishLightboxSlide(direction, target);
-          }, peekSettleMs);
-        }
-
-        if (alreadySawHalf) {
-          landIncomingSlide();
-          return;
-        }
-
-        setLightboxTrackPosition(halfDestination, true, peekTravelMs);
-        completeLightboxTransition(function () {
-          lightboxPeekHoldTimer = window.setTimeout(landIncomingSlide, peekHoldMs);
-        }, peekTravelMs);
+        lightboxTransitionTimer = window.setTimeout(complete, transitionMs + 80);
       }
 
       function setLightboxTransitionState(isTransitioning) {
@@ -3859,7 +3805,6 @@
         currentMasterIndex = wrapMasterIndex(targetIndex);
         setLightboxTransitionState(false);
         clearLightboxTransitionCompletion();
-        clearLightboxPeekHold();
 
         syncLightboxSlots();
         resetLightboxTrack();
@@ -3890,9 +3835,13 @@
           return;
         }
 
-        /* Commit the centred position before beginning the physical two-stage move. */
-        lightboxTrack.getBoundingClientRect();
-        runHalfPeekTransition(direction, target);
+        window.requestAnimationFrame(function () {
+          var destination = direction > 0 ? -2 * getLightboxFrameWidth() : 0;
+          setLightboxTrackPosition(destination, true);
+          completeLightboxTransition(function () {
+            finishLightboxSlide(direction, target);
+          });
+        });
       }
 
       function syncLightboxPlayer(clip) {
@@ -4175,7 +4124,6 @@
         activeSlider = null;
         setLightboxTransitionState(false);
         clearLightboxTransitionCompletion();
-        clearLightboxPeekHold();
         lightbox.classList.remove('is-open');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('video-lightbox-open');
@@ -4311,7 +4259,7 @@
 
         function snapLightboxTrackToCentre() {
           setLightboxTransitionState(true);
-          setLightboxTrackPosition(-getLightboxFrameWidth(), true, peekSettleMs);
+          setLightboxTrackPosition(-getLightboxFrameWidth(), true);
           if (reducedMotion.matches) {
             setLightboxTransitionState(false);
             settleLightboxPeek();
@@ -4320,7 +4268,7 @@
           completeLightboxTransition(function () {
             setLightboxTransitionState(false);
             settleLightboxPeek();
-          }, peekSettleMs);
+          });
         }
 
         function finishWheelGesture() {
@@ -5287,9 +5235,7 @@
         pointerStartX = null; resetTimer();
       }, { passive: true });
       slides.forEach(function (slide) {
-        var video = slide.querySelector('.demo-video');
         var expand = slide.querySelector('.demo-expand');
-        if (video) video.addEventListener('click', function () { if (video.paused) video.play().catch(function () {}); else video.pause(); window.clearInterval(timer); });
         if (expand) expand.addEventListener('click', function (event) {
           event.stopPropagation();
           window.clearInterval(timer);
