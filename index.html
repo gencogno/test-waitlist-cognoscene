@@ -3317,6 +3317,9 @@
     .demo-controls button { min-height: 32px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: var(--cream); color: var(--black); font: inherit; font-size: 11px; cursor: pointer; }
     .demo-controls > button { display: none; }
     .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
+    @media (min-width: 761px) {
+      .demo-slides { width: 75%; }
+    }
     @media (max-width: 760px) {
       .demo-slide figcaption { min-height: 112px; padding-inline: 12px; }
       .demo-overlay-nav { top: calc((100% - 112px) / 2); width: 44px; height: 44px; }
