@@ -2397,7 +2397,10 @@
     }
     .mobile-cta-bar a {
       display: block;
+      position: relative;
       width: 100%;
+      overflow: hidden;
+      isolation: isolate;
       text-align: center;
       background: var(--black);
       color: var(--lime);
@@ -2406,6 +2409,30 @@
       font-size: 14px;
       font-weight: 500;
       text-decoration: none;
+    }
+    .mobile-cta-bar a::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 0;
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--lime);
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.2);
+      animation: mobile-cta-shockwave 1.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      pointer-events: none;
+    }
+    .mobile-cta-bar a > span {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes mobile-cta-shockwave {
+      0% { opacity: 0.95; transform: translate(-50%, -50%) scale(0.2); }
+      58% { opacity: 0; transform: translate(-50%, -50%) scale(18); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(18); }
     }
     body.has-mobile-cta { padding-bottom: 76px; }
 
@@ -2618,6 +2645,7 @@
       html { scroll-behavior: auto; }
       .btn-primary:hover, .btn-submit:hover { transform: none; }
       .mobile-cta-bar { transition: none; }
+      .mobile-cta-bar a::before { animation: none; }
       .video-lightbox-track,
       .video-lightbox-frame,
       .video-lightbox-slide,
@@ -3175,7 +3203,7 @@
   </footer>
 
   <div class="mobile-cta-bar" aria-label="quick action">
-    <a href="#waitlist">i need this!</a>
+    <a href="#waitlist"><span>i need this!</span></a>
   </div>
 
   <div class="waitlist-modal" id="waitlistModal" aria-hidden="true">
@@ -5390,10 +5418,10 @@
   <style>
     #psmModal { display: none !important; }
     body.tpsm-open { overflow: hidden; }
-    .tpsm { display: none; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center; padding: 24px; }
+    .tpsm { display: none; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center; padding: 16px; }
     .tpsm.is-open { display: flex; }
     .tpsm-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.48); }
-    .tpsm-card { position: relative; width: min(680px, 100%); max-height: min(760px, calc(100dvh - 48px)); overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 32px 28px; border: 1px solid var(--black); border-radius: 16px; background: var(--cream); box-shadow: 0 24px 64px rgba(0,0,0,.14); animation: psmIn .2s ease; }
+    .tpsm-card { position: relative; width: min(770px, 100%); max-height: min(860px, calc(100dvh - 32px)); overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 36px 40px; border: 1px solid var(--black); border-radius: 16px; background: var(--cream); box-shadow: 0 24px 64px rgba(0,0,0,.14); animation: psmIn .2s ease; }
     .tpsm h3 { margin: 0 0 8px; font-size: 18px; font-weight: 800; text-align: center; }
     #tpsmTitle:focus { outline: none; }
     .tpsm-intro { max-width: 520px; margin: 0 auto 22px; color: var(--mid); font-size: 14px; text-align: center; }
