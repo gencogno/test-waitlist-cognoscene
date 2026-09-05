@@ -2388,7 +2388,6 @@
       border: 0;
       backdrop-filter: none;
       opacity: 1;
-      isolation: isolate;
     }
     .mobile-cta-bar.is-contextual-hidden {
       opacity: 0;
@@ -2396,8 +2395,6 @@
     }
     .mobile-cta-bar a {
       display: block;
-      position: relative;
-      z-index: 1;
       width: 100%;
       text-align: center;
       background: var(--black);
@@ -2410,22 +2407,6 @@
       box-shadow: none;
       animation: none;
       transform: none;
-    }
-    .mobile-cta-bar::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      border: 2px solid rgba(184, 216, 120, 0.78);
-      border-radius: 999px;
-      opacity: 0;
-      transform: scale(1);
-      pointer-events: none;
-    }
-    @keyframes mobile-cta-shockwave {
-      0% { opacity: 0.8; transform: scale(1); }
-      68% { opacity: 0; transform: scale(1.04, 1.26); }
-      100% { opacity: 0; transform: scale(1.04, 1.26); }
     }
     body.has-mobile-cta { padding-bottom: 76px; }
 
@@ -2626,7 +2607,6 @@
         right: 0.5cm;
         bottom: calc(0.5cm + env(safe-area-inset-bottom, 0px));
       }
-      .mobile-cta-bar:not(.is-contextual-hidden)::before { animation: mobile-cta-shockwave 1.2s ease-out infinite; }
       .site-footer { padding: 14px 0 calc(16px + 0.5cm); }
     }
 
@@ -2638,7 +2618,6 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .btn-primary:hover, .btn-submit:hover { transform: none; }
-      .mobile-cta-bar::before { animation: none; }
       .video-lightbox-track,
       .video-lightbox-frame,
       .video-lightbox-slide,
