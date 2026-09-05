@@ -2606,8 +2606,11 @@
         left: calc(var(--mobile-visual-left, 0px) + 0.5cm);
         right: auto;
         width: calc(var(--mobile-visual-width, 100vw) - 1cm);
-        bottom: calc(0.5cm + var(--mobile-visual-bottom, 0px) + env(safe-area-inset-bottom, 0px));
+        height: 51px;
+        top: calc(var(--mobile-visual-top, 0px) + var(--mobile-visual-height, 100dvh) - 0.5cm - env(safe-area-inset-bottom, 0px) - 51px);
+        bottom: auto;
       }
+      .mobile-cta-bar a { display: flex; align-items: center; justify-content: center; height: 51px; padding-block: 0; }
       .site-footer { padding: 14px 0 calc(16px + 0.5cm); }
     }
 
@@ -4546,10 +4549,10 @@
 
       function syncMobileCtaBounds() {
         if (!visualViewport) return;
-        var visualBottom = Math.max(0, window.innerHeight - visualViewport.offsetTop - visualViewport.height);
         document.documentElement.style.setProperty('--mobile-visual-left', visualViewport.offsetLeft + 'px');
+        document.documentElement.style.setProperty('--mobile-visual-top', visualViewport.offsetTop + 'px');
         document.documentElement.style.setProperty('--mobile-visual-width', visualViewport.width + 'px');
-        document.documentElement.style.setProperty('--mobile-visual-bottom', visualBottom + 'px');
+        document.documentElement.style.setProperty('--mobile-visual-height', visualViewport.height + 'px');
       }
 
       function setCtaVisibility(inView) {
