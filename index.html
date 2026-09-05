@@ -2603,9 +2603,10 @@
       .top-bar-marquee-item { font-size: 10px; gap: 18px; padding: 0 18px; }
       .mobile-cta-bar {
         display: block;
-        left: 0.5cm;
-        right: 0.5cm;
-        bottom: calc(0.5cm + env(safe-area-inset-bottom, 0px));
+        left: calc(var(--mobile-visual-left, 0px) + 0.5cm);
+        right: auto;
+        width: calc(var(--mobile-visual-width, 100vw) - 1cm);
+        bottom: calc(0.5cm + var(--mobile-visual-bottom, 0px) + env(safe-area-inset-bottom, 0px));
       }
       .site-footer { padding: 14px 0 calc(16px + 0.5cm); }
     }
@@ -4538,9 +4539,18 @@
       var waitlist = document.getElementById('waitlist');
       var ctaLink = mobileCta && mobileCta.querySelector('a');
       var mobileViewport = window.matchMedia('(max-width: 760px)');
+      var visualViewport = window.visualViewport;
       var formIsVisible = false;
 
       if (!mobileCta || !waitlist || !('IntersectionObserver' in window)) return;
+
+      function syncMobileCtaBounds() {
+        if (!visualViewport) return;
+        var visualBottom = Math.max(0, window.innerHeight - visualViewport.offsetTop - visualViewport.height);
+        document.documentElement.style.setProperty('--mobile-visual-left', visualViewport.offsetLeft + 'px');
+        document.documentElement.style.setProperty('--mobile-visual-width', visualViewport.width + 'px');
+        document.documentElement.style.setProperty('--mobile-visual-bottom', visualBottom + 'px');
+      }
 
       function setCtaVisibility(inView) {
         formIsVisible = inView;
@@ -4557,6 +4567,13 @@
         setCtaVisibility(entries[0].isIntersecting);
       }, { threshold: 0 });
       observer.observe(waitlist);
+      syncMobileCtaBounds();
+
+      window.addEventListener('resize', syncMobileCtaBounds);
+      if (visualViewport) {
+        visualViewport.addEventListener('resize', syncMobileCtaBounds);
+        visualViewport.addEventListener('scroll', syncMobileCtaBounds);
+      }
 
       if (mobileViewport.addEventListener) {
         mobileViewport.addEventListener('change', function () {
