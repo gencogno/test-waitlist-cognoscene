@@ -2388,6 +2388,7 @@
       border: 0;
       backdrop-filter: none;
       opacity: 1;
+      isolation: isolate;
     }
     .mobile-cta-bar.is-contextual-hidden {
       opacity: 0;
@@ -2395,6 +2396,8 @@
     }
     .mobile-cta-bar a {
       display: block;
+      position: relative;
+      z-index: 1;
       width: 100%;
       text-align: center;
       background: var(--black);
@@ -2404,12 +2407,25 @@
       font-size: 14px;
       font-weight: 500;
       text-decoration: none;
-      box-shadow: 0 0 0 0 rgba(184, 216, 120, 0.58);
+      box-shadow: none;
+      animation: none;
+      transform: none;
+    }
+    .mobile-cta-bar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border: 2px solid rgba(184, 216, 120, 0.78);
+      border-radius: 999px;
+      opacity: 0;
+      transform: scale(1);
+      pointer-events: none;
     }
     @keyframes mobile-cta-shockwave {
-      0% { box-shadow: 0 0 0 0 rgba(184, 216, 120, 0.58); }
-      62% { box-shadow: 0 0 0 12px rgba(184, 216, 120, 0); }
-      100% { box-shadow: 0 0 0 12px rgba(184, 216, 120, 0); }
+      0% { opacity: 0.8; transform: scale(1); }
+      68% { opacity: 0; transform: scale(1.04, 1.26); }
+      100% { opacity: 0; transform: scale(1.04, 1.26); }
     }
     body.has-mobile-cta { padding-bottom: 76px; }
 
@@ -2610,7 +2626,7 @@
         right: 0.5cm;
         bottom: calc(0.5cm + env(safe-area-inset-bottom, 0px));
       }
-      .mobile-cta-bar a { animation: mobile-cta-shockwave 1.2s ease-out infinite; }
+      .mobile-cta-bar:not(.is-contextual-hidden)::before { animation: mobile-cta-shockwave 1.2s ease-out infinite; }
       .site-footer { padding: 14px 0 calc(16px + 0.5cm); }
     }
 
@@ -2622,7 +2638,7 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .btn-primary:hover, .btn-submit:hover { transform: none; }
-      .mobile-cta-bar a { animation: none; }
+      .mobile-cta-bar::before { animation: none; }
       .video-lightbox-track,
       .video-lightbox-frame,
       .video-lightbox-slide,
@@ -3007,9 +3023,9 @@
         <aside class="form-offer" aria-labelledby="founding-heading">
           <p class="section-eyebrow form-offer-eyebrow"><span class="form-offer-eyebrow-desktop">founding beta</span><span class="form-offer-eyebrow-mobile">founding beta</span></p>
           <h2 id="founding-heading">help test cognoscene before launch.</h2>
-          <p class="form-offer-build">join the waitlist for an invitation to test the chrome extension, report what breaks, and help shape the public release.</p>
+          <p class="form-offer-build">improve your spending habits by introducing conscious friction. test cognoscene, report what could be improved and help shape the public release.</p>
           <p class="form-offer-benefit">free to use. no subscription, no future charge.</p>
-          <p class="form-offer-status"><span class="form-offer-status-desktop">first 100 get early access.</span><span class="form-offer-status-mobile">only first 100 get early access.</span></p>
+          <p class="form-offer-status"><span class="form-offer-status-desktop">first 100 get early access + bragging rights.</span><span class="form-offer-status-mobile">first 100 get early access + bragging rights.</span></p>
         </aside>
 
         <div class="form-inner">
@@ -3294,7 +3310,7 @@
     .demo-controls > button { display: none; }
     .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
     @media (min-width: 761px) {
-      .demo-slides { width: 75%; }
+      .demo-slides { width: 100%; }
     }
     @media (max-width: 760px) {
       .demo-slide figcaption { min-height: 112px; padding-inline: 12px; }
