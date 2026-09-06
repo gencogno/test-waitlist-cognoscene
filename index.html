@@ -2789,36 +2789,11 @@
       </div>
     </section>
 
-    <section class="demo-band" id="demo" aria-labelledby="demo-heading">
-      <div class="wrap demo-layout">
-        <div class="demo-copy">
-          <p class="section-eyebrow">product demo · see it in action</p>
-          <h2 id="demo-heading">watch cognoscene interrupt the impulse.</h2>
-          <p>see how each layer adds friction between the urge to buy and the decision to pay.</p>
-        </div>
-        <div class="demo-slider" data-demo-slider tabindex="0" aria-label="cognoscene product demo; use left and right arrow keys to change layers">
-          <div class="demo-slides">
-            <figure class="demo-slide is-active" data-demo-slide="0">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="observer product demo"><source src="assets/videos/observer-1.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="5" aria-label="open enlarged observer demo"></button>
-              <figcaption><strong class="demo-slide-title">intercept unnecessary impulses</strong><span class="demo-slide-copy">soft lookout pulses help you notice the urge while browsing.</span></figcaption>
-            </figure>
-            <figure class="demo-slide" data-demo-slide="1">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="48-hour hold product demo"><source src="assets/videos/demo.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="6" aria-label="open enlarged 48-hour hold demo"></button>
-              <figcaption><strong class="demo-slide-title">48 hours to decide if you need this</strong><span class="demo-slide-copy">checkout pauses while the immediate buying impulse has time to settle.</span></figcaption>
-            </figure>
-            <figure class="demo-slide" data-demo-slide="2">
-              <video class="demo-video" muted loop playsinline preload="metadata" aria-label="growth product demo"><source src="assets/videos/growth-smol.mp4" type="video/mp4" /></video><button type="button" class="demo-expand" data-master-index="7" aria-label="open enlarged growth demo"></button>
-              <figcaption><strong class="demo-slide-title">reinforce your identity of prudence</strong><span class="demo-slide-copy">see purchases rationalised and intentional decisions over time.</span></figcaption>
-            </figure>
-            <button type="button" class="demo-overlay-nav" data-demo-prev aria-label="previous demo">‹</button>
-            <button type="button" class="demo-overlay-nav" data-demo-next aria-label="next demo">›</button>
-          </div>
-          <div class="demo-controls" aria-label="demo controls">
-            <button type="button" data-demo-prev aria-label="previous demo">‹</button>
-            <div role="tablist" aria-label="demo slides"><button type="button" data-demo-dot="0" aria-selected="true" role="tab">observer</button><button type="button" data-demo-dot="1" aria-selected="false" role="tab">48h hold</button><button type="button" data-demo-dot="2" aria-selected="false" role="tab">growth</button></div>
-            <button type="button" data-demo-next aria-label="next demo">›</button>
-          </div>
-        </div>
+    <section class="demo-band" id="demo" aria-label="cognoscene product demo">
+      <div class="wrap demo-video-only">
+        <video class="demo-video-player" controls playsinline preload="metadata" width="1280" height="800" aria-label="cognoscene product demo">
+          <source src="assets/videos/product-demo-waitlist-v2.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
 
@@ -3292,6 +3267,8 @@
     .demo-controls button { min-height: 32px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: var(--cream); color: var(--black); font: inherit; font-size: 11px; cursor: pointer; }
     .demo-controls > button { display: none; }
     .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
+    .demo-video-only { max-width: 1120px; }
+    .demo-video-player { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; border: 2px solid var(--black); border-radius: 28px; background: var(--black); box-shadow: 0 20px 48px rgba(17,17,17,.14); }
     @media (min-width: 761px) {
       .demo-slides { width: 100%; }
     }
@@ -5191,54 +5168,6 @@
         });
         updateLoopState();
       }
-
-      var slider = document.querySelector('[data-demo-slider]');
-      if (!slider) return;
-      var slides = Array.prototype.slice.call(slider.querySelectorAll('[data-demo-slide]'));
-      var dots = Array.prototype.slice.call(slider.querySelectorAll('[data-demo-dot]'));
-      var slideIndex = 0;
-      var timer;
-      var pointerStartX = null;
-      function setSlide(next) {
-        slideIndex = (next + slides.length) % slides.length;
-        var previousIndex = (slideIndex - 1 + slides.length) % slides.length;
-        var nextIndex = (slideIndex + 1) % slides.length;
-        slides.forEach(function (slide, position) {
-          var active = position === slideIndex;
-          slide.hidden = false;
-          slide.classList.toggle('is-active', active);
-          slide.classList.toggle('is-prev', position === previousIndex);
-          slide.classList.toggle('is-next', position === nextIndex);
-          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
-          var video = slide.querySelector('video');
-          if (video) { if (active) video.play().catch(function () {}); else video.pause(); }
-        });
-        dots.forEach(function (dot, position) { dot.setAttribute('aria-selected', position === slideIndex ? 'true' : 'false'); });
-      }
-      function resetTimer() { window.clearInterval(timer); timer = window.setInterval(function () { setSlide(slideIndex + 1); }, 5000); }
-      slider.querySelectorAll('[data-demo-prev]').forEach(function (button) { button.addEventListener('click', function () { setSlide(slideIndex - 1); resetTimer(); }); });
-      slider.querySelectorAll('[data-demo-next]').forEach(function (button) { button.addEventListener('click', function () { setSlide(slideIndex + 1); resetTimer(); }); });
-      dots.forEach(function (dot) { dot.addEventListener('click', function () { setSlide(Number(dot.getAttribute('data-demo-dot'))); resetTimer(); }); });
-      slider.addEventListener('keydown', function (event) {
-        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-        event.preventDefault();
-        setSlide(slideIndex + (event.key === 'ArrowRight' ? 1 : -1));
-        resetTimer();
-      });
-      slider.addEventListener('pointerdown', function (event) { pointerStartX = event.clientX; window.clearInterval(timer); }, { passive: true });
-      slider.addEventListener('pointerup', function (event) {
-        if (pointerStartX !== null && Math.abs(event.clientX - pointerStartX) > 48) setSlide(slideIndex + (event.clientX < pointerStartX ? 1 : -1));
-        pointerStartX = null; resetTimer();
-      }, { passive: true });
-      slides.forEach(function (slide) {
-        var expand = slide.querySelector('.demo-expand');
-        if (expand) expand.addEventListener('click', function (event) {
-          event.stopPropagation();
-          window.clearInterval(timer);
-          if (window.openCognosceneVideoLightbox) window.openCognosceneVideoLightbox(expand);
-        });
-      });
-      setSlide(0); resetTimer();
 
       var proofStat = document.querySelector('.proof-stat');
       if (proofStat) {
