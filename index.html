@@ -2799,11 +2799,21 @@
             <span class="demo-poster-play-icon" aria-hidden="true">▶</span>
           </button>
           <div class="demo-chapter-markers" role="group" aria-label="product demo chapters">
-            <button type="button" class="is-active" data-demo-time="0" data-demo-label="intro" data-demo-display="0:00" aria-label="intro — 0:00" aria-current="true"></button>
-            <button type="button" data-demo-time="21" data-demo-label="observer" data-demo-display="0:21" aria-label="observer — 0:21"></button>
-            <button type="button" data-demo-time="77" data-demo-label="rationalisation" data-demo-display="1:17" aria-label="rationalisation — 1:17"></button>
-            <button type="button" data-demo-time="123" data-demo-label="prudency" data-demo-display="2:03" aria-label="prudency — 2:03"></button>
-            <button type="button" data-demo-time="183" data-demo-label="join the beta" data-demo-display="3:03" aria-label="join the beta — 3:03"></button>
+            <button type="button" class="is-active" data-demo-time="0" data-demo-label="intro" data-demo-display="0:00" aria-label="intro — 0:00" aria-current="true">
+              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT0S">0:00</time><span>intro</span></span>
+            </button>
+            <button type="button" data-demo-time="21" data-demo-label="observer" data-demo-display="0:21" aria-label="observer — 0:21">
+              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT21S">0:21</time><span>observer</span></span>
+            </button>
+            <button type="button" data-demo-time="77" data-demo-label="rationalisation" data-demo-display="1:17" aria-label="rationalisation — 1:17">
+              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT1M17S">1:17</time><span>rationalisation</span></span>
+            </button>
+            <button type="button" data-demo-time="123" data-demo-label="prudency" data-demo-display="2:03" aria-label="prudency — 2:03">
+              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT2M3S">2:03</time><span>prudency</span></span>
+            </button>
+            <button type="button" data-demo-time="183" data-demo-label="join the beta" data-demo-display="3:03" aria-label="join the beta — 3:03">
+              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT3M3S">3:03</time><span>join the beta</span></span>
+            </button>
           </div>
         </div>
       </div>
@@ -3286,13 +3296,18 @@
     .demo-poster-play-icon { display: grid; place-items: center; width: 52px; height: 52px; padding-left: 4px; border: 2px solid var(--cream); border-radius: 999px; background: var(--black); color: var(--lime); font-size: 17px; box-shadow: 0 10px 28px rgba(17,17,17,.25); }
     .demo-poster-play:focus-visible { outline: 4px solid var(--lime); outline-offset: -8px; }
     .demo-player-shell.has-started .demo-poster-play { opacity: 0; pointer-events: none; }
-    .demo-chapter-markers { position: absolute; z-index: 3; right: 28px; bottom: 44px; left: 28px; display: grid; grid-template-columns: 21fr 56fr 46fr 60fr 26fr; gap: 3px; height: 5px; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
-    .demo-player-shell.has-started .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; }
-    .demo-chapter-markers button { position: relative; min-width: 0; padding: 0; border: 0; border-radius: 999px; background: rgba(237,234,222,.56); cursor: pointer; }
-    .demo-chapter-markers button.is-active { background: var(--lime); }
-    .demo-chapter-markers button::after { position: absolute; bottom: 12px; left: 50%; padding: 6px 8px; border: 1px solid rgba(237,234,222,.55); border-radius: 999px; background: rgba(17,17,17,.92); color: var(--cream); content: attr(data-demo-label) " · " attr(data-demo-display); font: 600 10px/1 var(--sans); white-space: nowrap; opacity: 0; pointer-events: none; transform: translate(-50%, 4px); transition: opacity .16s ease, transform .16s ease; }
-    .demo-chapter-markers button:hover::after, .demo-chapter-markers button:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
-    .demo-chapter-markers button:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
+    .demo-chapter-markers { position: absolute; z-index: 3; top: 28px; bottom: 62px; left: 20px; display: flex; flex-direction: column; justify-content: center; gap: 6px; width: min(176px, 29%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
+    .demo-player-shell.has-started .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
+    .demo-player-shell.has-started .demo-chapter-markers.is-idle { opacity: 0; pointer-events: none; transition-delay: 1.8s; }
+    .demo-chapter-markers button { display: grid; grid-template-columns: 4px minmax(0, 1fr); align-items: stretch; gap: 9px; min-height: 30px; padding: 4px 9px 4px 0; border: 0; border-radius: 0 7px 7px 0; background: rgba(17,17,17,.7); color: var(--cream); text-align: left; cursor: pointer; backdrop-filter: blur(6px); }
+    .demo-chapter-marker-rail { display: block; width: 4px; border-radius: 0 999px 999px 0; background: rgba(237,234,222,.5); }
+    .demo-chapter-markers button.is-active .demo-chapter-marker-rail { background: var(--lime); }
+    .demo-chapter-marker-copy { display: flex; align-items: baseline; gap: 7px; min-width: 0; font: 600 10px/1.2 var(--sans); text-transform: lowercase; }
+    .demo-chapter-marker-copy time { flex: 0 0 auto; color: var(--lime); font-variant-numeric: tabular-nums; }
+    .demo-chapter-marker-copy > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .demo-chapter-markers button.is-active .demo-chapter-marker-copy > span { color: var(--lime); }
+    .demo-chapter-markers button:hover, .demo-chapter-markers button:focus-visible { background: rgba(17,17,17,.9); }
+    .demo-chapter-markers button:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
     @media (min-width: 761px) {
       .demo-slides { width: 100%; }
     }
@@ -3302,7 +3317,10 @@
       .demo-player-shell { border-radius: 20px; }
       .demo-poster-play { flex-direction: column; gap: 8px; font-size: 11px; }
       .demo-poster-play-icon { width: 46px; height: 46px; }
-      .demo-chapter-markers { right: 18px; bottom: 38px; left: 18px; height: 4px; }
+      .demo-chapter-markers { top: 14px; bottom: 46px; left: 12px; width: min(146px, 42%); gap: 4px; }
+      .demo-chapter-markers button { grid-template-columns: 3px minmax(0, 1fr); gap: 7px; min-height: 26px; padding-right: 7px; }
+      .demo-chapter-marker-rail { width: 3px; }
+      .demo-chapter-marker-copy { gap: 5px; font-size: 9px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .demo-slide { transition: none; }
@@ -5202,6 +5220,19 @@
         var demoShell = demoVideo.closest('.demo-player-shell');
         var demoPlay = demoShell ? demoShell.querySelector('.demo-poster-play') : null;
         var demoChapters = Array.prototype.slice.call(document.querySelectorAll('[data-demo-time]'));
+        var demoChapterMarkers = demoShell ? demoShell.querySelector('.demo-chapter-markers') : null;
+        var demoChapterIdleTimer = null;
+
+        function showDemoChapters() {
+          if (!demoChapterMarkers) return;
+          demoChapterMarkers.classList.remove('is-idle');
+          window.clearTimeout(demoChapterIdleTimer);
+          if (!demoVideo.paused && !demoVideo.ended) {
+            demoChapterIdleTimer = window.setTimeout(function () {
+              demoChapterMarkers.classList.add('is-idle');
+            }, 1800);
+          }
+        }
 
         function updateDemoChapter() {
           var activeIndex = 0;
@@ -5229,11 +5260,20 @@
           }
         }
 
-        if (demoPlay) demoPlay.addEventListener('click', function () { demoVideo.play().catch(function () {}); });
-        demoVideo.addEventListener('play', function () { if (demoShell) demoShell.classList.add('has-started'); });
+        if (demoPlay) demoPlay.addEventListener('click', function () { showDemoChapters(); demoVideo.play().catch(function () {}); });
+        demoVideo.addEventListener('play', function () { if (demoShell) demoShell.classList.add('has-started'); showDemoChapters(); });
+        demoVideo.addEventListener('pause', showDemoChapters);
+        demoVideo.addEventListener('ended', showDemoChapters);
+        if (demoShell && demoChapterMarkers) {
+          demoShell.addEventListener('pointermove', showDemoChapters);
+          demoShell.addEventListener('pointerenter', showDemoChapters);
+          demoShell.addEventListener('focusin', showDemoChapters);
+          demoShell.addEventListener('touchstart', showDemoChapters, { passive: true });
+        }
         demoVideo.addEventListener('timeupdate', updateDemoChapter);
         demoChapters.forEach(function (button) {
           button.addEventListener('click', function () {
+            showDemoChapters();
             seekDemo(Number(button.getAttribute('data-demo-time')));
           });
         });
