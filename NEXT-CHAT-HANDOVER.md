@@ -10,7 +10,7 @@
 
 ## Batch 1 — complete and live (reversible)
 
-Product-demo work is live on Test. Latest relevant commit: `36de594` (`Remove duplicate demo thumbnail border`).
+Product-demo work is live on Test. Latest relevant published commit: `dbf60c1` (`Move demo timestamps into player`).
 
 ### Player
 
@@ -27,21 +27,21 @@ Product-demo work is live on Test. Latest relevant commit: `36de594` (`Remove du
 
 ### Chapters
 
-Clickable chapter controls remain below the player for now:
+Clickable chapter controls sit inside the player frame, above native controls, after playback begins:
 
 | Label | Timestamp |
 | --- | --- |
 | intro | 0:00 |
-| observer | 0:23 |
-| rationalisation | 1:19 |
-| prudency | 2:07 |
-| join the beta | 3:05 |
+| observer | 0:21 |
+| rationalisation | 1:17 |
+| prudency | 2:03 |
+| join the beta | 3:03 |
 
 They seek the native video, start playback, highlight the active chapter, and handle slow metadata loading. Live seeking was verified.
 
 ### Open Batch 1 decision
 
-The founder suggested moving chapter controls **inside** the player frame. This is not implemented. If implemented, place a compact clickable rail above native controls; do not bake timestamps into the MP4.
+The founder may still change this presentation. Keep timestamps as website controls, not text baked into the MP4.
 
 ### Local-only item
 
