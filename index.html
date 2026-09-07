@@ -2797,14 +2797,16 @@
           <p>observe how cognoscene supports more intentional spending while leaving every purchase decision with you.</p>
         </div>
         <div class="demo-player-shell">
+          <div class="demo-player-stage">
           <video class="demo-video-player" controls controlslist="nofullscreen" playsinline preload="metadata" poster="assets/product-demo-thumbnail.png" width="1280" height="800" aria-label="cognoscene product demo">
             <source src="assets/videos/product-demo-waitlist-v2.mp4" type="video/mp4" />
           </video>
           <button type="button" class="demo-poster-play" aria-label="play cognoscene product demo">
             <span class="demo-poster-play-icon" aria-hidden="true">▶</span>
           </button>
-          <button type="button" class="demo-player-expand" aria-label="enlarge cognoscene product demo" aria-pressed="false">
-            <span class="demo-player-expand-icon" aria-hidden="true">⤢</span>
+          <button type="button" class="demo-player-expand" aria-label="full screen" aria-pressed="false" data-tooltip="full screen">
+            <svg class="demo-player-expand-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5" /></svg>
+            <svg class="demo-player-expand-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8H3M8 8V3M16 8h5M16 8V3M16 16h5M16 16v5M8 16H3M8 16v5" /></svg>
           </button>
           <div class="demo-chapter-markers" role="group" aria-label="product demo chapters">
             <button type="button" class="is-active" data-demo-time="0" data-demo-label="intro" data-demo-display="0:00" aria-label="intro — 0:00" aria-current="true">
@@ -2822,6 +2824,7 @@
             <button type="button" data-demo-time="183" data-demo-label="join the beta" data-demo-display="3:03" aria-label="join the beta — 3:03">
               <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT3M3S">3:03</time><span>join the beta</span></span>
             </button>
+          </div>
           </div>
         </div>
       </div>
@@ -3303,18 +3306,25 @@
     .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
     .demo-video-only { max-width: 1120px; }
     .demo-player-shell { position: relative; overflow: hidden; border: 2px solid var(--black); border-radius: 28px; background: var(--black); box-shadow: 0 20px 48px rgba(17,17,17,.14); }
+    .demo-player-stage { position: relative; width: 100%; overflow: hidden; border-radius: inherit; }
     .demo-video-player { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; background: var(--black); }
     .demo-poster-play { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; width: 100%; border: 0; background: linear-gradient(180deg, transparent 45%, rgba(17,17,17,.28)); color: var(--cream); cursor: pointer; transition: opacity .2s ease; }
     .demo-poster-play-icon { display: grid; place-items: center; width: 52px; height: 52px; padding-left: 4px; border: 2px solid var(--cream); border-radius: 999px; background: var(--black); color: var(--lime); font-size: 17px; box-shadow: 0 10px 28px rgba(17,17,17,.25); }
     .demo-poster-play:focus-visible { outline: 4px solid var(--lime); outline-offset: -8px; }
     .demo-player-shell.has-started .demo-poster-play { opacity: 0; pointer-events: none; }
-    .demo-player-expand { position: absolute; top: 16px; right: 16px; z-index: 4; display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(237,234,222,.7); border-radius: 999px; background: rgba(17,17,17,.72); color: var(--cream); font: 400 22px/1 var(--sans); cursor: pointer; opacity: 0; transition: opacity .2s ease, background .2s ease; }
+    .demo-player-expand { position: absolute; right: 8px; bottom: 7px; z-index: 4; display: grid; place-items: center; width: 36px; height: 32px; padding: 6px; border: 0; border-radius: 3px; background: rgba(17,17,17,.18); color: var(--cream); cursor: pointer; opacity: 0; transition: opacity .35s ease, background .16s ease; }
+    .demo-player-expand svg { grid-area: 1 / 1; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+    .demo-player-expand-exit { display: none; }
+    .demo-player-expand::after { position: absolute; right: 0; bottom: calc(100% + 8px); padding: 6px 8px; border-radius: 4px; background: rgba(17,17,17,.92); color: var(--cream); content: attr(data-tooltip); font: 600 10px/1 var(--sans); white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(3px); transition: opacity .16s ease, transform .16s ease; }
     .demo-player-shell.has-started .demo-player-expand, .demo-player-shell:hover .demo-player-expand, .demo-player-shell:focus-within .demo-player-expand { opacity: 1; }
-    .demo-player-expand:hover, .demo-player-expand:focus-visible { background: rgba(17,17,17,.95); color: var(--lime); }
-    .demo-player-expand:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
-    .demo-player-shell.is-expanded { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; width: 100vw; height: 100vh; padding: 32px; border: 0; border-radius: 0; background: rgba(17,17,17,.97); }
-    .demo-player-shell.is-expanded .demo-video-player { width: min(1280px, 100%); max-height: calc(100vh - 64px); object-fit: contain; }
-    .demo-player-shell.is-expanded .demo-player-expand { top: 18px; right: 18px; opacity: 1; }
+    .demo-player-expand:hover, .demo-player-expand:focus-visible { background: rgba(17,17,17,.72); color: var(--lime); }
+    .demo-player-expand:hover::after, .demo-player-expand:focus-visible::after { opacity: 1; transform: translateY(0); }
+    .demo-player-expand:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+    .demo-player-shell.has-started .demo-player-expand.is-idle { opacity: 0; pointer-events: none; }
+    .demo-player-shell.is-expanded { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; width: 100vw; height: 100vh; padding: 16px; border: 0; border-radius: 0; background: var(--black); }
+    .demo-player-shell.is-expanded .demo-player-stage { width: min(1280px, calc((100vh - 32px) * 1.6), 100%); border-radius: 0; }
+    .demo-player-shell.is-expanded .demo-player-expand-enter { display: none; }
+    .demo-player-shell.is-expanded .demo-player-expand-exit { display: block; }
     body.demo-expanded-open { overflow: hidden; }
     .demo-chapter-markers { position: absolute; z-index: 3; top: 28px; bottom: 62px; left: 20px; display: flex; flex-direction: column; justify-content: center; gap: 6px; width: min(176px, 29%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
     .demo-player-shell.has-started .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
@@ -3337,7 +3347,7 @@
       .demo-player-shell { border-radius: 20px; }
       .demo-poster-play { flex-direction: column; gap: 8px; font-size: 11px; }
       .demo-poster-play-icon { width: 46px; height: 46px; }
-      .demo-player-expand { top: 10px; right: 10px; width: 34px; height: 34px; font-size: 19px; opacity: 1; }
+      .demo-player-expand { right: 5px; bottom: 5px; width: 40px; height: 36px; opacity: 1; }
       .demo-chapter-markers { top: 14px; bottom: 46px; left: 12px; width: min(146px, 42%); gap: 4px; }
       .demo-chapter-markers button { grid-template-columns: 3px minmax(0, 1fr); gap: 7px; min-height: 26px; padding-right: 7px; }
       .demo-chapter-marker-rail { width: 3px; }
@@ -5248,10 +5258,12 @@
         function showDemoChapters() {
           if (!demoChapterMarkers) return;
           demoChapterMarkers.classList.remove('is-idle');
+          if (demoExpand) demoExpand.classList.remove('is-idle');
           window.clearTimeout(demoChapterIdleTimer);
           if (!demoVideo.paused && !demoVideo.ended) {
             demoChapterIdleTimer = window.setTimeout(function () {
               demoChapterMarkers.classList.add('is-idle');
+              if (demoExpand) demoExpand.classList.add('is-idle');
             }, 2500);
           }
         }
@@ -5261,13 +5273,9 @@
           demoShell.classList.toggle('is-expanded', expanded);
           document.body.classList.toggle('demo-expanded-open', expanded);
           demoExpand.setAttribute('aria-pressed', expanded ? 'true' : 'false');
-          demoExpand.setAttribute('aria-label', expanded ? 'close enlarged cognoscene product demo' : 'enlarge cognoscene product demo');
-          var expandIcon = demoExpand.querySelector('.demo-player-expand-icon');
-          if (expandIcon) expandIcon.textContent = expanded ? '×' : '⤢';
-          if (expanded) {
-            showDemoChapters();
-            demoExpand.focus();
-          }
+          demoExpand.setAttribute('aria-label', expanded ? 'exit full screen' : 'full screen');
+          demoExpand.setAttribute('data-tooltip', expanded ? 'exit full screen' : 'full screen');
+          if (expanded) showDemoChapters();
         }
 
         function toggleDemoExpanded() {
