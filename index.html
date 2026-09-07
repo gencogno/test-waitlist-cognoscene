@@ -2798,15 +2798,11 @@
         </div>
         <div class="demo-player-shell">
           <div class="demo-player-stage">
-          <video class="demo-video-player" controls controlslist="nofullscreen" playsinline preload="metadata" poster="assets/product-demo-thumbnail.png" width="1280" height="800" aria-label="cognoscene product demo">
+          <video class="demo-video-player" controls playsinline preload="metadata" poster="assets/product-demo-thumbnail.png" width="1280" height="800" aria-label="cognoscene product demo">
             <source src="assets/videos/product-demo-waitlist-v2.mp4" type="video/mp4" />
           </video>
           <button type="button" class="demo-poster-play" aria-label="play cognoscene product demo">
-            <span class="demo-poster-play-icon" aria-hidden="true">▶</span>
-          </button>
-          <button type="button" class="demo-player-expand" aria-label="full screen" aria-pressed="false" data-tooltip="full screen">
-            <svg class="demo-player-expand-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5" /></svg>
-            <svg class="demo-player-expand-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8H3M8 8V3M16 8h5M16 8V3M16 16h5M16 16v5M8 16H3M8 16v5" /></svg>
+            <svg class="demo-poster-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
           </button>
           <div class="demo-chapter-markers" role="group" aria-label="product demo chapters">
             <button type="button" class="is-active" data-demo-time="0" data-demo-label="intro" data-demo-display="0:00" aria-label="intro — 0:00" aria-current="true">
@@ -2823,6 +2819,28 @@
             </button>
             <button type="button" data-demo-time="183" data-demo-label="join the beta" data-demo-display="3:03" aria-label="join the beta — 3:03">
               <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT3M3S">3:03</time><span>join the beta</span></span>
+            </button>
+          </div>
+          <div class="demo-player-controls" role="group" aria-label="video controls">
+            <button type="button" class="demo-control-button demo-play-toggle" aria-label="play" aria-pressed="false">
+              <svg class="demo-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+              <svg class="demo-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+            </button>
+            <div class="demo-progress-group">
+              <span class="demo-current-time" aria-hidden="true">0:00</span>
+              <input class="demo-progress" type="range" min="0" max="0" step="0.1" value="0" aria-label="seek video" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="0:00 of 0:00" disabled />
+              <span class="demo-duration" aria-hidden="true">0:00</span>
+            </div>
+            <div class="demo-volume-control">
+              <button type="button" class="demo-control-button demo-mute-toggle" aria-label="mute" aria-pressed="false">
+                <svg class="demo-volume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zM16 9.5a4 4 0 0 1 0 5M18.5 7a7.5 7.5 0 0 1 0 10" /></svg>
+                <svg class="demo-muted-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zM17 9l4 6M21 9l-4 6" /></svg>
+              </button>
+              <input class="demo-volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="volume" />
+            </div>
+            <button type="button" class="demo-control-button demo-player-expand" aria-label="full screen" aria-pressed="false" data-tooltip="full screen">
+              <svg class="demo-player-expand-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5" /></svg>
+              <svg class="demo-player-expand-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8H3M8 8V3M16 8h5M16 8V3M16 16h5M16 16v5M8 16H3M8 16v5" /></svg>
             </button>
           </div>
           </div>
@@ -3306,29 +3324,55 @@
     .demo-controls [aria-selected="true"] { border-color: var(--black); background: var(--black); color: var(--lime); }
     .demo-video-only { max-width: 1120px; }
     .demo-player-shell { position: relative; overflow: hidden; border: 2px solid var(--black); border-radius: 28px; background: var(--black); box-shadow: 0 20px 48px rgba(17,17,17,.14); }
+    .demo-player-shell:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
     .demo-player-stage { position: relative; width: 100%; overflow: hidden; border-radius: inherit; }
     .demo-video-player { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; background: var(--black); }
     .demo-poster-play { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; width: 100%; border: 0; background: linear-gradient(180deg, transparent 45%, rgba(17,17,17,.28)); color: var(--cream); cursor: pointer; transition: opacity .2s ease; }
-    .demo-poster-play-icon { display: grid; place-items: center; width: 52px; height: 52px; padding-left: 4px; border: 2px solid var(--cream); border-radius: 999px; background: var(--black); color: var(--lime); font-size: 17px; box-shadow: 0 10px 28px rgba(17,17,17,.25); }
+    .demo-poster-play-icon { display: grid; place-items: center; width: 52px; height: 52px; padding: 13px; border: 2px solid var(--cream); border-radius: 999px; background: var(--black); color: var(--lime); fill: currentColor; box-shadow: 0 10px 28px rgba(17,17,17,.25); }
     .demo-poster-play:focus-visible { outline: 4px solid var(--lime); outline-offset: -8px; }
-    .demo-player-shell.has-started .demo-poster-play { opacity: 0; pointer-events: none; }
-    .demo-player-expand { position: absolute; right: 8px; bottom: 7px; z-index: 4; display: grid; place-items: center; width: 36px; height: 32px; padding: 6px; border: 0; border-radius: 3px; background: rgba(17,17,17,.18); color: var(--cream); cursor: pointer; opacity: 0; transition: opacity .35s ease, background .16s ease; }
+    .demo-player-shell.has-started .demo-poster-play { visibility: hidden; opacity: 0; pointer-events: none; }
+    .demo-player-controls { position: absolute; right: 0; bottom: 0; left: 0; z-index: 5; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 10px; padding: 34px 10px 10px; background: linear-gradient(180deg, transparent, rgba(17,17,17,.9)); opacity: 0; pointer-events: none; transform: translateY(5px); transition: opacity .35s ease, transform .35s ease; }
+    .demo-player-shell.has-started .demo-player-controls { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .demo-player-shell.has-started.is-idle .demo-player-controls { opacity: 0; pointer-events: none; transform: translateY(5px); }
+    .demo-player-shell.has-started.has-ui-focus .demo-player-controls { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .demo-control-button { display: grid; place-items: center; width: 36px; height: 36px; padding: 8px; border: 0; border-radius: 6px; background: transparent; color: var(--cream); cursor: pointer; }
+    .demo-control-button:hover, .demo-control-button:focus-visible { background: rgba(237,234,222,.15); color: var(--lime); }
+    .demo-control-button:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+    .demo-control-button svg { grid-area: 1 / 1; width: 20px; height: 20px; fill: currentColor; }
+    .demo-play-toggle .demo-pause-icon, .demo-mute-toggle .demo-muted-icon { display: none; }
+    .demo-player-shell.is-playing .demo-play-toggle .demo-play-icon, .demo-player-shell.is-muted .demo-mute-toggle .demo-volume-icon { display: none; }
+    .demo-player-shell.is-playing .demo-play-toggle .demo-pause-icon, .demo-player-shell.is-muted .demo-mute-toggle .demo-muted-icon { display: block; }
+    .demo-progress-group { display: grid; grid-template-columns: auto minmax(60px, 1fr) auto; align-items: center; gap: 8px; min-width: 0; }
+    .demo-current-time, .demo-duration { color: var(--cream); font: 600 10px/1 var(--sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .demo-progress, .demo-volume { display: block; width: 100%; height: 18px; margin: 0; appearance: none; border: 0; background: transparent; cursor: pointer; }
+    .demo-progress { --demo-progress: 0%; }
+    .demo-progress::-webkit-slider-runnable-track { height: 4px; border-radius: 999px; background: linear-gradient(90deg, var(--lime) 0%, var(--lime) var(--demo-progress), rgba(237,234,222,.42) var(--demo-progress), rgba(237,234,222,.42) 100%); }
+    .demo-progress::-moz-range-track { height: 4px; border-radius: 999px; background: rgba(237,234,222,.42); }
+    .demo-progress::-moz-range-progress { height: 4px; border-radius: 999px; background: var(--lime); }
+    .demo-progress::-webkit-slider-thumb, .demo-volume::-webkit-slider-thumb { width: 12px; height: 12px; margin-top: -4px; appearance: none; border: 0; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 2px rgba(17,17,17,.45); }
+    .demo-progress::-moz-range-thumb, .demo-volume::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 2px rgba(17,17,17,.45); }
+    .demo-progress:focus-visible, .demo-volume:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
+    .demo-progress:disabled { cursor: default; opacity: .48; }
+    .demo-volume-control { display: flex; align-items: center; gap: 2px; min-width: 0; }
+    .demo-volume { width: 70px; height: 18px; --demo-volume: 100%; }
+    .demo-volume::-webkit-slider-runnable-track { height: 4px; border-radius: 999px; background: linear-gradient(90deg, var(--lime) 0%, var(--lime) var(--demo-volume), rgba(237,234,222,.42) var(--demo-volume), rgba(237,234,222,.42) 100%); }
+    .demo-volume::-moz-range-track { height: 4px; border-radius: 999px; background: rgba(237,234,222,.42); }
+    .demo-volume::-moz-range-progress { height: 4px; border-radius: 999px; background: var(--lime); }
+    .demo-player-expand { position: relative; width: 36px; height: 36px; padding: 8px; border-radius: 6px; }
     .demo-player-expand svg { grid-area: 1 / 1; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
     .demo-player-expand-exit { display: none; }
     .demo-player-expand::after { position: absolute; right: 0; bottom: calc(100% + 8px); padding: 6px 8px; border-radius: 4px; background: rgba(17,17,17,.92); color: var(--cream); content: attr(data-tooltip); font: 600 10px/1 var(--sans); white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(3px); transition: opacity .16s ease, transform .16s ease; }
-    .demo-player-shell.has-started .demo-player-expand, .demo-player-shell:hover .demo-player-expand, .demo-player-shell:focus-within .demo-player-expand { opacity: 1; }
-    .demo-player-expand:hover, .demo-player-expand:focus-visible { background: rgba(17,17,17,.72); color: var(--lime); }
+    .demo-player-expand:hover, .demo-player-expand:focus-visible { background: rgba(237,234,222,.15); color: var(--lime); }
     .demo-player-expand:hover::after, .demo-player-expand:focus-visible::after { opacity: 1; transform: translateY(0); }
-    .demo-player-expand:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
-    .demo-player-shell.has-started .demo-player-expand.is-idle { opacity: 0; pointer-events: none; }
     .demo-player-shell.is-expanded { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; width: 100vw; height: 100vh; padding: 16px; border: 0; border-radius: 0; background: var(--black); }
     .demo-player-shell.is-expanded .demo-player-stage { width: min(1280px, calc((100vh - 32px) * 1.6), 100%); border-radius: 0; }
     .demo-player-shell.is-expanded .demo-player-expand-enter { display: none; }
     .demo-player-shell.is-expanded .demo-player-expand-exit { display: block; }
     body.demo-expanded-open { overflow: hidden; }
-    .demo-chapter-markers { position: absolute; z-index: 3; top: 28px; bottom: 62px; left: 20px; display: flex; flex-direction: column; justify-content: center; gap: 6px; width: min(176px, 29%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
+    .demo-chapter-markers { position: absolute; z-index: 3; top: 28px; bottom: 78px; left: 20px; display: flex; flex-direction: column; justify-content: center; gap: 6px; width: min(176px, 29%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
     .demo-player-shell.has-started .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
     .demo-player-shell.has-started .demo-chapter-markers.is-idle { opacity: 0; pointer-events: none; transition-delay: 0s; }
+    .demo-player-shell.has-started.has-ui-focus .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; }
     .demo-chapter-markers button { display: grid; grid-template-columns: 4px minmax(0, 1fr); align-items: stretch; gap: 9px; min-height: 30px; padding: 4px 9px 4px 0; border: 0; border-radius: 0 7px 7px 0; background: rgba(17,17,17,.7); color: var(--cream); text-align: left; cursor: pointer; backdrop-filter: blur(6px); }
     .demo-chapter-marker-rail { display: block; width: 4px; border-radius: 0 999px 999px 0; background: rgba(237,234,222,.5); }
     .demo-chapter-markers button.is-active .demo-chapter-marker-rail { background: var(--lime); }
@@ -3347,8 +3391,13 @@
       .demo-player-shell { border-radius: 20px; }
       .demo-poster-play { flex-direction: column; gap: 8px; font-size: 11px; }
       .demo-poster-play-icon { width: 46px; height: 46px; }
-      .demo-player-expand { right: 5px; bottom: 5px; width: 40px; height: 36px; opacity: 1; }
-      .demo-chapter-markers { top: 14px; bottom: 46px; left: 12px; width: min(146px, 42%); gap: 4px; }
+      .demo-player-controls { grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px; padding: 30px 6px 6px; }
+      .demo-control-button { width: 40px; height: 40px; }
+      .demo-volume-control { display: none; }
+      .demo-progress-group { gap: 6px; }
+      .demo-current-time, .demo-duration { font-size: 9px; }
+      .demo-player-expand { width: 40px; height: 40px; }
+      .demo-chapter-markers { top: 14px; bottom: 62px; left: 12px; width: min(146px, 42%); gap: 4px; }
       .demo-chapter-markers button { grid-template-columns: 3px minmax(0, 1fr); gap: 7px; min-height: 26px; padding-right: 7px; }
       .demo-chapter-marker-rail { width: 3px; }
       .demo-chapter-marker-copy { gap: 5px; font-size: 9px; }
@@ -5250,20 +5299,72 @@
       if (demoVideo) {
         var demoShell = demoVideo.closest('.demo-player-shell');
         var demoPlay = demoShell ? demoShell.querySelector('.demo-poster-play') : null;
+        var demoToggle = demoShell ? demoShell.querySelector('.demo-play-toggle') : null;
+        var demoSeek = demoShell ? demoShell.querySelector('.demo-progress') : null;
+        var demoCurrentTime = demoShell ? demoShell.querySelector('.demo-current-time') : null;
+        var demoDuration = demoShell ? demoShell.querySelector('.demo-duration') : null;
+        var demoMute = demoShell ? demoShell.querySelector('.demo-mute-toggle') : null;
+        var demoVolume = demoShell ? demoShell.querySelector('.demo-volume') : null;
         var demoExpand = demoShell ? demoShell.querySelector('.demo-player-expand') : null;
-        var demoChapters = Array.prototype.slice.call(document.querySelectorAll('[data-demo-time]'));
-        var demoChapterMarkers = demoShell ? demoShell.querySelector('.demo-chapter-markers') : null;
-        var demoChapterIdleTimer = null;
+        var demoChapters = demoShell ? Array.prototype.slice.call(demoShell.querySelectorAll('[data-demo-time]')) : [];
+        var demoUiIdleTimer = null;
+        var demoLastVolume = 1;
 
-        function showDemoChapters() {
-          if (!demoChapterMarkers) return;
-          demoChapterMarkers.classList.remove('is-idle');
-          if (demoExpand) demoExpand.classList.remove('is-idle');
-          window.clearTimeout(demoChapterIdleTimer);
+        function formatDemoTime(seconds) {
+          if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+          var totalSeconds = Math.floor(seconds);
+          var hours = Math.floor(totalSeconds / 3600);
+          var minutes = Math.floor((totalSeconds % 3600) / 60);
+          var remainder = totalSeconds % 60;
+          if (hours) return hours + ':' + String(minutes).padStart(2, '0') + ':' + String(remainder).padStart(2, '0');
+          return minutes + ':' + String(remainder).padStart(2, '0');
+        }
+
+        function updateDemoProgress() {
+          var duration = Number.isFinite(demoVideo.duration) ? demoVideo.duration : 0;
+          var current = Number.isFinite(demoVideo.currentTime) ? demoVideo.currentTime : 0;
+          var percent = duration ? Math.min(100, Math.max(0, (current / duration) * 100)) : 0;
+          if (demoCurrentTime) demoCurrentTime.textContent = formatDemoTime(current);
+          if (demoDuration) demoDuration.textContent = formatDemoTime(duration);
+          if (!demoSeek) return;
+          demoSeek.disabled = !duration;
+          demoSeek.max = String(duration);
+          demoSeek.value = String(Math.min(current, duration));
+          demoSeek.setAttribute('aria-valuemax', String(Math.round(duration)));
+          demoSeek.setAttribute('aria-valuenow', String(Math.round(current)));
+          demoSeek.setAttribute('aria-valuetext', formatDemoTime(current) + ' of ' + formatDemoTime(duration));
+          demoSeek.style.setProperty('--demo-progress', percent + '%');
+        }
+
+        function updateDemoPlayState() {
+          var playing = !demoVideo.paused && !demoVideo.ended;
+          if (demoShell) demoShell.classList.toggle('is-playing', playing);
+          if (demoToggle) {
+            demoToggle.setAttribute('aria-label', playing ? 'pause' : 'play');
+            demoToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
+          }
+        }
+
+        function updateDemoVolumeState() {
+          var muted = demoVideo.muted || demoVideo.volume === 0;
+          if (demoShell) demoShell.classList.toggle('is-muted', muted);
+          if (demoMute) {
+            demoMute.setAttribute('aria-label', muted ? 'unmute' : 'mute');
+            demoMute.setAttribute('aria-pressed', muted ? 'true' : 'false');
+          }
+          if (demoVolume) {
+            demoVolume.value = String(demoVideo.volume);
+            demoVolume.style.setProperty('--demo-volume', (demoVideo.volume * 100) + '%');
+          }
+        }
+
+        function showDemoUi() {
+          if (!demoShell) return;
+          demoShell.classList.remove('is-idle');
+          window.clearTimeout(demoUiIdleTimer);
           if (!demoVideo.paused && !demoVideo.ended) {
-            demoChapterIdleTimer = window.setTimeout(function () {
-              demoChapterMarkers.classList.add('is-idle');
-              if (demoExpand) demoExpand.classList.add('is-idle');
+            demoUiIdleTimer = window.setTimeout(function () {
+              demoShell.classList.add('is-idle');
             }, 2500);
           }
         }
@@ -5275,7 +5376,7 @@
           demoExpand.setAttribute('aria-pressed', expanded ? 'true' : 'false');
           demoExpand.setAttribute('aria-label', expanded ? 'exit full screen' : 'full screen');
           demoExpand.setAttribute('data-tooltip', expanded ? 'exit full screen' : 'full screen');
-          if (expanded) showDemoChapters();
+          showDemoUi();
         }
 
         function toggleDemoExpanded() {
@@ -5286,7 +5387,7 @@
             return;
           }
           setDemoExpanded(true);
-          if (demoShell.requestFullscreen) demoShell.requestFullscreen().catch(function () {});
+          if (demoShell.requestFullscreen) demoShell.requestFullscreen().catch(function () { setDemoExpanded(false); });
         }
 
         function updateDemoChapter() {
@@ -5304,7 +5405,7 @@
 
         function seekDemo(time) {
           function seekAndPlay() {
-            demoVideo.currentTime = time;
+            demoVideo.currentTime = Math.max(0, Math.min(time, Number.isFinite(demoVideo.duration) ? demoVideo.duration : time));
             updateDemoChapter();
             demoVideo.play().catch(function () {});
           }
@@ -5315,31 +5416,131 @@
           }
         }
 
-        if (demoPlay) demoPlay.addEventListener('click', function () { showDemoChapters(); demoVideo.play().catch(function () {}); });
+        function toggleDemoPlayback() {
+          showDemoUi();
+          if (demoVideo.paused || demoVideo.ended) demoVideo.play().catch(function () {});
+          else demoVideo.pause();
+        }
+
+        function seekDemoRelative(offset) {
+          if (!Number.isFinite(demoVideo.duration)) return;
+          demoVideo.currentTime = Math.max(0, Math.min(demoVideo.duration, demoVideo.currentTime + offset));
+          updateDemoProgress();
+          updateDemoChapter();
+          showDemoUi();
+        }
+
+        if (demoShell) demoShell.setAttribute('tabindex', '0');
+        if (demoPlay) demoPlay.addEventListener('click', toggleDemoPlayback);
+        if (demoToggle) demoToggle.addEventListener('click', toggleDemoPlayback);
         if (demoExpand) demoExpand.addEventListener('click', toggleDemoExpanded);
-        demoVideo.addEventListener('play', function () { if (demoShell) demoShell.classList.add('has-started'); showDemoChapters(); });
-        demoVideo.addEventListener('pause', showDemoChapters);
-        demoVideo.addEventListener('ended', showDemoChapters);
-        if (demoShell && demoChapterMarkers) {
-          demoShell.addEventListener('pointermove', showDemoChapters);
-          demoShell.addEventListener('pointerenter', showDemoChapters);
-          demoShell.addEventListener('focusin', showDemoChapters);
-          demoShell.addEventListener('touchstart', showDemoChapters, { passive: true });
+        if (demoSeek) {
+          demoSeek.addEventListener('pointerdown', showDemoUi);
+          demoSeek.addEventListener('input', function () {
+            if (Number.isFinite(demoVideo.duration)) demoVideo.currentTime = Number(demoSeek.value);
+            updateDemoProgress();
+            updateDemoChapter();
+            showDemoUi();
+          });
+        }
+        if (demoMute) demoMute.addEventListener('click', function () {
+          if (demoVideo.muted || demoVideo.volume === 0) {
+            demoVideo.muted = false;
+            demoVideo.volume = demoLastVolume || 1;
+          } else {
+            demoLastVolume = demoVideo.volume;
+            demoVideo.muted = true;
+          }
+          updateDemoVolumeState();
+          showDemoUi();
+        });
+        if (demoVolume) demoVolume.addEventListener('input', function () {
+          var nextVolume = Number(demoVolume.value);
+          demoVideo.volume = nextVolume;
+          demoVideo.muted = nextVolume === 0;
+          if (nextVolume > 0) demoLastVolume = nextVolume;
+          updateDemoVolumeState();
+          showDemoUi();
+        });
+        demoVideo.addEventListener('click', function () {
+          if (demoVideo.controls === false) toggleDemoPlayback();
+        });
+        demoVideo.addEventListener('play', function () {
+          if (demoShell) demoShell.classList.add('has-started');
+          updateDemoPlayState();
+          showDemoUi();
+        });
+        demoVideo.addEventListener('pause', function () { updateDemoPlayState(); showDemoUi(); });
+        demoVideo.addEventListener('ended', function () { updateDemoPlayState(); showDemoUi(); });
+        demoVideo.addEventListener('loadedmetadata', updateDemoProgress);
+        demoVideo.addEventListener('durationchange', updateDemoProgress);
+        demoVideo.addEventListener('timeupdate', function () { updateDemoProgress(); updateDemoChapter(); });
+        demoVideo.addEventListener('volumechange', updateDemoVolumeState);
+        if (demoShell) {
+          demoShell.addEventListener('pointermove', showDemoUi);
+          demoShell.addEventListener('pointerenter', showDemoUi);
+          demoShell.addEventListener('pointerdown', showDemoUi);
+          demoShell.addEventListener('focusin', function (event) {
+            var focusTarget = event.target;
+            var isUiFocus = focusTarget === demoShell || (focusTarget.closest && focusTarget.closest('.demo-player-controls, .demo-chapter-markers'));
+            demoShell.classList.toggle('has-ui-focus', Boolean(isUiFocus));
+            showDemoUi();
+          });
+          demoShell.addEventListener('focusout', function () {
+            window.setTimeout(function () {
+              var activeElement = document.activeElement;
+              var isUiFocus = activeElement === demoShell || (activeElement && activeElement.closest && activeElement.closest('.demo-player-controls, .demo-chapter-markers'));
+              if (!isUiFocus) demoShell.classList.remove('has-ui-focus');
+            }, 0);
+          });
+          demoShell.addEventListener('touchstart', showDemoUi, { passive: true });
+          demoShell.addEventListener('keydown', function (event) {
+            var target = event.target;
+            var isInput = target && target.tagName === 'INPUT';
+            var isButton = target && target.tagName === 'BUTTON';
+            if (event.key === 'Escape') {
+              if (demoShell.classList.contains('is-expanded')) {
+                event.preventDefault();
+                if (document.fullscreenElement === demoShell && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+                setDemoExpanded(false);
+              }
+              return;
+            }
+            if (isInput && (event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'Home' || event.key === 'End')) return;
+            if (isButton && (event.key === ' ' || event.key === 'Enter')) return;
+            if (event.key === ' ' || event.key.toLowerCase() === 'k') {
+              event.preventDefault();
+              toggleDemoPlayback();
+            } else if (event.key === 'ArrowLeft') {
+              event.preventDefault();
+              seekDemoRelative(-5);
+            } else if (event.key === 'ArrowRight') {
+              event.preventDefault();
+              seekDemoRelative(5);
+            } else if (event.key.toLowerCase() === 'm') {
+              event.preventDefault();
+              if (demoMute) demoMute.click();
+            } else if (event.key.toLowerCase() === 'f') {
+              event.preventDefault();
+              toggleDemoExpanded();
+            }
+          });
         }
         document.addEventListener('fullscreenchange', function () {
           if (document.fullscreenElement !== demoShell && demoShell.classList.contains('is-expanded')) setDemoExpanded(false);
         });
-        document.addEventListener('keydown', function (event) {
-          if (event.key === 'Escape' && demoShell.classList.contains('is-expanded') && document.fullscreenElement !== demoShell) setDemoExpanded(false);
-        });
-        demoVideo.addEventListener('timeupdate', updateDemoChapter);
         demoChapters.forEach(function (button) {
           button.addEventListener('click', function () {
-            showDemoChapters();
+            showDemoUi();
             seekDemo(Number(button.getAttribute('data-demo-time')));
           });
         });
+        updateDemoPlayState();
+        updateDemoProgress();
+        updateDemoVolumeState();
         updateDemoChapter();
+        if (demoShell) demoShell.classList.add('custom-controls-ready');
+        demoVideo.controls = false;
       }
 
       var proofStat = document.querySelector('.proof-stat');
