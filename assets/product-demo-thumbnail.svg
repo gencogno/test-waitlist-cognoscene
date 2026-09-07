@@ -2,9 +2,8 @@
   <title id="title">Cognoscene product demo — 3 layers, 3 minutes</title>
   <desc id="description">A cream editorial thumbnail with the Cognoscene mark, a two-line title, and icons for observer, rationalisation and prudency.</desc>
   <rect width="1280" height="800" fill="#EDEADE"/>
-  <rect x="30" y="30" width="1220" height="740" rx="2" fill="none" stroke="#111111" stroke-width="3"/>
+  <rect x="30" y="30" width="1220" height="740" rx="28" fill="none" stroke="#111111" stroke-width="3"/>
   <image href="cognoscene-mark.png" x="72" y="72" width="48" height="48" preserveAspectRatio="xMidYMid meet"/>
-  <text x="136" y="101" fill="#111111" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="-.5">cognoscene</text>
   <text x="640" y="194" fill="#3B6D11" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2.2" text-anchor="middle">PRODUCT DEMO</text>
   <text x="640" y="337" fill="#111111" font-family="Times New Roman, Times, serif" font-size="126" font-weight="400" letter-spacing="-6" text-anchor="middle">3 layers.</text>
   <text x="640" y="453" fill="#111111" font-family="Times New Roman, Times, serif" font-size="126" font-weight="400" letter-spacing="-6" text-anchor="middle">3 minutes.</text>
