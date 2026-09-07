@@ -3369,18 +3369,20 @@
     .demo-player-shell.is-expanded .demo-player-expand-enter { display: none; }
     .demo-player-shell.is-expanded .demo-player-expand-exit { display: block; }
     body.demo-expanded-open { overflow: hidden; }
-    .demo-chapter-markers { position: absolute; z-index: 3; top: 28px; bottom: 78px; left: 20px; display: flex; flex-direction: column; justify-content: center; gap: 6px; width: min(176px, 29%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
+    .demo-chapter-markers { position: absolute; z-index: 3; top: 28px; bottom: 78px; left: 16px; display: flex; flex-direction: column; justify-content: center; gap: 4px; width: min(180px, 25%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
     .demo-player-shell.has-started .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
     .demo-player-shell.has-started .demo-chapter-markers.is-idle { opacity: 0; pointer-events: none; transition-delay: 0s; }
     .demo-player-shell.has-started.has-ui-focus .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; }
-    .demo-chapter-markers button { display: grid; grid-template-columns: 4px minmax(0, 1fr); align-items: stretch; gap: 9px; min-height: 30px; padding: 4px 9px 4px 0; border: 0; border-radius: 0 7px 7px 0; background: rgba(17,17,17,.7); color: var(--cream); text-align: left; cursor: pointer; backdrop-filter: blur(6px); }
-    .demo-chapter-marker-rail { display: block; width: 4px; border-radius: 0 999px 999px 0; background: rgba(237,234,222,.5); }
+    .demo-chapter-markers button { display: grid; grid-template-columns: 4px minmax(0, 1fr); align-items: stretch; gap: 9px; min-height: 40px; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--cream); text-align: left; cursor: pointer; }
+    .demo-chapter-marker-rail { display: block; width: 4px; border-radius: 0 999px 999px 0; background: rgba(237,234,222,.42); }
     .demo-chapter-markers button.is-active .demo-chapter-marker-rail { background: var(--lime); }
-    .demo-chapter-marker-copy { display: flex; align-items: baseline; gap: 7px; min-width: 0; font: 600 10px/1.2 var(--sans); text-transform: lowercase; }
-    .demo-chapter-marker-copy time { flex: 0 0 auto; color: var(--lime); font-variant-numeric: tabular-nums; }
+    .demo-chapter-marker-copy { display: flex; align-items: baseline; gap: 7px; min-width: 0; align-self: center; padding: 4px 9px 4px 0; border-radius: 0 7px 7px 0; background: rgba(17,17,17,.42); font: 500 10px/1.2 var(--sans); text-transform: lowercase; }
+    .demo-chapter-marker-copy time { flex: 0 0 auto; color: rgba(237,234,222,.78); font-variant-numeric: tabular-nums; }
     .demo-chapter-marker-copy > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .demo-chapter-markers button.is-active .demo-chapter-marker-copy { background: rgba(17,17,17,.72); }
+    .demo-chapter-markers button.is-active .demo-chapter-marker-copy time { color: var(--lime); }
     .demo-chapter-markers button.is-active .demo-chapter-marker-copy > span { color: var(--lime); }
-    .demo-chapter-markers button:hover, .demo-chapter-markers button:focus-visible { background: rgba(17,17,17,.9); }
+    .demo-chapter-markers button:hover .demo-chapter-marker-copy, .demo-chapter-markers button:focus-visible .demo-chapter-marker-copy { background: rgba(17,17,17,.72); }
     .demo-chapter-markers button:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
     @media (min-width: 761px) {
       .demo-slides { width: 100%; }
@@ -3397,10 +3399,10 @@
       .demo-progress-group { gap: 6px; }
       .demo-current-time, .demo-duration { font-size: 9px; }
       .demo-player-expand { width: 40px; height: 40px; }
-      .demo-chapter-markers { top: 14px; bottom: 62px; left: 12px; width: min(146px, 42%); gap: 4px; }
-      .demo-chapter-markers button { grid-template-columns: 3px minmax(0, 1fr); gap: 7px; min-height: 26px; padding-right: 7px; }
-      .demo-chapter-marker-rail { width: 3px; }
-      .demo-chapter-marker-copy { gap: 5px; font-size: 9px; }
+      .demo-chapter-markers { top: 14px; bottom: 62px; left: 10px; width: min(118px, 32%); gap: 4px; }
+      .demo-chapter-markers button { grid-template-columns: 2px minmax(0, 1fr); gap: 6px; min-height: 24px; }
+      .demo-chapter-marker-rail { width: 2px; }
+      .demo-chapter-marker-copy { gap: 5px; padding-right: 6px; font-size: 9px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .demo-slide { transition: none; }
