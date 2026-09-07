@@ -2789,8 +2789,13 @@
       </div>
     </section>
 
-    <section class="demo-band" id="demo" aria-label="cognoscene product demo">
+    <section class="demo-band" id="demo" aria-labelledby="demo-heading">
       <div class="wrap demo-video-only">
+        <div class="demo-intro">
+          <p class="section-eyebrow">see conscious friction in action</p>
+          <h2 id="demo-heading">how cognoscene works.</h2>
+          <p>observe how cognoscene supports more intentional spending while leaving every purchase decision with you.</p>
+        </div>
         <div class="demo-player-shell">
           <video class="demo-video-player" controls playsinline preload="metadata" poster="assets/product-demo-thumbnail.png" width="1280" height="800" aria-label="cognoscene product demo">
             <source src="assets/videos/product-demo-waitlist-v2.mp4" type="video/mp4" />
@@ -3232,6 +3237,10 @@
     .mobile-h1 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.05em; }
 
     .demo-band { padding: 44px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .demo-intro { max-width: 760px; margin: 0 auto 28px; text-align: center; }
+    .demo-intro .section-eyebrow { margin-bottom: 8px; color: var(--green); }
+    .demo-intro h2 { margin: 0 0 12px; font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.65rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.05em; }
+    .demo-intro > p:last-child { max-width: 680px; margin: 0 auto; color: var(--mid); }
     .demo-layout { display: grid; gap: 24px; align-items: center; }
     .demo-copy { max-width: 680px; margin: 0 auto; text-align: center; }
     .demo-copy h2 { margin: 8px 0 12px; font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.65rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.05em; }
