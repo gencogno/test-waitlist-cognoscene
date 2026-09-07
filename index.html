@@ -2792,11 +2792,14 @@
     <section class="demo-band" id="demo" aria-label="cognoscene product demo">
       <div class="wrap demo-video-only">
         <div class="demo-player-shell">
-          <video class="demo-video-player" controls playsinline preload="metadata" poster="assets/product-demo-thumbnail.png" width="1280" height="800" aria-label="cognoscene product demo">
+          <video class="demo-video-player" controls controlslist="nofullscreen" playsinline preload="metadata" poster="assets/product-demo-thumbnail.png" width="1280" height="800" aria-label="cognoscene product demo">
             <source src="assets/videos/product-demo-waitlist-v2.mp4" type="video/mp4" />
           </video>
           <button type="button" class="demo-poster-play" aria-label="play cognoscene product demo">
             <span class="demo-poster-play-icon" aria-hidden="true">▶</span>
+          </button>
+          <button type="button" class="demo-player-expand" aria-label="enlarge cognoscene product demo" aria-pressed="false">
+            <span class="demo-player-expand-icon" aria-hidden="true">⤢</span>
           </button>
           <div class="demo-chapter-markers" role="group" aria-label="product demo chapters">
             <button type="button" class="is-active" data-demo-time="0" data-demo-label="intro" data-demo-display="0:00" aria-label="intro — 0:00" aria-current="true">
@@ -3296,6 +3299,14 @@
     .demo-poster-play-icon { display: grid; place-items: center; width: 52px; height: 52px; padding-left: 4px; border: 2px solid var(--cream); border-radius: 999px; background: var(--black); color: var(--lime); font-size: 17px; box-shadow: 0 10px 28px rgba(17,17,17,.25); }
     .demo-poster-play:focus-visible { outline: 4px solid var(--lime); outline-offset: -8px; }
     .demo-player-shell.has-started .demo-poster-play { opacity: 0; pointer-events: none; }
+    .demo-player-expand { position: absolute; top: 16px; right: 16px; z-index: 4; display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(237,234,222,.7); border-radius: 999px; background: rgba(17,17,17,.72); color: var(--cream); font: 400 22px/1 var(--sans); cursor: pointer; opacity: 0; transition: opacity .2s ease, background .2s ease; }
+    .demo-player-shell.has-started .demo-player-expand, .demo-player-shell:hover .demo-player-expand, .demo-player-shell:focus-within .demo-player-expand { opacity: 1; }
+    .demo-player-expand:hover, .demo-player-expand:focus-visible { background: rgba(17,17,17,.95); color: var(--lime); }
+    .demo-player-expand:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    .demo-player-shell.is-expanded { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; width: 100vw; height: 100vh; padding: 32px; border: 0; border-radius: 0; background: rgba(17,17,17,.97); }
+    .demo-player-shell.is-expanded .demo-video-player { width: min(1280px, 100%); max-height: calc(100vh - 64px); object-fit: contain; }
+    .demo-player-shell.is-expanded .demo-player-expand { top: 18px; right: 18px; opacity: 1; }
+    body.demo-expanded-open { overflow: hidden; }
     .demo-chapter-markers { position: absolute; z-index: 3; top: 28px; bottom: 62px; left: 20px; display: flex; flex-direction: column; justify-content: center; gap: 6px; width: min(176px, 29%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
     .demo-player-shell.has-started .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
     .demo-player-shell.has-started .demo-chapter-markers.is-idle { opacity: 0; pointer-events: none; transition-delay: 0s; }
@@ -3317,6 +3328,7 @@
       .demo-player-shell { border-radius: 20px; }
       .demo-poster-play { flex-direction: column; gap: 8px; font-size: 11px; }
       .demo-poster-play-icon { width: 46px; height: 46px; }
+      .demo-player-expand { top: 10px; right: 10px; width: 34px; height: 34px; font-size: 19px; }
       .demo-chapter-markers { top: 14px; bottom: 46px; left: 12px; width: min(146px, 42%); gap: 4px; }
       .demo-chapter-markers button { grid-template-columns: 3px minmax(0, 1fr); gap: 7px; min-height: 26px; padding-right: 7px; }
       .demo-chapter-marker-rail { width: 3px; }
@@ -5219,6 +5231,7 @@
       if (demoVideo) {
         var demoShell = demoVideo.closest('.demo-player-shell');
         var demoPlay = demoShell ? demoShell.querySelector('.demo-poster-play') : null;
+        var demoExpand = demoShell ? demoShell.querySelector('.demo-player-expand') : null;
         var demoChapters = Array.prototype.slice.call(document.querySelectorAll('[data-demo-time]'));
         var demoChapterMarkers = demoShell ? demoShell.querySelector('.demo-chapter-markers') : null;
         var demoChapterIdleTimer = null;
@@ -5232,6 +5245,31 @@
               demoChapterMarkers.classList.add('is-idle');
             }, 2500);
           }
+        }
+
+        function setDemoExpanded(expanded) {
+          if (!demoShell || !demoExpand) return;
+          demoShell.classList.toggle('is-expanded', expanded);
+          document.body.classList.toggle('demo-expanded-open', expanded);
+          demoExpand.setAttribute('aria-pressed', expanded ? 'true' : 'false');
+          demoExpand.setAttribute('aria-label', expanded ? 'close enlarged cognoscene product demo' : 'enlarge cognoscene product demo');
+          var expandIcon = demoExpand.querySelector('.demo-player-expand-icon');
+          if (expandIcon) expandIcon.textContent = expanded ? '×' : '⤢';
+          if (expanded) {
+            showDemoChapters();
+            demoExpand.focus();
+          }
+        }
+
+        function toggleDemoExpanded() {
+          var expanded = demoShell.classList.contains('is-expanded');
+          if (expanded) {
+            if (document.fullscreenElement === demoShell && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+            setDemoExpanded(false);
+            return;
+          }
+          setDemoExpanded(true);
+          if (demoShell.requestFullscreen) demoShell.requestFullscreen().catch(function () {});
         }
 
         function updateDemoChapter() {
@@ -5261,6 +5299,7 @@
         }
 
         if (demoPlay) demoPlay.addEventListener('click', function () { showDemoChapters(); demoVideo.play().catch(function () {}); });
+        if (demoExpand) demoExpand.addEventListener('click', toggleDemoExpanded);
         demoVideo.addEventListener('play', function () { if (demoShell) demoShell.classList.add('has-started'); showDemoChapters(); });
         demoVideo.addEventListener('pause', showDemoChapters);
         demoVideo.addEventListener('ended', showDemoChapters);
@@ -5270,6 +5309,12 @@
           demoShell.addEventListener('focusin', showDemoChapters);
           demoShell.addEventListener('touchstart', showDemoChapters, { passive: true });
         }
+        document.addEventListener('fullscreenchange', function () {
+          if (document.fullscreenElement !== demoShell && demoShell.classList.contains('is-expanded')) setDemoExpanded(false);
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape' && demoShell.classList.contains('is-expanded') && document.fullscreenElement !== demoShell) setDemoExpanded(false);
+        });
         demoVideo.addEventListener('timeupdate', updateDemoChapter);
         demoChapters.forEach(function (button) {
           button.addEventListener('click', function () {
