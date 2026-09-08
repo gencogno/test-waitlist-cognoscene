@@ -2804,23 +2804,6 @@
           <button type="button" class="demo-poster-play" aria-label="play cognoscene product demo">
             <svg class="demo-poster-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
           </button>
-          <div class="demo-chapter-markers" role="group" aria-label="product demo chapters">
-            <button type="button" class="is-active" data-demo-time="0" data-demo-label="intro" data-demo-display="0:00" aria-label="intro — 0:00" aria-current="true">
-              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT0S">0:00</time><span>intro</span></span>
-            </button>
-            <button type="button" data-demo-time="21" data-demo-label="observer" data-demo-display="0:21" aria-label="observer — 0:21">
-              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT21S">0:21</time><span>observer</span></span>
-            </button>
-            <button type="button" data-demo-time="77" data-demo-label="rationalisation" data-demo-display="1:17" aria-label="rationalisation — 1:17">
-              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT1M17S">1:17</time><span>rationalisation</span></span>
-            </button>
-            <button type="button" data-demo-time="123" data-demo-label="prudency" data-demo-display="2:03" aria-label="prudency — 2:03">
-              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT2M3S">2:03</time><span>prudency</span></span>
-            </button>
-            <button type="button" data-demo-time="183" data-demo-label="join the beta" data-demo-display="3:03" aria-label="join the beta — 3:03">
-              <span class="demo-chapter-marker-rail" aria-hidden="true"></span><span class="demo-chapter-marker-copy"><time datetime="PT3M3S">3:03</time><span>join the beta</span></span>
-            </button>
-          </div>
           <div class="demo-player-controls" role="group" aria-label="video controls">
             <button type="button" class="demo-control-button demo-play-toggle" aria-label="play" aria-pressed="false">
               <svg class="demo-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
@@ -3369,21 +3352,6 @@
     .demo-player-shell.is-expanded .demo-player-expand-enter { display: none; }
     .demo-player-shell.is-expanded .demo-player-expand-exit { display: block; }
     body.demo-expanded-open { overflow: hidden; }
-    .demo-chapter-markers { position: absolute; z-index: 3; top: 28px; bottom: 78px; left: 16px; display: flex; flex-direction: column; justify-content: center; gap: 4px; width: min(180px, 25%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
-    .demo-player-shell.has-started .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
-    .demo-player-shell.has-started .demo-chapter-markers.is-idle { opacity: 0; pointer-events: none; transition-delay: 0s; }
-    .demo-player-shell.has-started.has-ui-focus .demo-chapter-markers { visibility: visible; opacity: 1; pointer-events: auto; }
-    .demo-chapter-markers button { display: grid; grid-template-columns: 4px minmax(0, 1fr); align-items: stretch; gap: 9px; min-height: 40px; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--cream); text-align: left; cursor: pointer; }
-    .demo-chapter-marker-rail { display: block; width: 4px; border-radius: 0 999px 999px 0; background: rgba(237,234,222,.42); }
-    .demo-chapter-markers button.is-active .demo-chapter-marker-rail { background: var(--lime); }
-    .demo-chapter-marker-copy { display: flex; align-items: baseline; gap: 7px; min-width: 0; align-self: center; padding: 4px 9px 4px 0; border-radius: 0 7px 7px 0; background: rgba(17,17,17,.42); font: 500 10px/1.2 var(--sans); text-transform: lowercase; }
-    .demo-chapter-marker-copy time { flex: 0 0 auto; color: rgba(237,234,222,.78); font-variant-numeric: tabular-nums; }
-    .demo-chapter-marker-copy > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .demo-chapter-markers button.is-active .demo-chapter-marker-copy { background: rgba(17,17,17,.72); }
-    .demo-chapter-markers button.is-active .demo-chapter-marker-copy time { color: var(--lime); }
-    .demo-chapter-markers button.is-active .demo-chapter-marker-copy > span { color: var(--lime); }
-    .demo-chapter-markers button:hover .demo-chapter-marker-copy, .demo-chapter-markers button:focus-visible .demo-chapter-marker-copy { background: rgba(17,17,17,.72); }
-    .demo-chapter-markers button:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
     @media (min-width: 761px) {
       .demo-slides { width: 100%; }
     }
@@ -3399,10 +3367,6 @@
       .demo-progress-group { gap: 6px; }
       .demo-current-time, .demo-duration { font-size: 9px; }
       .demo-player-expand { width: 40px; height: 40px; }
-      .demo-chapter-markers { top: 14px; bottom: 62px; left: 10px; width: min(118px, 32%); gap: 4px; }
-      .demo-chapter-markers button { grid-template-columns: 2px minmax(0, 1fr); gap: 6px; min-height: 24px; }
-      .demo-chapter-marker-rail { width: 2px; }
-      .demo-chapter-marker-copy { gap: 5px; padding-right: 6px; font-size: 9px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .demo-slide { transition: none; }
@@ -5308,7 +5272,6 @@
         var demoMute = demoShell ? demoShell.querySelector('.demo-mute-toggle') : null;
         var demoVolume = demoShell ? demoShell.querySelector('.demo-volume') : null;
         var demoExpand = demoShell ? demoShell.querySelector('.demo-player-expand') : null;
-        var demoChapters = demoShell ? Array.prototype.slice.call(demoShell.querySelectorAll('[data-demo-time]')) : [];
         var demoUiIdleTimer = null;
         var demoLastVolume = 1;
 
@@ -5392,32 +5355,6 @@
           if (demoShell.requestFullscreen) demoShell.requestFullscreen().catch(function () { setDemoExpanded(false); });
         }
 
-        function updateDemoChapter() {
-          var activeIndex = 0;
-          demoChapters.forEach(function (button, index) {
-            if (demoVideo.currentTime >= Number(button.getAttribute('data-demo-time'))) activeIndex = index;
-          });
-          demoChapters.forEach(function (button, index) {
-            var active = index === activeIndex;
-            button.classList.toggle('is-active', active);
-            if (active) button.setAttribute('aria-current', 'true');
-            else button.removeAttribute('aria-current');
-          });
-        }
-
-        function seekDemo(time) {
-          function seekAndPlay() {
-            demoVideo.currentTime = Math.max(0, Math.min(time, Number.isFinite(demoVideo.duration) ? demoVideo.duration : time));
-            updateDemoChapter();
-            demoVideo.play().catch(function () {});
-          }
-          if (demoVideo.readyState >= 1) seekAndPlay();
-          else {
-            demoVideo.addEventListener('loadedmetadata', seekAndPlay, { once: true });
-            demoVideo.load();
-          }
-        }
-
         function toggleDemoPlayback() {
           showDemoUi();
           if (demoVideo.paused || demoVideo.ended) demoVideo.play().catch(function () {});
@@ -5428,7 +5365,6 @@
           if (!Number.isFinite(demoVideo.duration)) return;
           demoVideo.currentTime = Math.max(0, Math.min(demoVideo.duration, demoVideo.currentTime + offset));
           updateDemoProgress();
-          updateDemoChapter();
           showDemoUi();
         }
 
@@ -5441,7 +5377,6 @@
           demoSeek.addEventListener('input', function () {
             if (Number.isFinite(demoVideo.duration)) demoVideo.currentTime = Number(demoSeek.value);
             updateDemoProgress();
-            updateDemoChapter();
             showDemoUi();
           });
         }
@@ -5476,7 +5411,7 @@
         demoVideo.addEventListener('ended', function () { updateDemoPlayState(); showDemoUi(); });
         demoVideo.addEventListener('loadedmetadata', updateDemoProgress);
         demoVideo.addEventListener('durationchange', updateDemoProgress);
-        demoVideo.addEventListener('timeupdate', function () { updateDemoProgress(); updateDemoChapter(); });
+        demoVideo.addEventListener('timeupdate', updateDemoProgress);
         demoVideo.addEventListener('volumechange', updateDemoVolumeState);
         if (demoShell) {
           demoShell.addEventListener('pointermove', showDemoUi);
@@ -5484,14 +5419,14 @@
           demoShell.addEventListener('pointerdown', showDemoUi);
           demoShell.addEventListener('focusin', function (event) {
             var focusTarget = event.target;
-            var isUiFocus = focusTarget === demoShell || (focusTarget.closest && focusTarget.closest('.demo-player-controls, .demo-chapter-markers'));
+            var isUiFocus = focusTarget === demoShell || (focusTarget.closest && focusTarget.closest('.demo-player-controls'));
             demoShell.classList.toggle('has-ui-focus', Boolean(isUiFocus));
             showDemoUi();
           });
           demoShell.addEventListener('focusout', function () {
             window.setTimeout(function () {
               var activeElement = document.activeElement;
-              var isUiFocus = activeElement === demoShell || (activeElement && activeElement.closest && activeElement.closest('.demo-player-controls, .demo-chapter-markers'));
+              var isUiFocus = activeElement === demoShell || (activeElement && activeElement.closest && activeElement.closest('.demo-player-controls'));
               if (!isUiFocus) demoShell.classList.remove('has-ui-focus');
             }, 0);
           });
@@ -5531,16 +5466,9 @@
         document.addEventListener('fullscreenchange', function () {
           if (document.fullscreenElement !== demoShell && demoShell.classList.contains('is-expanded')) setDemoExpanded(false);
         });
-        demoChapters.forEach(function (button) {
-          button.addEventListener('click', function () {
-            showDemoUi();
-            seekDemo(Number(button.getAttribute('data-demo-time')));
-          });
-        });
         updateDemoPlayState();
         updateDemoProgress();
         updateDemoVolumeState();
-        updateDemoChapter();
         if (demoShell) demoShell.classList.add('custom-controls-ready');
         demoVideo.controls = false;
       }
