@@ -2811,7 +2811,26 @@
             </button>
             <div class="demo-progress-group">
               <span class="demo-current-time" aria-hidden="true">0:00</span>
-              <input class="demo-progress" type="range" min="0" max="0" step="0.1" value="0" aria-label="seek video" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="0:00 of 0:00" disabled />
+              <div class="demo-progress-track">
+                <input class="demo-progress" type="range" min="0" max="0" step="0.1" value="0" aria-label="seek video" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="0:00 of 0:00" disabled />
+                <div class="demo-chapter-ticks" role="group" aria-label="product demo chapters">
+                  <button type="button" class="demo-chapter-tick" data-demo-time="0" data-demo-label="intro" data-demo-display="0:00" aria-label="intro — 0:00" style="--demo-chapter-position: 0%;">
+                    <span class="demo-chapter-tick-line" aria-hidden="true"></span><span class="demo-chapter-tooltip" aria-hidden="true"><time>0:00</time><span>intro</span></span>
+                  </button>
+                  <button type="button" class="demo-chapter-tick" data-demo-time="21" data-demo-label="observer" data-demo-display="0:21" aria-label="observer — 0:21" style="--demo-chapter-position: 0%;">
+                    <span class="demo-chapter-tick-line" aria-hidden="true"></span><span class="demo-chapter-tooltip" aria-hidden="true"><time>0:21</time><span>observer</span></span>
+                  </button>
+                  <button type="button" class="demo-chapter-tick" data-demo-time="77" data-demo-label="rationalisation" data-demo-display="1:17" aria-label="rationalisation — 1:17" style="--demo-chapter-position: 0%;">
+                    <span class="demo-chapter-tick-line" aria-hidden="true"></span><span class="demo-chapter-tooltip" aria-hidden="true"><time>1:17</time><span>rationalisation</span></span>
+                  </button>
+                  <button type="button" class="demo-chapter-tick" data-demo-time="123" data-demo-label="prudency" data-demo-display="2:03" aria-label="prudency — 2:03" style="--demo-chapter-position: 0%;">
+                    <span class="demo-chapter-tick-line" aria-hidden="true"></span><span class="demo-chapter-tooltip" aria-hidden="true"><time>2:03</time><span>prudency</span></span>
+                  </button>
+                  <button type="button" class="demo-chapter-tick" data-demo-time="183" data-demo-label="join the beta" data-demo-display="3:03" aria-label="join the beta — 3:03" style="--demo-chapter-position: 0%;">
+                    <span class="demo-chapter-tick-line" aria-hidden="true"></span><span class="demo-chapter-tooltip" aria-hidden="true"><time>3:03</time><span>join the beta</span></span>
+                  </button>
+                </div>
+              </div>
               <span class="demo-duration" aria-hidden="true">0:00</span>
             </div>
             <div class="demo-volume-control">
@@ -3327,6 +3346,7 @@
     .demo-player-shell.is-playing .demo-play-toggle .demo-pause-icon, .demo-player-shell.is-muted .demo-mute-toggle .demo-muted-icon { display: block; }
     .demo-progress-group { display: grid; grid-template-columns: auto minmax(60px, 1fr) auto; align-items: center; gap: 8px; min-width: 0; }
     .demo-current-time, .demo-duration { color: var(--cream); font: 600 10px/1 var(--sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .demo-progress-track { position: relative; min-width: 0; }
     .demo-progress, .demo-volume { display: block; width: 100%; height: 18px; margin: 0; appearance: none; border: 0; background: transparent; cursor: pointer; }
     .demo-progress { --demo-progress: 0%; }
     .demo-progress::-webkit-slider-runnable-track { height: 4px; border-radius: 999px; background: linear-gradient(90deg, var(--lime) 0%, var(--lime) var(--demo-progress), rgba(237,234,222,.42) var(--demo-progress), rgba(237,234,222,.42) 100%); }
@@ -3336,6 +3356,25 @@
     .demo-progress::-moz-range-thumb, .demo-volume::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 2px rgba(17,17,17,.45); }
     .demo-progress:focus-visible, .demo-volume:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
     .demo-progress:disabled { cursor: default; opacity: .48; }
+    .demo-chapter-ticks { position: absolute; inset: 0; z-index: 2; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+    .demo-player-shell.has-started.has-demo-duration .demo-chapter-ticks { opacity: 1; }
+    .demo-player-shell.has-started.is-idle .demo-chapter-ticks { opacity: 0; }
+    .demo-player-shell.has-started.has-demo-duration.has-ui-focus .demo-chapter-ticks { opacity: 1; }
+    .demo-chapter-tick { position: absolute; top: 50%; left: clamp(8px, var(--demo-chapter-position), calc(100% - 8px)); display: grid; place-items: center; width: 28px; height: 36px; padding: 0; border: 0; background: transparent; color: var(--cream); cursor: pointer; pointer-events: auto; transform: translate(-50%, -50%); }
+    .demo-player-shell.has-started.is-idle .demo-chapter-tick { pointer-events: none; }
+    .demo-chapter-tick-line { display: block; width: 2px; height: 11px; border-radius: 999px; background: rgba(237,234,222,.48); transition: height .16s ease, background .16s ease, box-shadow .16s ease; }
+    .demo-chapter-tick.is-complete .demo-chapter-tick-line { background: rgba(184,216,120,.62); }
+    .demo-chapter-tick.is-current .demo-chapter-tick-line, .demo-chapter-tick:hover .demo-chapter-tick-line, .demo-chapter-tick:focus-visible .demo-chapter-tick-line { height: 15px; background: var(--lime); box-shadow: 0 0 0 2px rgba(17,17,17,.32); }
+    .demo-chapter-tick:focus-visible { outline: none; }
+    .demo-chapter-tick:focus-visible .demo-chapter-tick-line { box-shadow: 0 0 0 2px var(--lime); }
+    .demo-chapter-tooltip { position: absolute; bottom: calc(100% + 7px); left: 50%; display: flex; align-items: baseline; gap: 6px; padding: 5px 7px; border-radius: 4px; background: rgba(17,17,17,.92); color: var(--cream); font: 600 10px/1 var(--sans); white-space: nowrap; opacity: 0; pointer-events: none; transform: translate(-50%, 4px); transition: opacity .16s ease, transform .16s ease; }
+    .demo-chapter-tooltip time { color: var(--lime); font-variant-numeric: tabular-nums; }
+    .demo-chapter-tooltip > span::before { margin-right: 6px; color: rgba(237,234,222,.62); content: '·'; }
+    .demo-chapter-tick:hover .demo-chapter-tooltip, .demo-chapter-tick:focus-visible .demo-chapter-tooltip, .demo-chapter-tick.is-tapped .demo-chapter-tooltip { opacity: 1; transform: translate(-50%, 0); }
+    .demo-chapter-tick:first-child .demo-chapter-tooltip { left: 0; transform: translate(0, 4px); }
+    .demo-chapter-tick:first-child:hover .demo-chapter-tooltip, .demo-chapter-tick:first-child:focus-visible .demo-chapter-tooltip, .demo-chapter-tick:first-child.is-tapped .demo-chapter-tooltip { transform: translate(0, 0); }
+    .demo-chapter-tick:last-child .demo-chapter-tooltip { right: 0; left: auto; transform: translate(0, 4px); }
+    .demo-chapter-tick:last-child:hover .demo-chapter-tooltip, .demo-chapter-tick:last-child:focus-visible .demo-chapter-tooltip, .demo-chapter-tick:last-child.is-tapped .demo-chapter-tooltip { transform: translate(0, 0); }
     .demo-volume-control { display: flex; align-items: center; gap: 2px; min-width: 0; }
     .demo-volume { width: 70px; height: 18px; --demo-volume: 100%; }
     .demo-volume::-webkit-slider-runnable-track { height: 4px; border-radius: 999px; background: linear-gradient(90deg, var(--lime) 0%, var(--lime) var(--demo-volume), rgba(237,234,222,.42) var(--demo-volume), rgba(237,234,222,.42) 100%); }
@@ -3367,6 +3406,8 @@
       .demo-progress-group { gap: 6px; }
       .demo-current-time, .demo-duration { font-size: 9px; }
       .demo-player-expand { width: 40px; height: 40px; }
+      .demo-chapter-tick { width: 26px; height: 32px; }
+      .demo-chapter-tooltip { gap: 5px; padding: 5px 6px; font-size: 9px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .demo-slide { transition: none; }
@@ -5272,7 +5313,9 @@
         var demoMute = demoShell ? demoShell.querySelector('.demo-mute-toggle') : null;
         var demoVolume = demoShell ? demoShell.querySelector('.demo-volume') : null;
         var demoExpand = demoShell ? demoShell.querySelector('.demo-player-expand') : null;
+        var demoChapters = demoShell ? Array.prototype.slice.call(demoShell.querySelectorAll('[data-demo-time]')) : [];
         var demoUiIdleTimer = null;
+        var demoChapterLabelTimer = null;
         var demoLastVolume = 1;
 
         function formatDemoTime(seconds) {
@@ -5291,6 +5334,12 @@
           var percent = duration ? Math.min(100, Math.max(0, (current / duration) * 100)) : 0;
           if (demoCurrentTime) demoCurrentTime.textContent = formatDemoTime(current);
           if (demoDuration) demoDuration.textContent = formatDemoTime(duration);
+          if (demoShell) demoShell.classList.toggle('has-demo-duration', Boolean(duration));
+          demoChapters.forEach(function (button) {
+            var chapterTime = Number(button.getAttribute('data-demo-time'));
+            var position = duration ? Math.min(100, Math.max(0, (chapterTime / duration) * 100)) : 0;
+            button.style.setProperty('--demo-chapter-position', position + '%');
+          });
           if (!demoSeek) return;
           demoSeek.disabled = !duration;
           demoSeek.max = String(duration);
@@ -5355,6 +5404,38 @@
           if (demoShell.requestFullscreen) demoShell.requestFullscreen().catch(function () { setDemoExpanded(false); });
         }
 
+        function updateDemoChapter() {
+          var activeIndex = 0;
+          demoChapters.forEach(function (button, index) {
+            if (demoVideo.currentTime >= Number(button.getAttribute('data-demo-time'))) activeIndex = index;
+          });
+          demoChapters.forEach(function (button, index) {
+            button.classList.toggle('is-current', index === activeIndex);
+            button.classList.toggle('is-complete', index < activeIndex);
+            if (index === activeIndex) button.setAttribute('aria-current', 'true');
+            else button.removeAttribute('aria-current');
+          });
+        }
+
+        function showDemoChapterLabel(button) {
+          if (!button) return;
+          demoChapters.forEach(function (chapter) { chapter.classList.remove('is-tapped'); });
+          button.classList.add('is-tapped');
+          window.clearTimeout(demoChapterLabelTimer);
+          demoChapterLabelTimer = window.setTimeout(function () {
+            button.classList.remove('is-tapped');
+          }, 2200);
+        }
+
+        function seekDemoChapter(button) {
+          if (!button || !Number.isFinite(demoVideo.duration)) return;
+          demoVideo.currentTime = Math.max(0, Math.min(Number(button.getAttribute('data-demo-time')), demoVideo.duration));
+          updateDemoProgress();
+          updateDemoChapter();
+          showDemoChapterLabel(button);
+          showDemoUi();
+        }
+
         function toggleDemoPlayback() {
           showDemoUi();
           if (demoVideo.paused || demoVideo.ended) demoVideo.play().catch(function () {});
@@ -5411,7 +5492,7 @@
         demoVideo.addEventListener('ended', function () { updateDemoPlayState(); showDemoUi(); });
         demoVideo.addEventListener('loadedmetadata', updateDemoProgress);
         demoVideo.addEventListener('durationchange', updateDemoProgress);
-        demoVideo.addEventListener('timeupdate', updateDemoProgress);
+        demoVideo.addEventListener('timeupdate', function () { updateDemoProgress(); updateDemoChapter(); });
         demoVideo.addEventListener('volumechange', updateDemoVolumeState);
         if (demoShell) {
           demoShell.addEventListener('pointermove', showDemoUi);
@@ -5419,14 +5500,14 @@
           demoShell.addEventListener('pointerdown', showDemoUi);
           demoShell.addEventListener('focusin', function (event) {
             var focusTarget = event.target;
-            var isUiFocus = focusTarget === demoShell || (focusTarget.closest && focusTarget.closest('.demo-player-controls'));
+            var isUiFocus = focusTarget === demoShell || (focusTarget.closest && focusTarget.closest('.demo-player-controls, .demo-chapter-ticks'));
             demoShell.classList.toggle('has-ui-focus', Boolean(isUiFocus));
             showDemoUi();
           });
           demoShell.addEventListener('focusout', function () {
             window.setTimeout(function () {
               var activeElement = document.activeElement;
-              var isUiFocus = activeElement === demoShell || (activeElement && activeElement.closest && activeElement.closest('.demo-player-controls'));
+              var isUiFocus = activeElement === demoShell || (activeElement && activeElement.closest && activeElement.closest('.demo-player-controls, .demo-chapter-ticks'));
               if (!isUiFocus) demoShell.classList.remove('has-ui-focus');
             }, 0);
           });
@@ -5466,9 +5547,13 @@
         document.addEventListener('fullscreenchange', function () {
           if (document.fullscreenElement !== demoShell && demoShell.classList.contains('is-expanded')) setDemoExpanded(false);
         });
+        demoChapters.forEach(function (button) {
+          button.addEventListener('click', function () { seekDemoChapter(button); });
+        });
         updateDemoPlayState();
         updateDemoProgress();
         updateDemoVolumeState();
+        updateDemoChapter();
         if (demoShell) demoShell.classList.add('custom-controls-ready');
         demoVideo.controls = false;
       }
