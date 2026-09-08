@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cognoscene · waitlist · short mock</title>
+  <style>
+    @font-face {
+      font-family: 'Be Vietnam Pro';
+      src: url('../assets/fonts/BeVietnamPro-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Be Vietnam Pro';
+      src: url('../assets/fonts/BeVietnamPro-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Be Vietnam Pro';
+      src: url('../assets/fonts/BeVietnamPro-ExtraBold.ttf') format('truetype');
+      font-weight: 800;
+      font-style: normal;
+    }
+
+    :root {
+      --cream: #f5f0e8;
+      --cream-2: #ebe4d4;
+      --black: #111111;
+      --mid: #4a4f47;
+      --muted: #8a8a84;
+      --line: #ddd5c0;
+      --lime: #c8e88a;
+      --green: #3b6d11;
+      --sans: 'Be Vietnam Pro', system-ui, sans-serif;
+      --max: 920px;
+      --form-max: 480px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--black);
+      background: var(--cream);
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* implementer strip — remove on Wix */
+    .dev-strip {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--black);
+      color: #bbb;
+      padding: 10px 20px;
+      font-size: 11px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      align-items: center;
+      border-bottom: 3px solid var(--lime);
+    }
+    .dev-strip strong { color: #fff; }
+    .dev-strip a { color: var(--lime); }
+    .dev-strip button {
+      margin-left: auto;
+      background: transparent;
+      border: 1px solid #555;
+      color: #ccc;
+      border-radius: 999px;
+      padding: 4px 12px;
+      font: inherit;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .dev-strip button:hover { border-color: var(--lime); color: #fff; }
+
+    .dev-notes {
+      display: none;
+      background: #1a1a18;
+      color: #ccc;
+      padding: 24px 28px 32px;
+      font-size: 13px;
+      line-height: 1.7;
+      border-bottom: 1px solid #333;
+    }
+    .dev-notes.is-open { display: block; }
+    .dev-notes h2 {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .dev-notes ul { padding-left: 1.2em; margin-bottom: 16px; }
+    .dev-notes li { margin-bottom: 6px; }
+    .dev-notes code {
+      background: #2a2a28;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header */
+    .site-header {
+      padding: 28px 0 8px;
+      text-align: center;
+    }
+    .site-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .site-brand-mark {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+    .site-brand-wordmark {
+      height: 16px;
+      width: auto;
+      object-fit: contain;
+    }
+    .mock-ui-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mock-ui-mark {
+      height: 13px;
+      width: auto;
+      object-fit: contain;
+    }
+    .mock-ui-wordmark {
+      height: 10px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* hero */
+    .hero {
+      padding: 32px 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-lead {
+      font-size: 15px;
+      color: var(--mid);
+      margin-bottom: 24px;
+      max-width: 420px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--black);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 28px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-meta {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* hero visual — checkout + hold mock */
+    .hero-visual {
+      background: #121210;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .mock-browser-bar {
+      background: var(--cream-2);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      color: var(--mid);
+    }
+    .mock-dots {
+      display: flex;
+      gap: 5px;
+    }
+    .mock-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+    .mock-url {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 10px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mock-page {
+      position: relative;
+      min-height: 280px;
+      background: linear-gradient(180deg, #fafafa 0%, #eee 100%);
+      padding: 28px 24px;
+    }
+    .mock-page-dim {
+      position: absolute;
+      inset: 0;
+      background: rgba(45, 45, 42, 0.34);
+    }
+    .mock-checkout-faint {
+      position: relative;
+      z-index: 1;
+      opacity: 0.45;
+    }
+    .mock-checkout-faint h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .mock-checkout-faint p {
+      font-size: 12px;
+      color: var(--mid);
+      margin-bottom: 16px;
+    }
+    .mock-pay-btn {
+      background: var(--black);
+      color: var(--lime);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .mock-hold {
+      position: absolute;
+      top: 20px;
+      right: 16px;
+      width: min(240px, 88%);
+      z-index: 2;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), 4px 4px 0 var(--lime);
+    }
+    .mock-hold-head {
+      background: var(--cream-2);
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .mock-badge {
+      font-size: 8px;
+      border: 1px solid var(--line);
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+    .mock-hold-body { padding: 12px; }
+    .mock-hold-body .title {
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+    .mock-hold-body .sub {
+      font-size: 9px;
+      color: var(--mid);
+      margin-bottom: 10px;
+    }
+    .mock-timer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .mock-timer-label { font-size: 8px; color: var(--green); }
+    .mock-timer {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--green);
+      font-variant-numeric: tabular-nums;
+    }
+    .mock-sample-tag {
+      position: absolute;
+      bottom: 8px;
+      left: 12px;
+      z-index: 3;
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.7);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* problem one-liner */
+    .problem-band {
+      text-align: center;
+      padding: 8px 0 40px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .problem-band p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .problem-band strong { font-weight: 800; }
+
+    /* how it works */
+    .how-band {
+      background: var(--cream-2);
+      margin: 0 -24px;
+      padding: 48px 24px;
+    }
+    .how-band .wrap { padding: 0; }
+
+    .section-eyebrow {
+      font-size: 12px;
+      color: var(--mid);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .how-band h2 {
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .bullet-list {
+      list-style: none;
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .bullet-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .bullet-list li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      border: 2px solid var(--black);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+    .bullet-list strong { font-weight: 800; }
+
+    /* founding */
+    .founding-band {
+      padding: 40px 0 16px;
+      text-align: center;
+    }
+    .founding-card {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    }
+    .founding-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .founding-card p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+    .founding-card .highlight {
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    /* form */
+    .form-band {
+      background: #fff;
+      margin: 32px -24px 0;
+      padding: 56px 24px 64px;
+      border-top: 1px solid var(--line);
+    }
+    .form-inner {
+      max-width: var(--form-max);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .form-inner h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    .form-sub {
+      font-size: 14px;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    .field {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font: inherit;
+      font-size: 14px;
+      margin-bottom: 12px;
+      background: #fff;
+      color: var(--black);
+      text-align: left;
+    }
+    .field::placeholder { color: var(--muted); }
+    .field:focus {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
+      border-color: var(--black);
+    }
+
+    .field-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .radio-pill {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .radio-pill input {
+      accent-color: var(--black);
+      width: 16px;
+      height: 16px;
+    }
+    .radio-pill:has(input:checked) {
+      border-color: var(--black);
+      background: var(--cream);
+    }
+
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      text-align: left;
+      font-size: 13px;
+      margin: 18px 0 20px;
+    }
+    .form-check input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--black);
+      flex-shrink: 0;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--black);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 16px;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .btn-submit:hover { transform: translateY(-1px); }
+
+    .form-trust {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .fine-print {
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    /* footer */
+    .site-footer {
+      padding: 28px 24px 48px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+    .site-footer a {
+      color: var(--mid);
+      text-decoration: none;
+    }
+    .site-footer a:hover { text-decoration: underline; }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 16px;
+      margin-top: 8px;
+    }
+
+    /* form states demo */
+    .form-success {
+      display: none;
+      padding: 32px 24px;
+      background: var(--cream);
+      border: 2px solid var(--lime);
+      border-radius: 16px;
+      text-align: center;
+    }
+    .form-success.is-visible { display: block; }
+    .form-success h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .form-success p { font-size: 14px; color: var(--mid); }
+
+    .form-panel.is-hidden { display: none; }
+
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-bottom: 32px;
+      }
+      .hero-copy { text-align: center; }
+      .hero-lead { margin-left: auto; margin-right: auto; }
+      .hero-visual { order: -1; }
+      .field-row { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn-primary:hover, .btn-submit:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dev-strip" role="banner">
+    <strong>waitlist-short.html</strong>
+    <span>short founding-beta page · not production Wix</span>
+    <a href="waitlist.html">long mock (old) ↗</a>
+    <a href="../docs/agent-context/waitlist-launch-spec.md">launch spec ↗</a>
+    <button type="button" id="toggleDevNotes" aria-expanded="false">developer notes</button>
+  </div>
+
+  <div class="dev-notes" id="devNotes" aria-label="developer handoff notes">
+    <h2>developer handoff</h2>
+    <ul>
+      <li><strong>intent:</strong> replace long Wix waitlist with ~1.5 mobile screens before form. copy locked to <code>docs/agent-context/waitlist-launch-spec.md</code> §4.</li>
+      <li><strong>wix mapping:</strong> one scrolling strip — header, hero (text + gif), how-it-works band, founding card, form, footer. delete problem novella, 3-layer observer section, template junk, yeehaw closing.</li>
+      <li><strong>form backend:</strong> wire to Wix forms / autoresponder per spec §4–5. fields: email (required), chrome desktop y/n (required). no long comment box in v1.</li>
+      <li><strong>hero asset:</strong> replace inline mock with recorded gif — shopee/lazada checkout → hold overlay → 48:00. label sample data if mock.</li>
+      <li><strong>states:</strong> default form · submit loading (add on Wix) · success message (spec autoresponder copy) · validation errors on empty email.</li>
+      <li><strong>responsive:</strong> hero stacks visual above copy on &lt;760px; form full-width pills stack on mobile.</li>
+      <li><strong>a11y:</strong> real Wix build needs visible focus rings, label elements tied to inputs, checkbox not color-only, contrast on muted text ≥4.5:1 where possible.</li>
+      <li><strong>production data:</strong> timer, order total, site name in hero mock are <em>sample</em>. founding cap/date placeholders — founder fills per spec §10.</li>
+      <li><strong>extension link:</strong> no install link on page until batch opens (spec phase A). CTA scrolls to <code>#waitlist</code> only.</li>
+      <li><strong>open mock:</strong> double-click file or <code>mockups/waitlist-short.html</code> in browser. send file + spec §4 to developer for Wix parity check.</li>
+    </ul>
+  </div>
+
+  <header class="site-header wrap">
+    <a class="site-brand" href="#" aria-label="cognoscene home">
+      <img class="site-brand-mark" src="../assets/cognoscene-mark.png" alt="" />
+      <img class="site-brand-wordmark" src="../assets/cognoscene-wordmark.png" alt="cognoscene" />
+    </a>
+  </header>
+
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <h1 id="hero-heading">slow down the checkout itch — a chrome extension that pauses impulse buys before you pay.</h1>
+        <p class="hero-lead">you buy to feel good, then the package arrives after you've already moved on. cognoscene puts a pause on checkout — not your whole life.</p>
+        <a class="btn-primary" href="#waitlist">join the waitlist</a>
+        <p class="hero-meta">early access · founding member pricing</p>
+      </div>
+
+      <div class="hero-visual" aria-label="product preview — sample checkout hold">
+        <div class="mock-browser-bar">
+          <div class="mock-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="mock-url">shopee.sg/checkout</div>
+        </div>
+        <div class="mock-page">
+          <div class="mock-page-dim" aria-hidden="true"></div>
+          <div class="mock-checkout-faint">
+            <h3>checkout</h3>
+            <p>order total · s$49.90 · 1 item</p>
+            <button type="button" class="mock-pay-btn" tabindex="-1">pay now</button>
+          </div>
+          <div class="mock-hold">
+            <div class="mock-hold-head">
+              <div class="mock-ui-brand" aria-label="cognoscene">
+                <img class="mock-ui-mark" src="../assets/cognoscene-mark.png" alt="" />
+                <img class="mock-ui-wordmark" src="../assets/cognoscene-wordmark.png" alt="cognoscene" />
+              </div>
+            </div>
+            <div class="mock-hold-body">
+              <div class="title">act with prudence — checkout paused.</div>
+              <div class="sub">48 hours to decide with intention.</div>
+              <div class="mock-timer-row">
+                <span class="mock-timer-label">hard friction left</span>
+                <span class="mock-timer">48:00:00</span>
+              </div>
+            </div>
+          </div>
+          <span class="mock-sample-tag">sample · not live checkout</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="problem-band wrap" aria-label="problem summary">
+      <p>impulse isn't the whole problem. <strong>paying before you've cooled off</strong> is. you're not broken — checkout is just too fast.</p>
+    </section>
+
+    <section class="how-band" aria-labelledby="how-heading">
+      <div class="wrap">
+        <p class="section-eyebrow">how it works</p>
+        <h2 id="how-heading">pause at pay. decide later.</h2>
+        <ul class="bullet-list">
+          <li><strong>chrome extension</strong> — works on desktop chrome at checkout</li>
+          <li><strong>pick your sites</strong> — you choose where friction applies</li>
+          <li><strong>48-hour hold</strong> — pay button pauses; you decide buy or drop later</li>
+          <li><strong>free to start</strong> — one tracked site, full hold on that site</li>
+          <li><strong>founding unlock</strong> — unlimited sites + dashboard (waitlist only)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="founding-band wrap" aria-labelledby="founding-heading">
+      <div class="founding-card">
+        <h3 id="founding-heading">founding beta (waitlist only)</h3>
+        <p>
+          join now → early access in batches →
+          <span class="highlight">us$10 once · lifetime premium</span>
+          when your slot opens.
+        </p>
+        <p style="margin-top:10px;font-size:13px;color:var(--muted);">no charge today.</p>
+      </div>
+    </section>
+
+    <section class="form-band" id="waitlist" aria-labelledby="form-heading">
+      <div class="form-inner">
+        <p class="section-eyebrow">the waitlist</p>
+        <h2 id="form-heading">stop the cycle. take back control.</h2>
+        <p class="form-sub">first step: get on the list.</p>
+
+        <div class="form-panel" id="formPanel">
+          <form id="waitlistForm" novalidate>
+            <label class="visually-hidden" for="email">email address</label>
+            <input class="field" id="email" name="email" type="email" placeholder="email address *" required autocomplete="email" />
+
+
+            <fieldset class="field-row" style="border:none;padding:0;margin:0;">
+              <legend class="visually-hidden">chrome on desktop</legend>
+              <label class="radio-pill">
+                <input type="radio" name="chrome" value="yes" required />
+                chrome on desktop · yes
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="chrome" value="no" />
+                chrome on desktop · no
+              </label>
+            </fieldset>
+
+            <label class="form-check">
+              <input type="checkbox" name="ready" required />
+              <span>i'm ready to try a pause before checkout.</span>
+            </label>
+
+            <button class="btn-submit" type="submit">join the waitlist</button>
+          </form>
+
+          <p class="form-trust">beta invites roll out in batches · same email for chrome + payment later</p>
+
+          <p class="fine-print">
+            founding offer for waitlist signups before [DATE], capped at [X] spots. us$10 one-time usd.
+            features may change during beta. use the same email for chrome and payment.
+          </p>
+        </div>
+
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <h3>you're on the list.</h3>
+          <p>we'll contact you when your batch opens. founding offer: us$10 once for lifetime premium — no charge today.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>© 2026 cognoscene. all rights reserved.</p>
+    <nav class="footer-links" aria-label="footer">
+      <a href="#">privacy policy</a>
+      <a href="#">terms of use</a>
+      <a href="mailto:cognoscene@gmail.com">cognoscene@gmail.com</a>
+      <span>built in singapore</span>
+    </nav>
+  </footer>
+
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+
+  <script>
+    document.getElementById('toggleDevNotes').addEventListener('click', function () {
+      var panel = document.getElementById('devNotes');
+      var open = panel.classList.toggle('is-open');
+      this.setAttribute('aria-expanded', open ? 'true' : 'false');
+      this.textContent = open ? 'hide notes' : 'developer notes';
+    });
+
+    document.getElementById('waitlistForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      var email = document.getElementById('email');
+      if (!email.value.trim()) {
+        email.focus();
+        email.setAttribute('aria-invalid', 'true');
+        return;
+      }
+      document.getElementById('formPanel').classList.add('is-hidden');
+      document.getElementById('formSuccess').classList.add('is-visible');
+    });
+  </script>
+</body>
+</html>

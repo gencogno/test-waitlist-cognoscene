@@ -1,7 +1,11 @@
-# cognoscene waitlist — public test
+# cognoscene waitlist
 
-Sanitized static preview used for visual and interaction testing on GitHub Pages.
+Founding waitlist site and Cloudflare Worker backend for [cognoscene](https://cognoscene.com/waitlist).
 
-This repository intentionally excludes the production backend, database configuration,
-admin dashboard, deployment configuration, tests, and internal documentation. Forms and
-Cloudflare-backed features are not expected to function in this preview.
+- **Live:** https://cognoscene.com/waitlist
+- **Deploy:** Cloudflare Workers Builds → this repo → `main`
+- **Backend:** Worker + D1 + Turnstile
+- **Setup:** see [DEPLOY.md](./DEPLOY.md)
+- **Mobile plan:** see [MOBILE.md](./MOBILE.md)
+
+Extension code lives in [`gencogno/cognoscene-statics-roadmap`](https://github.com/gencogno/cognoscene-statics-roadmap) — intentionally separate.

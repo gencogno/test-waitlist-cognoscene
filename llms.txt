@@ -1,0 +1,15 @@
+# cognoscene
+
+> cognoscene is a Chrome extension that helps people pause impulse purchases before checkout.
+
+## Product
+
+- [Founding waitlist](https://cognoscene.com/waitlist): product overview and waitlist signup.
+- [Privacy policy](https://cognoscene.com/privacy.html): how cognoscene handles personal data.
+- [Terms of use](https://cognoscene.com/terms.html): service terms.
+
+## Core behaviour
+
+- Cognoscene introduces designed friction before checkout.
+- A 48-hour decision hold helps users distinguish an impulse from an intentional purchase.
+- The product dashboard tracks purchases rationalised over time.

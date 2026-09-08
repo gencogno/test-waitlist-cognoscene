@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cognoscene · mobile alternate mockup (iphone 14)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --cream-2: #ebe4d4;
+      --black: #111111;
+      --mid: #4a4f47;
+      --muted: #8a8a84;
+      --line: #ddd5c0;
+      --lime: #c8e88a;
+      --green: #3b6d11;
+      --danger: #c45c4a;
+      --white: #ffffff;
+      --serif: 'Times New Roman', Times, serif;
+      --sans: 'Be Vietnam Pro', system-ui, sans-serif;
+      --gutter: 0.5cm;
+      --phone-w: 390px;
+      --phone-h: 844px;
+      --radius-device: 44px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: #2a2a28;
+      color: var(--black);
+      min-height: 100vh;
+      padding: 32px 20px 48px;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-header {
+      max-width: 960px;
+      margin: 0 auto 28px;
+      color: #e8e4dc;
+    }
+    .page-header h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .page-header p {
+      font-size: 14px;
+      color: #b8b4ac;
+      line-height: 1.5;
+      max-width: 640px;
+    }
+    .page-header .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .page-header .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      background: var(--lime);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .page-header .tag--phase {
+      background: #3a3a36;
+      color: #d8d4cc;
+      border: 1px solid #555;
+    }
+    .page-header .tag--phase.is-done {
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+
+    .stage {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* iphone 14 shell */
+    .device {
+      width: calc(var(--phone-w) + 24px);
+      padding: 12px;
+      background: #1a1a18;
+      border-radius: calc(var(--radius-device) + 12px);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.45);
+      flex-shrink: 0;
+    }
+    .device-label {
+      text-align: center;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+    }
+    .device-screen {
+      width: var(--phone-w);
+      height: var(--phone-h);
+      border-radius: var(--radius-device);
+      overflow: hidden;
+      position: relative;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+    }
+    .device-notch {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 28px;
+      background: #1a1a18;
+      border-radius: 999px;
+      z-index: 300;
+      pointer-events: none;
+    }
+    .device-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: var(--gutter);
+      padding-top: calc(var(--gutter) + 36px);
+      padding-bottom: calc(88px + var(--gutter));
+      scrollbar-width: thin;
+      scroll-behavior: smooth;
+    }
+
+    .m-view-toggle {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .m-view-toggle button {
+      flex: 1;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 800;
+      background: var(--white);
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .m-view-toggle button.is-active {
+      background: var(--black);
+      color: var(--lime);
+      border-color: var(--black);
+    }
+    .m-view-panel { display: none; }
+    .m-view-panel.is-active { display: block; }
+
+    /* live preview — abbreviated production scroll */
+    .m-live-section {
+      margin-bottom: 20px;
+      padding: 14px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      background: var(--white);
+    }
+    .m-live-section h3 {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .m-live-section p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .m-live-section.is-compressed h3::after {
+      content: ' · shortened in alternate';
+      color: var(--green);
+      font-weight: 500;
+    }
+    .m-live-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--green);
+      background: rgba(200, 232, 138, 0.35);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    /* ——— alternate mobile UI (target state) ——— */
+    .m-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--black);
+      color: var(--cream);
+      padding: 10px var(--gutter);
+      font-size: 10px;
+      font-weight: 500;
+      text-align: center;
+      border-bottom: 2px solid var(--lime);
+    }
+    .m-top strong { color: var(--lime); font-weight: 800; }
+
+    .m-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .m-logo img { display: block; object-fit: contain; }
+    .m-logo-mark { height: 26px; width: auto; }
+    .m-logo-word { height: 13px; width: auto; }
+
+    .m-hero-mock {
+      max-width: 240px;
+      margin: 0 auto 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 4px 4px 0 var(--lime);
+      background: var(--cream);
+    }
+    .m-mock-head {
+      background: var(--cream-2);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+    .m-mock-head img { height: 11px; width: auto; }
+    .m-mock-body { padding: 14px 12px; }
+    .m-mock-body .title {
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .m-mock-body .sub {
+      font-size: 9px;
+      color: var(--mid);
+      margin-bottom: 10px;
+    }
+    .m-timer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: var(--muted);
+    }
+    .m-timer strong { color: var(--black); font-weight: 800; }
+
+    .m-h1 {
+      font-family: var(--serif);
+      font-size: 1.65rem;
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.05em;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .m-sub {
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .m-cta-primary {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--black);
+      color: var(--lime);
+      border-radius: 999px;
+      padding: 14px 20px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+
+    .m-chrome-band {
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.45;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--mid);
+    }
+    .m-chrome-band strong { color: var(--black); font-weight: 800; }
+
+    .m-lead {
+      font-size: 13px;
+      color: var(--mid);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .m-meta {
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .m-note {
+      font-size: 12px;
+      color: var(--mid);
+      text-align: center;
+      line-height: 1.45;
+      margin-bottom: 20px;
+      padding: 8px 10px;
+      background: rgba(200, 232, 138, 0.25);
+      border-radius: 10px;
+    }
+
+    .m-mock-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .m-mock-strip::-webkit-scrollbar { display: none; }
+    .m-mock-mini {
+      flex: 0 0 108px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 2px 2px 0 var(--lime);
+    }
+    .m-mock-mini-head {
+      background: var(--cream-2);
+      padding: 5px 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .m-mock-mini-head img { height: 8px; width: auto; margin-right: 4px; }
+    .m-mock-mini-body {
+      padding: 8px;
+      font-size: 8px;
+      line-height: 1.35;
+      color: var(--mid);
+      min-height: 52px;
+    }
+    .m-mock-mini-body strong {
+      display: block;
+      color: var(--black);
+      font-weight: 800;
+      font-size: 8px;
+      margin-bottom: 2px;
+    }
+    .m-mock-tag {
+      display: block;
+      font-size: 9px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .m-section {
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--line);
+    }
+    .m-section:last-of-type { border-bottom: none; }
+
+    .m-h2 {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+    .m-lead-in {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .m-icon-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .m-icon-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      padding: 14px 8px 12px;
+      text-align: center;
+      list-style: none;
+    }
+    .m-icon-card svg {
+      width: 34px;
+      height: 34px;
+      margin: 0 auto 6px;
+      display: block;
+    }
+    .m-icon-card-name {
+      display: block;
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+    .m-icon-card-sub {
+      display: block;
+      font-size: 8px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .m-beat { margin-bottom: 16px; }
+    .m-beat-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--danger);
+      text-transform: lowercase;
+      margin-bottom: 6px;
+    }
+    .m-beat p {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.55;
+    }
+    .m-beat p .danger { color: var(--danger); }
+    .m-quote {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      text-align: center;
+      margin: 20px 0;
+      color: var(--danger);
+      line-height: 1.25;
+    }
+
+    .m-bridge-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .m-layers-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .m-layers {
+      display: flex;
+      flex-direction: column;
+    }
+    .m-layer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+    }
+    .m-layer-row:last-child { border-bottom: none; }
+    .m-layer-row span { color: var(--mid); flex: 1; line-height: 1.35; }
+    .m-layer-row strong { font-weight: 800; color: var(--black); white-space: nowrap; }
+
+    .m-founding-terms {
+      text-align: center;
+      font-size: 10px;
+      margin-top: 8px;
+    }
+    .m-founding-terms a { color: var(--muted); text-decoration: underline; }
+
+    .m-how-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 18px;
+      background: var(--cream-2);
+      border-radius: 12px;
+      padding: 4px;
+    }
+    .m-how-tab {
+      flex: 1;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 4px;
+      font: inherit;
+      font-size: 9.5px;
+      font-weight: 800;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: center;
+      line-height: 1.2;
+      transition: background 0.18s, color 0.18s;
+    }
+    .m-how-tab.is-active {
+      background: var(--black);
+      color: var(--lime);
+    }
+
+    /* slide wrapper */
+    .m-how-slider-wrap {
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .m-how-slider-wrap.is-proof {
+      border: 2px solid var(--black);
+      box-shadow: 4px 4px 0 var(--lime);
+    }
+    .m-how-slider-track {
+      display: flex;
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+      transform: translateX(-100%); /* default: rationalisation (index 1) */
+    }
+    .m-how-panel {
+      min-width: 100%;
+      flex-shrink: 0;
+      padding: 18px 14px;
+      background: var(--white);
+    }
+    .m-step {
+      margin-bottom: 14px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white);
+    }
+    .m-step-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .m-step-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .m-step-copy {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .m-tier-note {
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 0;
+    }
+    .m-tier-note strong { color: var(--black); font-weight: 800; }
+    .m-how-footnote {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.45;
+      margin-top: 18px;
+    }
+
+    .m-founding-card {
+      display: block;
+      padding: 20px;
+      border: 2px solid var(--black);
+      border-radius: 16px;
+      background: var(--white);
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 4px 4px 0 var(--lime);
+      margin-bottom: 8px;
+    }
+    .m-founding-card h3 {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .m-founding-card p {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .m-founding-card .highlight { color: var(--black); font-weight: 800; }
+    .m-founding-card .m-founding-cta {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--green);
+    }
+    .m-founding-fine {
+      font-size: 9px;
+      color: var(--muted);
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .m-bridge-inline {
+      font-size: 12px;
+      color: var(--mid);
+      text-align: center;
+      line-height: 1.45;
+      margin-bottom: 20px;
+    }
+
+    #mockForm { scroll-margin-top: 72px; }
+
+    .m-form-offer {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--mid);
+      text-align: left;
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--lime);
+      border-radius: 12px;
+    }
+    .m-form-offer .highlight {
+      color: var(--black);
+      font-weight: 800;
+    }
+
+    .m-field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--black);
+      text-align: left;
+      margin-bottom: 6px;
+    }
+    .m-field {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 14px 18px;
+      font: inherit;
+      font-size: 14px;
+      background: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .m-form-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .m-form-head-text { flex: 1; text-align: left; }
+    .m-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .m-form-h2 {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+    .m-info-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--mid);
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .m-info-btn[aria-expanded="true"] {
+      background: var(--lime);
+      border-color: var(--black);
+      color: var(--black);
+    }
+    .m-form-sub {
+      font-size: 14px;
+      color: var(--mid);
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .m-gate {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .m-gate strong { color: var(--black); font-weight: 800; }
+
+    .m-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 8px 0;
+      text-align: left;
+    }
+    .m-check input { width: 18px; height: 18px; min-width: 18px; min-height: 18px; margin-top: 2px; accent-color: var(--black); flex-shrink: 0; }
+    .m-check a { color: var(--black); text-decoration: underline; }
+    .m-check--merged { margin-bottom: 12px; }
+    .m-platform {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin: 12px 0 10px;
+      line-height: 1.45;
+    }
+    .m-platform strong { color: var(--black); font-weight: 800; }
+    .m-submit {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 15px 18px;
+      background: var(--black);
+      color: var(--lime);
+      font: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .m-form-trust {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.45;
+    }
+
+    .m-video-placeholder {
+      aspect-ratio: 16 / 10;
+      border-radius: 12px;
+      border: 3px solid var(--black);
+      background: var(--cream-2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .m-video-placeholder.is-playing {
+      color: transparent;
+    }
+    .m-video-placeholder video {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+    .m-video-placeholder.is-playing video {
+      display: block;
+    }
+    .m-video-placeholder .play-hint {
+      font-size: 10px;
+      color: var(--mid);
+    }
+
+    .m-footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .m-sticky {
+      position: absolute;
+      left: var(--gutter);
+      right: var(--gutter);
+      bottom: calc(var(--gutter) + 8px);
+      z-index: 200;
+    }
+    .m-sticky a {
+      display: block;
+      text-align: center;
+      background: var(--black);
+      color: var(--lime);
+      border-radius: 999px;
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .m-sticky small {
+      display: block;
+      margin-top: 2px;
+      font-size: 10px;
+      opacity: 0.85;
+    }
+
+    /* bottom sheet */
+    .m-sheet {
+      position: absolute;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(17, 17, 17, 0.55);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+    .m-sheet.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .m-sheet-dialog {
+      width: calc(100% - var(--gutter) * 2);
+      margin-bottom: var(--gutter);
+      padding: 20px 18px 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      text-align: center;
+      transform: translateY(110%);
+      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .m-sheet.is-open .m-sheet-dialog { transform: translateY(0); }
+    .m-sheet-dialog h3 {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .m-sheet-dialog p {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .m-sheet-dismiss {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 16px;
+      background: var(--black);
+      color: var(--lime);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* developer notes */
+    .dev-notes {
+      flex: 1;
+      min-width: 280px;
+      max-width: 420px;
+      background: #1e1e1c;
+      border: 1px solid #3a3a36;
+      border-radius: 16px;
+      padding: 20px 22px;
+      color: #d8d4cc;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .dev-notes h2 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--lime);
+      margin-bottom: 12px;
+    }
+    .dev-notes h3 {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      margin: 16px 0 6px;
+    }
+    .dev-notes ul {
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+    .dev-notes li { margin-bottom: 4px; }
+    .dev-notes code {
+      font-size: 11px;
+      background: #2a2a28;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    .dev-notes .removed { color: #c45c4a; }
+    .dev-notes .phase-done { color: var(--lime); }
+    .dev-notes .phase-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 12px;
+    }
+    .dev-notes .phase-list li {
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      background: #2a2a28;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    .dev-notes .phase-list strong { color: var(--lime); }
+
+    @media (max-width: 860px) {
+      .stage { flex-direction: column; align-items: center; }
+      .dev-notes { max-width: var(--phone-w); width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>mobile alternate · iphone 14 (390×844)</h1>
+    <p>revised mobile spec — same story as desktop, compressed per section. L2 = full proof + video; L1/L3 = copy only.</p>
+    <div class="tags">
+      <span class="tag">mockup only</span>
+      <span class="tag tag--phase is-done">compress · not cut</span>
+      <span class="tag tag--phase is-done">phase B · reframe</span>
+      <span class="tag tag--phase is-done">phase C · form</span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <div class="device">
+      <p class="device-label">option B · swipe strip</p>
+      <div class="device-screen" id="deviceScreen">
+        <div class="device-notch" aria-hidden="true"></div>
+        <div class="m-top">only the first <strong>250</strong> get early access</div>
+
+        <div class="device-scroll" id="deviceScroll">
+          <div class="m-view-toggle" role="tablist" aria-label="mobile view">
+            <button type="button" class="is-active" id="btnAlternate" role="tab" aria-selected="true">alternate</button>
+            <button type="button" id="btnLive" role="tab" aria-selected="false">live (today)</button>
+          </div>
+
+          <div class="m-view-panel is-active" id="panelAlternate" role="tabpanel">
+
+          <!-- 1 · hero -->
+          <section class="m-section" aria-labelledby="m-hero-heading">
+            <div class="m-logo">
+              <img class="m-logo-mark" src="../assets/cognoscene-mark.png" alt="" />
+              <img class="m-logo-word" src="../assets/cognoscene-wordmark.png" alt="cognoscene" />
+            </div>
+
+            <div class="m-mock-strip" aria-label="product ui mockups">
+              <div class="m-mock-mini">
+                <div class="m-mock-mini-head"><img src="../assets/cognoscene-mark.png" alt="" /></div>
+                <div class="m-mock-mini-body"><strong>growth</strong>prudence streak · 6 rationalised</div>
+              </div>
+              <div class="m-mock-mini">
+                <div class="m-mock-mini-head"><img src="../assets/cognoscene-mark.png" alt="" /></div>
+                <div class="m-mock-mini-body"><strong>browse</strong>soft nudge — leave if you don't need anything</div>
+              </div>
+              <div class="m-mock-mini">
+                <div class="m-mock-mini-head"><img src="../assets/cognoscene-mark.png" alt="" /></div>
+                <div class="m-mock-mini-body"><strong>hold</strong>checkout paused · 48h to decide</div>
+              </div>
+            </div>
+            <span class="m-mock-tag">sample ui · growth · browse · hold</span>
+
+            <h1 class="m-h1" id="m-hero-heading">prevent destructive web-impulse buys.</h1>
+            <p class="m-sub" style="font-weight:400;text-align:left;">we're building cognoscene, a chrome extension that prevents unexpected shopping impulses causing you to go through a vicious cycle of <strong style="font-weight:800;">guilt &amp; overspending.</strong></p>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <a class="m-cta-primary" href="#mockForm" style="margin-bottom:0;">join the waitlist</a>
+              <button type="button" class="m-info-btn" id="infoBtn" aria-label="mobile apps roadmap" aria-expanded="false" aria-controls="roadmapSheet">i</button>
+            </div>
+            <p class="m-meta">250 spots · 2 months free · us$10 lifetime · install on desktop chrome when your batch opens.</p>
+          </section>
+
+          <!-- 2 · problem -->
+          <section class="m-section" aria-labelledby="m-problem-heading">
+            <p class="m-eyebrow">the problem · how it begins</p>
+            <h2 class="m-h2" id="m-problem-heading">but why? why do we make these decisions in the first place?</h2>
+
+            <ul class="m-icon-row" aria-hidden="true">
+              <li class="m-icon-card">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="14" y="6" width="20" height="36" rx="4" stroke="#111" stroke-width="2"/><rect x="17" y="12" width="14" height="5" rx="1.5" fill="#c8e88a"/><rect x="17" y="19" width="14" height="3" rx="1" fill="#ddd5c0"/><rect x="17" y="24" width="14" height="3" rx="1" fill="#ddd5c0"/><rect x="17" y="29" width="10" height="3" rx="1" fill="#ddd5c0"/><circle cx="32" cy="10" r="5" fill="#111"/><path d="M30 10h4M32 8v4" stroke="#c8e88a" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span class="m-icon-card-name">the feed</span>
+                <span class="m-icon-card-sub">fomo · endless scroll</span>
+              </li>
+              <li class="m-icon-card">
+                <svg viewBox="0 0 48 48" fill="none"><path d="M8 12h6l4 18h16l4-14h6" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="36" r="2.5" fill="#111"/><circle cx="32" cy="36" r="2.5" fill="#111"/><rect x="28" y="6" width="12" height="8" rx="2" fill="#c45c4a"/><text x="34" y="12.5" text-anchor="middle" fill="#f5f0e8" font-size="6" font-weight="700">%</text><rect x="6" y="28" width="14" height="7" rx="2" stroke="#c45c4a" stroke-width="1.5"/><text x="13" y="33" text-anchor="middle" fill="#c45c4a" font-size="4.5" font-weight="700">bnpl</text></svg>
+                <span class="m-icon-card-name">the trap</span>
+                <span class="m-icon-card-sub">discounts · pay later</span>
+              </li>
+              <li class="m-icon-card">
+                <svg viewBox="0 0 48 48" fill="none"><path d="M36 14a14 14 0 1 0 4.2 10.1" stroke="#c45c4a" stroke-width="2" stroke-linecap="round"/><path d="M36 10v8h-8" stroke="#c45c4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="17" y="19" width="14" height="11" rx="2" stroke="#111" stroke-width="2"/><path d="M17 24h14" stroke="#ddd5c0" stroke-width="2"/><text x="24" y="17" text-anchor="middle" fill="#c45c4a" font-size="5" font-weight="700">$78</text></svg>
+                <span class="m-icon-card-name">the loop</span>
+                <span class="m-icon-card-sub">regret · repeat</span>
+              </li>
+            </ul>
+
+            <div class="m-beat">
+              <p class="m-beat-label">the trap</p>
+              <p>a cardigan you didn't plan for. a drop that screamed "get me now." then discounts, influencer pushes, BNPL.</p>
+            </div>
+            <blockquote class="m-quote">"I wasted $78.49 for no reason."</blockquote>
+            <div class="m-beat">
+              <p class="m-beat-label">the loop</p>
+              <p>good intentions work for a few weeks — then checkout is one tap away at midnight. <strong class="danger">regret, repeat.</strong></p>
+            </div>
+          </section>
+
+          <!-- 3 · solution bridge -->
+          <section class="m-section" aria-labelledby="m-solution-heading">
+            <p class="m-eyebrow">cognoscene · the key to the problem</p>
+            <h2 class="m-h2" id="m-solution-heading">hence, we built an extension to prevent you from shopping destructively using friction.</h2>
+            <p class="m-bridge-sub">working indefinitely to design prudence.</p>
+            <p class="m-layers-label">3 layers</p>
+            <div class="m-layers" aria-label="three product layers">
+              <div class="m-layer-row"><span>preventing doom shop-scrolling</span><strong>observer</strong></div>
+              <div class="m-layer-row"><span>48 hours to decide if its a waste</span><strong>rationalisation</strong></div>
+              <div class="m-layer-row"><span>impulse-driven to prudence</span><strong>growth</strong></div>
+            </div>
+          </section>
+
+          <!-- 4 · how — tabbed slideshow -->
+          <section class="m-section" aria-label="three layers in detail">
+            <p class="m-eyebrow">three layers · in detail</p>
+
+            <div class="m-how-tabs" role="tablist" aria-label="product layers">
+              <button class="m-how-tab" role="tab" id="tabObserver" data-panel="layerObserver" aria-selected="false" aria-controls="layerObserver">observer</button>
+              <button class="m-how-tab is-active" role="tab" id="tabRational" data-panel="layerRational" aria-selected="true" aria-controls="layerRational">rationalisation</button>
+              <button class="m-how-tab" role="tab" id="tabGrowth" data-panel="layerGrowth" aria-selected="false" aria-controls="layerGrowth">growth</button>
+            </div>
+
+            <div class="m-how-slider-wrap is-proof" id="howSliderWrap">
+              <div class="m-how-slider-track" id="howSliderTrack">
+
+                <div class="m-how-panel" id="layerObserver" role="tabpanel" aria-labelledby="tabObserver">
+                  <p class="m-step-label">first layer · observer</p>
+                  <h3 class="m-step-title">intercept unnecessary impulses</h3>
+                  <p class="m-step-copy">soft nudges while you browse tracked shops — lookout pulses before the cart snowballs. every few products, a pause before you keep scrolling.</p>
+                  <p class="m-tier-note"><strong>founding premium</strong> · full browse friction · free beta starts with checkout hold</p>
+                </div>
+
+                <div class="m-how-panel" id="layerRational" role="tabpanel" aria-labelledby="tabRational">
+                  <p class="m-step-label">second layer · rationalisation</p>
+                  <h3 class="m-step-title">48 hours to decide if it's a waste</h3>
+                  <p class="m-step-copy">you hit pay on a site you track — cognoscene pauses checkout and gives you 48 hours. most impulse buys stop feeling necessary that fast. buy when the window opens, or drop it.</p>
+                  <p class="m-tier-note"><strong>free patience mode</strong> · included on one tracked site</p>
+                  <button type="button" class="m-video-placeholder m-video-hit" data-video="demoVideo" aria-label="play rationalisation demo" style="margin-top:14px">
+                    <span class="play-label">demo.mp4 · 48h hold</span>
+                    <span class="play-hint">tap to play</span>
+                    <video id="demoVideo" muted loop playsinline preload="none">
+                      <source src="../assets/videos/demo.mp4" type="video/mp4" />
+                    </video>
+                  </button>
+                </div>
+
+                <div class="m-how-panel" id="layerGrowth" role="tabpanel" aria-labelledby="tabGrowth">
+                  <p class="m-step-label">third layer · growth</p>
+                  <h3 class="m-step-title">reinforce your identity of prudence</h3>
+                  <p class="m-step-copy">as you become more conscious about spending, you'll see it on your dashboard — prudence streak, purchases rationalised, savings over time.</p>
+                  <p class="m-tier-note"><strong>founding premium</strong> · full growth dashboard · unlimited sites</p>
+                </div>
+
+              </div>
+            </div>
+
+            <p class="m-how-footnote">desktop chrome · you pick the sites · free to start on one site</p>
+          </section>
+
+          <!-- 5 · founding -->
+          <section class="m-section" aria-labelledby="m-founding-heading">
+            <a class="m-founding-card" href="#mockForm">
+              <h3 id="m-founding-heading">founding member offer</h3>
+              <p>first <strong>250</strong>: <span class="highlight">2 months free</span> — then <span class="highlight">us$10</span> one-time for lifetime premium. unlimited sites, full observer, growth dashboard.</p>
+              <span class="m-founding-cta">join the waitlist →</span>
+            </a>
+            <p class="m-founding-fine">no charge today · us$10 one-time after trial · same email for chrome + payment</p>
+            <p class="m-founding-terms"><a href="#">founding offer terms</a></p>
+          </section>
+
+          <!-- 6 · form -->
+          <section id="mockForm">
+            <div class="m-form-head">
+              <div class="m-form-head-text">
+                <p class="m-eyebrow">the waitlist</p>
+                <h2 class="m-form-h2">stop the cycle. take back control.</h2>
+              </div>
+              <button type="button" class="m-info-btn" id="infoBtn" aria-label="mobile apps roadmap" aria-expanded="false" aria-controls="roadmapSheet">i</button>
+            </div>
+            <p class="m-form-sub">first step: drop your email. we'll invite you in batches.</p>
+
+            <p class="m-gate">waitlist closes in <strong>28d 14h</strong> · <strong>187</strong> spots left</p>
+
+            <label class="m-field-label" for="mockEmail">email address *</label>
+            <input class="m-field" id="mockEmail" type="email" name="email" autocomplete="email" inputmode="email" />
+
+            <label class="m-check m-check--merged">
+              <input type="checkbox" name="consent" value="yes" />
+              <span>i'm ready to try a pause before checkout and agree to the <a href="#">privacy policy</a> and <a href="#">terms of use</a>.</span>
+            </label>
+
+            <p class="m-platform"><strong>desktop chrome only</strong> — laptop or desktop. not mobile safari.</p>
+            <button type="button" class="m-submit">join the waitlist</button>
+          </section>
+
+          <footer class="m-footer">
+            © 2026 cognoscene · privacy · terms · founding offer
+          </footer>
+
+          </div><!-- /panelAlternate -->
+
+          <!-- ——— LIVE preview (production mobile today) ——— -->
+          <div class="m-view-panel" id="panelLive" role="tabpanel" hidden>
+            <span class="m-live-tag">netlify today · same order · full copy</span>
+
+            <div class="m-live-section is-compressed">
+              <h3>hero</h3>
+              <p>logo · 3 full mocks · h1 · sub · chrome band · lead · cta · meta</p>
+            </div>
+            <div class="m-live-section is-compressed">
+              <h3>problem band</h3>
+              <p>icons · trap · quote · loop · long copy</p>
+            </div>
+            <div class="m-live-section is-compressed">
+              <h3>solution bridge</h3>
+              <p>h2 · sub · 3 layer cards</p>
+            </div>
+            <div class="m-live-section is-compressed">
+              <h3>how · layer 1 observer</h3>
+              <p>2-line copy · no video on mobile</p>
+            </div>
+            <div class="m-live-section is-compressed">
+              <h3>how · layer 2 rationalisation</h3>
+              <p>full copy · demo.mp4 tap-to-play (only video on mobile)</p>
+            </div>
+            <div class="m-live-section is-compressed">
+              <h3>how · layer 3 growth</h3>
+              <p>2-line copy · no video on mobile</p>
+            </div>
+            <div class="m-live-section is-compressed">
+              <h3>founding card</h3>
+              <p>offer · terms · fine print</p>
+            </div>
+            <div class="m-live-section">
+              <h3>form</h3>
+              <p>stop the cycle · gate · email · 2 checkboxes · trust line</p>
+            </div>
+            <div class="m-live-section">
+              <h3>footer + sticky</h3>
+              <p>join the waitlist</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="m-sticky" id="mockSticky">
+          <a href="#mockForm" id="stickyLink">
+            <span id="stickyLabel">save my spot</span>
+            <small id="stickySub">2 months free</small>
+          </a>
+        </div>
+
+        <div class="m-sheet" id="roadmapSheet" aria-hidden="true">
+          <div class="m-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+            <h3 id="sheetTitle">mobile apps are on the roadmap</h3>
+            <p>cognoscene is desktop chrome today. we're building native apps for android and ios, targeting late 2027. join the waitlist now — we'll email you when desktop beta opens, and you'll hear about mobile when it's ready. rest assured.</p>
+            <button type="button" class="m-sheet-dismiss" id="sheetDismiss">got it</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option A device -->
+    <div class="device">
+      <p class="device-label">option A · single card</p>
+      <div class="device-screen">
+        <div class="device-notch" aria-hidden="true"></div>
+        <div class="device-scroll">
+
+          <section class="m-section" aria-label="hero option A">
+            <div class="m-logo" style="justify-content:flex-start;margin-bottom:0.5cm;">
+              <img class="m-logo-mark" src="../assets/cognoscene-mark.png" alt="" style="height:27px;" />
+            </div>
+
+            <div style="display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;">
+              <div class="m-hero-mock" style="flex:1;max-width:none;margin:0;box-shadow:4px 4px 0 var(--lime);">
+                <div class="m-mock-head">
+                  <img src="../assets/cognoscene-mark.png" alt="" />
+                  <img src="../assets/cognoscene-wordmark.png" alt="cognoscene" style="height:9px;" />
+                </div>
+                <div class="m-mock-body">
+                  <div class="title">act with prudence — checkout paused.</div>
+                  <div class="sub">48 hours to decide with intention.</div>
+                  <div class="m-timer">
+                    <span>time left</span>
+                    <strong>47:52:31</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="m-hero-mock" style="flex:1;max-width:none;margin:0;box-shadow:2px 2px 0 var(--lime);">
+                <div class="m-mock-head">
+                  <img src="../assets/cognoscene-mark.png" alt="" />
+                  <img src="../assets/cognoscene-wordmark.png" alt="cognoscene" style="height:9px;" />
+                </div>
+                <div class="m-mock-body">
+                  <div class="title">let's take it easy.</div>
+                  <div class="sub">leave the site if you don't need anything.</div>
+                  <div style="display:flex;gap:4px;margin-top:8px;">
+                    <div style="flex:1;background:var(--black);color:var(--lime);border-radius:999px;padding:5px 4px;font-size:7.5px;font-weight:800;text-align:center;">leave site</div>
+                    <div style="flex:1;border:1px solid var(--line);border-radius:999px;padding:5px 4px;font-size:7.5px;font-weight:500;text-align:center;color:var(--mid);">continue</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="m-mock-tag" style="margin-bottom:14px;display:block;">sample ui · hold · soft intervention</span>
+
+            <h1 class="m-h1" style="text-align:left;">prevent destructive web-impulse buys.</h1>
+            <p class="m-sub" style="font-weight:400;text-align:left;">we're building cognoscene, a chrome extension that prevents unexpected shopping impulses causing you to go through a vicious cycle of <strong style="font-weight:800;">guilt &amp; overspending.</strong></p>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <a class="m-cta-primary" href="#" style="margin-bottom:0;">join the waitlist</a>
+              <button type="button" class="m-info-btn" aria-label="mobile apps roadmap">i</button>
+            </div>
+            <p class="m-meta">250 spots · 2 months free · us$10 lifetime · install on desktop chrome when your batch opens.</p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+    <aside class="dev-notes">
+      <h2>developer handoff · revised mobile spec</h2>
+      <p><strong>intent:</strong> qualified email capture for desktop chrome. user must understand problem → solution → how → offer before form. ~6 scrolls on 390px — not ≤2.</p>
+
+      <ul class="phase-list">
+        <li><strong>structure</strong> — hero → problem → solution bridge → how (L1+L2+L3) → founding → form. order matches <code>index.html</code>. nothing removed.</li>
+        <li><strong>hero</strong> — mini mock strip (not full stack). keep lead, chrome band, meta, mobile note.</li>
+        <li><strong>problem</strong> — web h2 + shortened trap/loop + quote + 3 icons in one row. self-identification must land before form.</li>
+        <li><strong>solution bridge</strong> — h2 + 3 layer pills only. drop subcopy ("working indefinitely…").</li>
+        <li><strong>how</strong> — L1 + L3: 2-line copy, no video (premium features, name them). L2: <em>full production copy</em> + only tap-to-play video on mobile.</li>
+        <li><strong>founding</strong> — compact card stays above form (scarcity + offer legitimacy).</li>
+        <li><strong>form</strong> — stop the cycle headline, visible email label, merged checkbox (legal review), platform line, roadmap <strong>i</strong> sheet.</li>
+      </ul>
+
+      <h3>what compresses vs what stays full</h3>
+      <ul>
+        <li>remove: marquee animation only</li>
+        <li>compress: hero mocks, problem beats, bridge subcopy, L1/L3 copy, founding fine print</li>
+        <li>keep full: problem h2, L2 copy + video, founding offer, form emotional close</li>
+      </ul>
+
+      <h3>production mapping</h3>
+      <ul>
+        <li><code>index.html</code> — <code>@media (max-width: 760px)</code> + <code>.mobile-only</code> blocks</li>
+        <li>form fields: production keeps <code>ready</code> + <code>legal_agreed</code> until legal approves merge</li>
+        <li>gate: <code>#waitlistGateStatus</code> · video: <code>assets/videos/demo.mp4</code></li>
+      </ul>
+
+      <h3>on the phone</h3>
+      <ul>
+        <li>toggle <strong>alternate</strong> / <strong>live (today)</strong> — same sections, alternate = compressed</li>
+        <li><strong>i</strong> → roadmap sheet · L2 video tap-to-play only</li>
+      </ul>
+
+      <h3>open in chrome</h3>
+      <ul>
+        <li><code>mockups/mobile-iphone14-alternate.html</code></li>
+      </ul>
+    </aside>
+  </div>
+
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var btnAlternate = document.getElementById('btnAlternate');
+      var btnLive = document.getElementById('btnLive');
+      var panelAlternate = document.getElementById('panelAlternate');
+      var panelLive = document.getElementById('panelLive');
+      var stickyLink = document.getElementById('stickyLink');
+      var stickyLabel = document.getElementById('stickyLabel');
+      var stickySub = document.getElementById('stickySub');
+      var deviceScroll = document.getElementById('deviceScroll');
+
+      function showAlternate() {
+        btnAlternate.classList.add('is-active');
+        btnLive.classList.remove('is-active');
+        btnAlternate.setAttribute('aria-selected', 'true');
+        btnLive.setAttribute('aria-selected', 'false');
+        panelAlternate.classList.add('is-active');
+        panelAlternate.hidden = false;
+        panelLive.classList.remove('is-active');
+        panelLive.hidden = true;
+        if (stickyLink) stickyLink.href = '#mockForm';
+        if (stickyLabel) stickyLabel.textContent = 'save my spot';
+        if (stickySub) {
+          stickySub.textContent = '2 months free';
+          stickySub.style.display = 'block';
+        }
+      }
+
+      function showLive() {
+        btnLive.classList.add('is-active');
+        btnAlternate.classList.remove('is-active');
+        btnLive.setAttribute('aria-selected', 'true');
+        btnAlternate.setAttribute('aria-selected', 'false');
+        panelLive.classList.add('is-active');
+        panelLive.hidden = false;
+        panelAlternate.classList.remove('is-active');
+        panelAlternate.hidden = true;
+        if (stickyLink) stickyLink.href = '#';
+        if (stickyLabel) stickyLabel.textContent = 'join the waitlist';
+        if (stickySub) stickySub.style.display = 'none';
+      }
+
+      if (btnAlternate) btnAlternate.addEventListener('click', function () {
+        showAlternate();
+        if (deviceScroll) deviceScroll.scrollTop = 0;
+      });
+      if (btnLive) btnLive.addEventListener('click', function () {
+        showLive();
+        if (deviceScroll) deviceScroll.scrollTop = 0;
+      });
+
+      var infoBtn = document.getElementById('infoBtn');
+      var sheet = document.getElementById('roadmapSheet');
+      var sheetDismiss = document.getElementById('sheetDismiss');
+
+      function openSheet() {
+        sheet.classList.add('is-open');
+        sheet.setAttribute('aria-hidden', 'false');
+        infoBtn.setAttribute('aria-expanded', 'true');
+      }
+      function closeSheet() {
+        sheet.classList.remove('is-open');
+        sheet.setAttribute('aria-hidden', 'true');
+        infoBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      if (infoBtn) infoBtn.addEventListener('click', openSheet);
+      if (sheetDismiss) sheetDismiss.addEventListener('click', closeSheet);
+      if (sheet) {
+        sheet.addEventListener('click', function (e) {
+          if (e.target === sheet) closeSheet();
+        });
+      }
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sheet && sheet.classList.contains('is-open')) closeSheet();
+      });
+
+      var howTabs = Array.from(document.querySelectorAll('.m-how-tab'));
+      var howTrack = document.getElementById('howSliderTrack');
+      var howWrap = document.getElementById('howSliderWrap');
+
+      howTabs.forEach(function (tab, idx) {
+        tab.addEventListener('click', function () {
+          howTabs.forEach(function (t) {
+            t.classList.remove('is-active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+          howTrack.style.transform = 'translateX(-' + (idx * 100) + '%)';
+          if (idx === 1) {
+            howWrap.classList.add('is-proof');
+          } else {
+            howWrap.classList.remove('is-proof');
+          }
+        });
+      });
+
+      document.querySelectorAll('.m-video-hit').forEach(function (hit) {
+        hit.addEventListener('click', function () {
+          var videoId = hit.getAttribute('data-video');
+          var video = videoId ? document.getElementById(videoId) : hit.querySelector('video');
+          if (!video) return;
+          hit.classList.add('is-playing');
+          video.play().catch(function () {});
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

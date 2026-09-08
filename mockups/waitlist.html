@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cognoscene · waitlist page mock · red deltas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="mockup-artboard.css" />
+  <style>
+:root {
+  --cream: #f5f0e8;
+  --cream-2: #ebe4d4;
+  --black: #111111;
+  --mid: #4a4f47;
+  --muted: #8a8a84;
+  --line: #ddd5c0;
+  --lime: #c8e88a;
+  --delta: #e11d48;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: auto !important;
+  height: auto !important;
+  min-height: 100% !important;
+  overflow: auto !important;
+  background: #1a1a18;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--black);
+}
+
+/* implementer legend — not part of wix page */
+.legend {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #111;
+  color: #ccc;
+  padding: 10px 20px;
+  font-size: 12px;
+  text-transform: lowercase;
+  border-bottom: 2px solid var(--delta);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+.legend strong { color: #fff; }
+.legend .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.legend .swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.legend .swatch.add { background: var(--delta); outline: 2px solid var(--delta); }
+.legend .swatch.del { background: transparent; text-decoration: line-through; color: var(--delta); }
+.legend a { color: var(--lime); }
+
+/* —— wix page clone —— */
+.wix-site {
+  background: var(--cream);
+  color: var(--black);
+  text-transform: lowercase;
+}
+
+.wix-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 48px 28px 80px;
+}
+
+.logo-row {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.logo-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--black);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.section-label {
+  font-size: 13px;
+  color: var(--mid);
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+
+h1.display, h2.display {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+  color: var(--black);
+}
+h1.display { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 24px; }
+h2.display { font-size: clamp(1.6rem, 4vw, 2.5rem); margin-bottom: 20px; }
+
+.body-copy {
+  font-size: 15px;
+  color: var(--black);
+  max-width: 640px;
+  margin: 0 auto 18px;
+  text-align: center;
+}
+.body-copy.left { text-align: left; margin-left: 0; margin-right: 0; }
+
+.quote-line {
+  font-size: 16px;
+  font-style: italic;
+  text-align: center;
+  margin: 24px auto;
+  max-width: 520px;
+}
+
+.pivot-line {
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  margin: 48px auto 32px;
+}
+
+/* hero — asymmetric like live site */
+.hero-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+  min-height: 340px;
+  margin-bottom: 64px;
+}
+@media (max-width: 760px) { .hero-block { grid-template-columns: 1fr; } }
+
+.hero-visual-slot {
+  min-height: 280px;
+  background: var(--cream-2);
+  border: 2px dashed var(--muted);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.hero-right { text-align: left; }
+.hero-right h1.display { margin-bottom: 16px; }
+.hero-sub { font-size: 15px; line-height: 1.6; margin-bottom: 20px; color: var(--black); }
+.hero-meta { font-size: 13px; color: var(--mid); margin-top: 12px; }
+
+.btn-waitlist {
+  display: inline-block;
+  background: var(--black);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: lowercase;
+  cursor: default;
+}
+
+/* red delta system */
+.del {
+  color: var(--delta);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  background: rgba(225, 29, 72, 0.06);
+}
+.add {
+  color: var(--delta);
+  font-weight: 600;
+  outline: 2px solid var(--delta);
+  outline-offset: 3px;
+  padding: 0 4px;
+  border-radius: 3px;
+  position: relative;
+}
+.add-block {
+  outline: 2px solid var(--delta);
+  outline-offset: 6px;
+  position: relative;
+  border-radius: 8px;
+}
+.add-block::before,
+.add::before {
+  content: attr(data-note);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 9px;
+  font-weight: 800;
+  font-family: var(--sans);
+  background: var(--delta);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 2;
+  text-transform: lowercase;
+}
+.add-inline-note {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--delta);
+  margin-top: 6px;
+}
+.cut-block {
+  position: relative;
+  outline: 2px dashed var(--delta);
+  outline-offset: 8px;
+  padding: 12px;
+  margin: 16px 0;
+  border-radius: 8px;
+  background: rgba(225, 29, 72, 0.04);
+}
+.cut-block::before {
+  content: attr(data-note);
+  position: absolute;
+  top: -11px;
+  right: 8px;
+  font-size: 9px;
+  font-weight: 800;
+  background: var(--delta);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: lowercase;
+}
+
+.spacer-section { margin: 72px 0; }
+
+/* solution + features */
+.solution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 28px;
+  align-items: start;
+  margin: 32px 0 48px;
+}
+@media (max-width: 760px) { .solution-grid { grid-template-columns: 1fr; } }
+
+.feature-band {
+  background: var(--cream-2);
+  padding: 56px 28px;
+  margin: 0 -28px;
+}
+.feature-band .wix-inner { padding-top: 0; padding-bottom: 0; }
+
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 56px;
+}
+.feature-row.reverse { direction: rtl; }
+.feature-row.reverse > * { direction: ltr; }
+@media (max-width: 760px) {
+  .feature-row, .feature-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+}
+
+.feature-label { font-size: 13px; color: var(--mid); margin-bottom: 12px; }
+.feature-copy { max-width: 380px; }
+.feature-copy p { font-size: 14px; line-height: 1.6; color: var(--mid); margin-top: 12px; }
+
+/* feature 1 — hold overlay mini clone */
+.mock-hold {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  max-width: 320px;
+  margin: 0 auto;
+  font-family: 'Be Vietnam Pro', var(--sans);
+}
+.mock-hold-head {
+  background: var(--cream-2);
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  border-bottom: 1px solid var(--line);
+}
+.mock-ui-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.mock-ui-mark {
+  height: 13px;
+  width: auto;
+  object-fit: contain;
+}
+.mock-ui-wordmark {
+  height: 10px;
+  width: auto;
+  object-fit: contain;
+}
+.mock-hold-body { padding: 14px; font-size: 12px; }
+.mock-hold-body .hd { font-weight: 700; margin-bottom: 6px; }
+.mock-hold-body .timer { color: #3b6d11; font-size: 20px; font-weight: 600; margin: 10px 0; }
+
+/* feature 2 — savings panel clone (as on live site) */
+.mock-savings {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  max-width: 280px;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 11px;
+}
+.mock-savings-head {
+  background: var(--cream-2);
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.mock-savings-head span { font-size: 9px; color: var(--muted); }
+.mock-savings-body { padding: 12px; }
+.mock-savings-body .lbl { font-size: 9px; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+.mock-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.mock-thumb {
+  width: 36px;
+  height: 36px;
+  background: var(--cream-2);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.mock-item .name { font-weight: 600; font-size: 11px; line-height: 1.3; }
+.mock-item .meta { font-size: 9px; color: var(--muted); }
+
+/* waitlist form — matches live */
+.form-band {
+  background: #fff;
+  padding: 64px 28px;
+  margin: 0;
+}
+.form-inner { max-width: 520px; margin: 0 auto; text-align: center; }
+
+.form-field {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-family: var(--sans);
+  font-size: 14px;
+  margin-bottom: 14px;
+  background: #fff;
+  color: var(--muted);
+  text-align: left;
+}
+.form-field.area {
+  border-radius: 16px;
+  min-height: 100px;
+  resize: none;
+}
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+  font-size: 13px;
+  margin: 18px 0 24px;
+  color: var(--black);
+}
+.form-check-box {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.btn-submit {
+  width: 100%;
+  background: var(--black);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.closing-band {
+  background: var(--cream);
+  padding: 48px 28px 64px;
+  text-align: center;
+}
+.closing-band p { max-width: 560px; margin: 0 auto 16px; font-size: 15px; line-height: 1.65; }
+
+.footer-band {
+  background: var(--cream);
+  padding: 24px 28px 48px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+/* 1920 gif frame */
+.gif-section {
+  background: #121210;
+  padding: 40px 28px 56px;
+  color: #ccc;
+}
+.gif-section h3 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: lowercase;
+  color: #fff;
+  margin-bottom: 8px;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.gif-section p {
+  font-size: 12px;
+  color: #888;
+  max-width: 920px;
+  margin: 0 auto 16px;
+  text-transform: lowercase;
+}
+  </style>
+</head>
+<body>
+
+  <div class="legend">
+    <strong>waitlist mock · as-shipped wix + red deltas</strong>
+    <span class="tag"><span class="swatch del"></span> strikethrough = remove or replace</span>
+    <span class="tag"><span class="swatch add"></span> red outline = add / new copy</span>
+    <span class="tag">dashed box = cut or trim block</span>
+    <a href="onboarding-handoff.html">extension handoff ↗</a>
+    <a href="https://cognoscene.wixsite.com/impulse-buy-validato">live site ↗</a>
+  </div>
+
+  <article class="wix-site" aria-label="wix waitlist page clone with proposed changes">
+
+    <!-- LOGO -->
+    <div class="wix-inner logo-row">
+      <div class="logo-mark" aria-hidden="true">c</div>
+    </div>
+
+    <!-- HERO (live: text right, empty left) -->
+    <div class="wix-inner hero-block">
+      <div class="hero-visual-slot add-block" data-note="add · hero gif">
+        hero visual · shopee/lazada checkout → hold overlay → 48:00 loop<br /><br />
+        (record from frame below)
+      </div>
+      <div class="hero-right">
+        <h1 class="display">98% of your regretful decisions happen pre-purchase.</h1>
+        <p class="add hero-sub" data-note="add · product id">a chrome extension that pauses impulse purchases.</p>
+        <p class="hero-sub">you buy "cool" stuff from retailers to feel good, only to realise you moved on faster than the package arrived. we put the pause on your wallet, enabling you to make prudent purchases with controlled pride.</p>
+        <button class="btn-waitlist" type="button">join the waitlist</button>
+        <p class="hero-meta">early access • founding member access</p>
+      </div>
+    </div>
+
+    <!-- PROBLEM -->
+    <div class="wix-inner spacer-section">
+      <p class="section-label">the problem • how it begins</p>
+      <h1 class="display" style="text-align:center;">but why? what makes shopping compulsions a threat?</h1>
+
+      <p class="body-copy left" style="max-width:680px;margin-left:auto;margin-right:auto;">it starts small.</p>
+      <p class="body-copy">a cardigan you didn't plan for. a kitchen gadget that looked genuinely useful at 11pm. a limited-edition something that basically screamed, "if you don't get me, you'll regret it FOREVER!".</p>
+      <p class="body-copy">you caved in, because how could you not? your mind seemingly gleams in absolute delight, feeling the <span class="del">dopaminergic rush</span><span class="add" data-note="plain english"> rush of buying something new</span> from buying goods.</p>
+      <p class="body-copy">then, you open the package... and realised.</p>
+      <p class="body-copy">you already 7 cardigans, you already have too many weird kitchen gadgets (and you don't even cook), and you bought that limited-edition coffee mug thinking your part of an exclusive club,</p>
+      <p class="body-copy">you don't even like coffee. and you already have 4 mugs in your pantry.</p>
+      <p class="body-copy">it finally dawned on you regretfully.</p>
+      <p class="quote-line">"<span class="del">l</span><span class="add" data-note="fix">I</span> wasted $78.49 for no reason."</p>
+      <p class="body-copy">that's not even the worst part.</p>
+      <p class="body-copy"><span class="del">becuz'</span><span class="add" data-note="fix">because</span> after that purchase, you feel terrible.</p>
+      <p class="body-copy">like REALLY terrible.</p>
+      <p class="body-copy">you didn't set out to make bad purchases, you genuinely thought that item would've added something to your life. so you decided to take better precautions — build stronger willpower via by telling yourself to be more disciplined, do breathing exercises or even freezing your bank accounts.</p>
+      <p class="body-copy">and it works.</p>
+      <p class="body-copy">only for a few weeks, until the same scenario begins to unfold.</p>
+
+      <div class="cut-block" data-note="cut · ~400 words · keep arc only">
+        <p class="body-copy">you wanna unwind after a tiring day by scrolling on Instagram for a couple of minutes. but because there's so much content out there + Instagram's addictive algorithm, you found yourself scrolling for hours.</p>
+        <p class="body-copy">and once again, your brain is overloaded with dopamine. from LA influencers promoting their skincare brand, creators showcasing their clothing overhaul and even random folks telling you their "top 5 gadgets you must have".</p>
+        <p class="body-copy">like that's cool Cheryl, but do <span class="del">l</span><span class="add" data-note="fix">I</span> really need a portable fan with a rose on it?</p>
+        <p class="body-copy">at least, that was what was supposed to ring in your mind, but your mind was so high on dopamine that all you cared about was how cool those products were. and add on the hunt for discounts / sales, you have a cart spanning hundreds of dollars.</p>
+        <p class="body-copy">and eventually? you buy bullsh*t again, feel immense regret, and repeat the same actions again. but you know deep down that <span class="del">your</span><span class="add" data-note="fix">you're</span> doing your best to be rational, and you don't wanna suffer from financial distress nor shame.</p>
+        <span class="add-inline-note">keep: cheryl bit · $78.49 · willpower fails · "you are not the problem" turn — lose the second full algorithm loop</span>
+      </div>
+
+      <p class="body-copy">allow us to tell you this.</p>
+      <p class="body-copy">you aren't trying to spend impulsively. but despite your control, we forget that in the modern age, every business / influencers has mastered the art of selling — discount, brand deals, product launches, markdown and Cheryl's.</p>
+      <p class="body-copy">brands personalise shopping experiences, bringing you "attractive" items based on what you bought previously. it's also really seamless, making it not just addictive but easy to buy goods online.</p>
+      <p class="body-copy">they can EVEN make you splurge from common yet unexpected areas — emails, advertisements (both online and offline), your friends, and even more Cheryl's.</p>
+      <p class="body-copy">not to mention that financing schemes have gotten more robust — credit cards and BNPL that make expensive items "cheaper".</p>
+      <p class="body-copy">the result? retailers siphon thousands of dollars from you.</p>
+      <p class="body-copy">but the more scarier result? purchases cascade into destructive financial habits such as financial debt + causing psychological distress from frequent regretful purchases, affecting your mental health.</p>
+      <p class="pivot-line">you are not the problem.</p>
+    </div>
+
+    <!-- SOLUTION (broken on live) -->
+    <div class="wix-inner">
+      <p class="section-label">cognoscene • how we solve this</p>
+
+      <div class="del" style="display:inline-block;margin-bottom:8px;">
+        <h2 class="display" style="font-size:1.1rem;margin:0;">we recognise this. hence,</h2>
+      </div>
+      <span class="add-inline-note" style="text-align:center;display:block;margin-bottom:16px;">delete duplicate header block above</span>
+
+      <p class="del body-copy" style="font-size:28px;font-family:var(--serif);">w</p>
+      <p class="del body-copy left" style="max-width:280px;">we recognise this issue.</p>
+
+      <div class="solution-grid">
+        <div></div>
+        <div>
+          <h2 class="display">hence, we're gonna bring back your prudence with Cognoscene.</h2>
+          <p class="del body-copy left" style="text-align:left;margin-left:0;">..... *add image as well of mockuP</p>
+          <p class="add body-copy left" style="text-align:left;margin-left:0;" data-note="replace placeholder">product screenshot or hero still · see feature frames below</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="feature-band">
+      <div class="wix-inner">
+
+        <div class="feature-row">
+          <div class="feature-copy">
+            <p class="feature-label"><span class="del">first feature • liberation</span> <span class="add" data-note="rename">decision mode • 48-hour hold</span></p>
+            <h2 class="display"><span class="del">determine if products make you feel unnecessary guilt.</span></h2>
+            <h2 class="display add" data-note="new copy" style="font-size:1.5rem;">before you pay, you get 48 hours. most things stop feeling necessary that fast.</h2>
+            <p class="del">we introduce friction into your daily purchasing lives, enabling you to prevent terrible purchasing outcomes. whenever you purchase something, you will be given 48 hours to decide whether the item provides value, or just gnaws away at you with unnecessary guilt.</p>
+            <p class="add" data-note="new body" style="font-size:14px;color:var(--mid);margin-top:12px;line-height:1.6;">we introduce friction at checkout on the sites you track. pay button → pause → reflection prompts → buy or drop later.</p>
+          </div>
+          <div class="mock-hold add-block" data-note="update overlay copy">
+            <div class="mock-hold-head">
+              <div class="mock-ui-brand" aria-label="cognoscene">
+                <img class="mock-ui-mark" src="../assets/cognoscene-mark.png" alt="" />
+                <img class="mock-ui-wordmark" src="../assets/cognoscene-wordmark.png" alt="cognoscene" />
+              </div>
+            </div>
+            <div class="mock-hold-body">
+              <div class="hd del">determine if products…</div>
+              <div class="hd add" data-note="shipped">act with prudence — checkout paused.</div>
+              <div style="font-size:10px;color:var(--mid);">48 hours to decide with intention.</div>
+              <div class="timer">48:00:00</div>
+              <div style="font-size:10px;color:var(--muted);">before you decide · 3 prompts</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-row reverse">
+          <div class="feature-copy">
+            <p class="feature-label"><span class="del">second feature • prudence tracker</span> <span class="add" data-note="rename">growth • prudence streak</span></p>
+            <h2 class="display"><span class="del">observe your prudence grow.</span></h2>
+            <h2 class="display add" data-note="new h2" style="font-size:1.5rem;">see what you didn't buy.</h2>
+            <p class="del">observe the growth of your prudence over a monthly / annually basis, where you see how often you've managed to rationalise a purchase for that period.</p>
+            <p class="add" data-note="new body" style="font-size:14px;color:var(--mid);margin-top:12px;line-height:1.6;">prudence streak on home · purchases rationalised count · optional money held back reveal in growth tab.</p>
+          </div>
+          <div class="add-block" data-note="replace asset">
+            <div class="mock-savings">
+              <div class="mock-savings-head">
+                <span>home</span>
+                <span>growth</span>
+              </div>
+              <div class="mock-savings-body">
+                <div style="background:var(--cream-2);border-radius:8px;padding:10px;margin-bottom:10px;">
+                  <div style="font-size:9px;color:var(--muted);">prudence</div>
+                  <div style="font-size:22px;font-weight:800;color:#3b6d11;">3</div>
+                  <div style="font-size:9px;color:var(--muted);">weeks without urgente bypass</div>
+                </div>
+                <div style="background:#111;color:var(--lime);border-radius:8px;padding:10px;display:flex;gap:8px;align-items:center;">
+                  <div style="font-size:22px;font-weight:800;">6</div>
+                  <div><div style="font-size:11px;font-weight:700;">purchases rationalised</div><div style="font-size:9px;opacity:.7;">tap for growth tab</div></div>
+                </div>
+                <p class="add-inline-note" style="margin-top:10px;text-align:center;">replace live "dropped items" screenshot with popup home · sample data labelled</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- WAITLIST FORM -->
+    <div class="form-band">
+      <div class="form-inner">
+        <p class="section-label">the waitlist • early-access to cognoscene</p>
+        <h2 class="display"><span class="del">stop the shame, take back your control.</span></h2>
+        <h2 class="display add" data-note="cta reframe" style="font-size:1.8rem;">stop the cycle. take back your control.</h2>
+        <p class="body-copy" style="margin-bottom:28px;">stop losing to businesses, and take the first step by gaining dedicated early-access to Cognoscene.</p>
+
+        <div class="form-field">email address (most used) *</div>
+        <div class="form-field area">any comment / query you might have.</div>
+        <div class="form-check">
+          <div class="form-check-box"></div>
+          <span><span class="del">l'm</span><span class="add" data-note="fix">I'm</span> ready to liberate myself from terrible shopping habits.</span>
+        </div>
+        <button class="btn-submit" type="button">submit</button>
+        <p class="add add-inline-note" style="text-align:center;margin-top:16px;" data-note="add trust">add below submit: waitlist count · one beta quote · or "early access open"</p>
+      </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="closing-band">
+      <p>oh hey, <span class="del">your</span><span class="add" data-note="fix">you're</span> still here. let me tell ya something.</p>
+      <p>founding members will shape cognoscene with us, testing the solution and deciding what doesn't work / what works.</p>
+      <p>your input will shape our goal — an ecosystems where <span class="del">miliions</span><span class="add" data-note="fix">millions</span> of individuals shop with happy prudence.</p>
+      <p>...plus, bragging rights.</p>
+      <p>yeehaw'.</p>
+      <p>alright, enough yapping, we'll see you on the other side, fellow ex-shoppers!</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-band">
+      <p>© 2026 by Cognoscene. All rights reserved.</p>
+      <p class="add add-inline-note" style="margin-top:12px;" data-note="add footer">+ privacy policy · terms of use · twitter/instagram · built in singapore</p>
+    </div>
+
+  </article>
+
+  <!-- hero gif production frame (not on wix — for asset capture) -->
+  <section class="gif-section">
+    <h3>hero gif source frame · 1920×1080 · not embedded on wix page</h3>
+    <p>record patience-mode checkout hold · shopee.sg or lazada.sg · production 48h timer label</p>
+    <div class="artboard-stage" data-mockup-stage style="max-width:920px;margin:0 auto;">
+      <div class="artboard">
+        <div style="height:72px;background:#ebe4d4;border-bottom:1px solid #ddd5c0;display:flex;align-items:center;padding:0 20px;gap:12px;">
+          <div style="background:#f5f0e8;border:1px solid #ddd5c0;border-radius:8px 8px 0 0;padding:8px 16px;font-size:13px;">shopee.sg — checkout</div>
+          <div style="flex:1;background:#fff;border:1px solid #ddd5c0;border-radius:999px;padding:8px 16px;font-size:12px;color:#4a4f47;">shopee.sg/checkout</div>
+        </div>
+        <div style="position:absolute;inset:72px 0 0 0;background:rgba(45,45,42,0.34);"></div>
+        <div style="background:#fff;min-height:calc(1080px - 72px);padding:40px 80px;position:relative;font-family:var(--sans);text-transform:lowercase;">
+          <h3 style="font-family:var(--serif);font-size:28px;margin-bottom:8px;">checkout</h3>
+          <p style="color:var(--mid);margin-bottom:24px;">order total · s$49.90 · 1 item</p>
+          <button style="background:#111;color:var(--lime);border:none;border-radius:12px;padding:16px 32px;font-size:16px;font-weight:700;">pay now</button>
+          <div style="position:absolute;top:48px;right:48px;width:360px;z-index:5;background:#f5f0e8;border:1px solid #ddd5c0;border-radius:12px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.28),4px 4px 0 var(--lime);">
+            <div style="background:#ebe4d4;padding:8px 12px;display:flex;justify-content:flex-start;align-items:center;font-size:11px;border-bottom:1px solid #ddd5c0;">
+              <div class="mock-ui-brand" aria-label="cognoscene">
+                <img class="mock-ui-mark" src="../assets/cognoscene-mark.png" alt="" />
+                <img class="mock-ui-wordmark" src="../assets/cognoscene-wordmark.png" alt="cognoscene" />
+              </div>
+            </div>
+            <div style="padding:12px;font-size:12px;">
+              <div style="font-weight:700;color:var(--delta);outline:2px solid var(--delta);outline-offset:2px;padding:2px 4px;display:inline-block;margin-bottom:6px;">act with prudence — checkout paused.</div>
+              <div style="font-size:10px;color:var(--mid);margin-bottom:8px;">48 hours to decide with intention.</div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin:8px 0;">
+                <span style="font-size:8px;color:#3b6d11;">hard friction left</span>
+                <span style="font-size:16px;color:#3b6d11;font-weight:600;">48:00:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="mockup-artboard.js"></script>
+</body>
+</html>

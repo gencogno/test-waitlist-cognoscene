@@ -1,0 +1,11 @@
+.git
+.github
+.gitignore
+.assetsignore
+src
+tests
+docs
+mockups
+schema.sql
+wrangler.jsonc
+*.md

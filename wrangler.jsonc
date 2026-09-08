@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "cognoscene-waitlist",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-08-24",
+  "workers_dev": false,
+  "keep_vars": true,
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "run_worker_first": [
+      "/",
+      "/index.html",
+      "/waitlist",
+      "/waitlist/",
+      "/assets/*",
+      "/css/*",
+      "/js/*",
+      "/robots.txt",
+      "/sitemap.xml",
+      "/privacy.html",
+      "/terms.html",
+      "/founding-terms.html",
+      "/admin",
+      "/admin/*",
+      "/admin.html",
+      "/api/*"
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "WAITLIST_DB",
+      "database_name": "cognoscene-waitlist-db",
+      "database_id": "cd3cb4ce-6ab0-4357-85de-ab2224d129bf"
+    }
+  ],
+  "vars": {
+    "WAITLIST_OPEN_AT": "2026-08-25T09:00:00+08:00",
+    "WAITLIST_CLOSE_AT": "2026-09-16T15:15:00+08:00",
+    "FOUNDING_LIMIT": "100",
+    "LEGAL_VERSION": "2026-08-25",
+    "TURNSTILE_HOSTNAME": "cognoscene.com"
+  },
+  "secrets": {
+    "required": ["TURNSTILE_SECRET"]
+  }
+}

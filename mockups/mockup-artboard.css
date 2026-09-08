@@ -1,0 +1,28 @@
+/**
+ * Baseline layout for 1920×1080 browser mockup frames.
+ * Always pair with mockup-artboard.js — see static-mockup-fidelity.mdc §13–17.
+ * Page-specific mockups may override borders/shadows; do not remove absolute + visible.
+ */
+.artboard-stage,
+.chrome-stage,
+[data-mockup-stage],
+#frameLightboxStage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.artboard-stage > .artboard,
+.chrome-stage > .chrome-canvas,
+[data-mockup-stage] > .artboard,
+[data-mockup-stage] > .chrome-canvas,
+#frameLightboxStage > .artboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+  transform: scale(0.55);
+  overflow: visible;
+}

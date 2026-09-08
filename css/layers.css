@@ -150,6 +150,44 @@
   .hero { padding-bottom: 0; }
   .hero-visual { min-height: 71px; }
   .hero-screenshot-stack { min-height: 71px !important; }
+  .mobile-sub .highlight-swipe {
+    background-image: none !important;
+    background-size: auto !important;
+    background-position: initial !important;
+    box-shadow: none !important;
+    filter: none !important;
+    font-weight: 400 !important;
+  }
+
+  .mobile-cta-bar {
+    left: calc(var(--mobile-visual-left, 0px) + 12px) !important;
+    right: auto !important;
+    width: calc(var(--mobile-visual-width, 100vw) - 24px) !important;
+    height: 54px !important;
+    top: calc(var(--mobile-visual-top, 0px) + var(--mobile-visual-height, 100dvh) - 12px - 1cm - env(safe-area-inset-bottom, 0px) - 54px) !important;
+    bottom: auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  .mobile-cta-bar a {
+    width: 100% !important;
+    min-height: 54px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 20px !important;
+    background: var(--black) !important;
+    color: var(--lime) !important;
+    border: 2px solid var(--black) !important;
+    border-radius: 999px !important;
+    box-shadow:
+      0 10px 24px rgba(17, 17, 17, 0.18),
+      0 0 24px rgba(184, 216, 120, 0.28) !important;
+    font-weight: 800 !important;
+  }
+
   .solution-bridge h2::before,
   .solution-bridge h2::after { font-size: 1.625rem; }
   .waitlist-platform-options { gap: 4px; padding: 3px; }
@@ -166,10 +204,8 @@
     padding: 8px 10px;
     text-align: center;
     background: var(--white);
-    animation-name: layer-slide;
-    animation-duration: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+    will-change: transform;
+    animation: layer-slide 4s ease-in-out infinite alternate;
   }
 
   .layer-index-item::after {
@@ -179,10 +215,7 @@
     pointer-events: none;
     background: linear-gradient(90deg, var(--lime) 0%, var(--lime-muted) 35%, transparent 100%);
     opacity: 1;
-    animation-name: gradient-left;
-    animation-duration: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+    animation: gradient-left 4s ease-in-out infinite alternate;
     mix-blend-mode: normal;
   }
 
@@ -203,17 +236,17 @@
     line-height: 1.05;
   }
 
-  .layer-index-item:nth-child(odd) { animation-direction: alternate; }
-  .layer-index-item:nth-child(odd)::after { animation-direction: alternate; }
-  .layer-index-item:nth-child(even) { animation-direction: alternate-reverse; }
-  .layer-index-item:nth-child(even)::after { animation-direction: alternate-reverse; }
+  .layer-index-item:nth-child(even) {
+    animation-direction: alternate-reverse;
+  }
   .layer-index-item:nth-child(even)::after {
+    animation-direction: alternate-reverse;
     background: linear-gradient(270deg, var(--lime) 0%, var(--lime-muted) 35%, transparent 100%);
   }
 
   @keyframes layer-slide {
-    0% { margin-left: 0; }
-    100% { margin-left: 18%; }
+    from { transform: translateX(0); }
+    to { transform: translateX(21.9512%); }
   }
 
   /* Opacity-only edge gradient: 1s out, 2s clear, 1s in. */

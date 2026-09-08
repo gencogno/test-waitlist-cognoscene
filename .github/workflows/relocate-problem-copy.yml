@@ -1,0 +1,120 @@
+name: relocate problem copy
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Move problem intro into problem copy on desktop
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text()
+
+          old_css = '''    .problem-band {
+      padding: 20px 0 44px;
+    }
+    .problem-band-header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }'''
+          new_css = '''    .problem-band {
+      padding: 20px 0 44px;
+    }
+    .problem-band-header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+    @media (min-width: 601px) {
+      .problem-band {
+        padding-top: 4px;
+      }
+      .problem-copy > .problem-band-header {
+        max-width: none;
+        padding: 0;
+        margin: 0 0 18px;
+        text-align: left;
+      }
+      .problem-copy > .problem-band-header .section-eyebrow {
+        text-align: left;
+        margin-bottom: 10px;
+      }
+      .problem-copy > .problem-band-header .highlight-swipe-text {
+        margin: 0;
+        max-width: 620px;
+      }
+    }'''
+          if old_css not in html:
+              raise SystemExit('expected problem CSS block not found')
+          html = html.replace(old_css, new_css, 1)
+
+          old_block = '''      <div class="wrap problem-band-header">
+        <p class="section-eyebrow">the problem · how it begins</p>
+        <p class="highlight-swipe-text"><span class="highlight-swipe">unexpected impulses</span> — mostly from social feeds. influencers selling you gadgets you don't need, still making you feel like you're missing out.</p>
+      </div>
+
+      <div class="wrap problem-band-body">
+        <div class="problem-copy">'''
+          new_block = '''      <div class="wrap problem-band-header">
+        <p class="section-eyebrow">the problem · how it begins</p>
+        <p class="highlight-swipe-text"><span class="highlight-swipe">unexpected impulses</span> — mostly from social feeds. influencers selling you gadgets you don't need, still making you feel like you're missing out.</p>
+      </div>
+
+      <div class="wrap problem-band-body">
+        <div class="problem-copy">'''
+          if old_block not in html:
+              raise SystemExit('expected problem markup block not found')
+
+          script = '''
+  <script>
+    (() => {
+      const header = document.querySelector('.problem-band-header');
+      const copy = document.querySelector('.problem-copy');
+      const body = document.querySelector('.problem-band-body');
+      if (!header || !copy || !body) return;
+
+      const originalParent = header.parentNode;
+      const originalNextSibling = body;
+
+      const relocateProblemIntro = () => {
+        if (window.innerWidth > 600) {
+          if (header.parentNode !== copy) copy.insertBefore(header, copy.firstChild);
+        } else if (header.parentNode !== originalParent) {
+          originalParent.insertBefore(header, originalNextSibling);
+        }
+      };
+
+      relocateProblemIntro();
+      window.addEventListener('resize', relocateProblemIntro);
+    })();
+  </script>
+'''
+          marker = '</body>'
+          if script.strip() not in html:
+              if marker not in html:
+                  raise SystemExit('body marker not found')
+              html = html.replace(marker, script + '\n' + marker, 1)
+
+          path.write_text(html)
+          PY
+
+      - name: Commit result and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/relocate-problem-copy.yml
+          git add index.html
+          git commit -m "move problem intro into desktop problem copy"
+          git push
