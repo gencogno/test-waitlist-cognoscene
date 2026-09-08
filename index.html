@@ -5454,9 +5454,6 @@
         if (demoPlay) demoPlay.addEventListener('click', toggleDemoPlayback);
         if (demoToggle) demoToggle.addEventListener('click', toggleDemoPlayback);
         if (demoExpand) demoExpand.addEventListener('click', toggleDemoExpanded);
-        if (demoShell) document.addEventListener('fullscreenchange', function () {
-          if (document.fullscreenElement !== demoShell && demoShell.classList.contains('is-expanded')) setDemoExpanded(false);
-        });
         if (demoSeek) {
           demoSeek.addEventListener('pointerdown', showDemoUi);
           demoSeek.addEventListener('input', function () {
