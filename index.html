@@ -2994,7 +2994,7 @@
         </figure>
         <figure class="proof-card proof-card--akpk">
           <strong class="proof-stat"><span>577,500</span></strong>
-          <p>Malaysian respondents in AKPK’s debt-management context had repayment problems linked to purchases made without considering their usefulness.</p>
+          <p>Malaysian respondents in AKPK’s debt-management context landed in debt after buying things they did not need.</p>
           <figcaption><a href="https://www.utusan.com.my/nasional/2024/06/ketagih-berbelanja-punca-orang-muda-muflis/" target="_blank" rel="noopener noreferrer">utusan malaysia reporting akpk · malaysia · 2024 · 38.5% of debt-management respondents, n=1.5m.</a></figcaption>
         </figure>
         <figure class="proof-card proof-card--survey">
@@ -3540,6 +3540,8 @@
     .proof-card { margin: 0; padding: 22px 24px; border: 1px solid var(--black); border-radius: 16px; background: var(--white); }
     .evidence-band .proof-card { padding: 12px 18px; border: 0; border-radius: 0; background: transparent; }
     .evidence-band .proof-card + .proof-card { border-left: 1px solid rgba(17, 17, 17, 0.18); }
+    .evidence-band .proof-card--akpk { align-self: stretch; margin: -6px 0; padding: 18px 22px; border: 1px solid rgba(174, 214, 86, .85); border-radius: 16px; background: rgba(184, 224, 118, .16); box-shadow: 0 8px 22px rgba(17, 17, 17, .06); }
+    .evidence-band .proof-card--akpk .proof-stat { margin-bottom: 8px; font-size: clamp(2.25rem, 6.7vw, 3.9rem); }
     .proof-stat { position: relative; display: block; width: max-content; max-width: 100%; margin-bottom: 6px; overflow: hidden; font-family: var(--serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 400; line-height: 1; color: var(--black); }
     .proof-stat span { display: block; opacity: 0; transform: translateX(-105%); }
     .proof-stat::after { content: ""; position: absolute; inset: 0; background: var(--lime); transform: translateX(-105%); pointer-events: none; }
@@ -3563,8 +3565,8 @@
     body.waitlist-modal-open .mobile-cta-bar,
     body.tpsm-open .mobile-cta-bar { display: none !important; }
 
-    @media (min-width: 761px) { .demo-layout { grid-template-columns: 1fr; } .proof-cards { grid-template-columns: 1fr; } .evidence-band .proof-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } .form-conversion { grid-template-areas: "offer form"; } }
-    @media (max-width: 760px) { .hero-screenshot-stack { height: 290px !important; min-height: 290px !important; margin-top: 0 !important; } .hero-screenshot-stack .hero-shot { width: 86% !important; min-height: 192px; } .hero-visual { min-height: 320px; } .demo-band { padding: 36px 0; } .evidence-band { padding: 8px 0 36px; } .evidence-band h2 { font-size: 1.65rem; } .evidence-band-intro { font-size: 14px; margin-bottom: 18px; } .evidence-band .proof-cards { padding: 10px 12px; border-radius: 20px; } .evidence-band .proof-card { padding: 16px 8px; } .evidence-band .proof-card + .proof-card { border-left: 0; border-top: 1px solid rgba(17, 17, 17, 0.18); } .waitlist-modal { align-items: end; padding: 0; } .waitlist-modal-dialog { width: 100%; max-height: calc(100vh - 12px); border-radius: 24px 24px 0 0; } .waitlist-modal-dialog .form-conversion { padding: 40px 24px 48px; } }
+    @media (min-width: 761px) { .demo-layout { grid-template-columns: 1fr; } .proof-cards { grid-template-columns: 1fr; } .evidence-band .proof-cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr); } .form-conversion { grid-template-areas: "offer form"; } }
+    @media (max-width: 760px) { .hero-screenshot-stack { height: 290px !important; min-height: 290px !important; margin-top: 0 !important; } .hero-screenshot-stack .hero-shot { width: 86% !important; min-height: 192px; } .hero-visual { min-height: 320px; } .demo-band { padding: 36px 0; } .evidence-band { padding: 8px 0 36px; } .evidence-band h2 { font-size: 1.65rem; } .evidence-band-intro { font-size: 14px; margin-bottom: 18px; } .evidence-band .proof-cards { padding: 10px 12px; border-radius: 20px; } .evidence-band .proof-card { padding: 16px 8px; } .evidence-band .proof-card + .proof-card { border-left: 0; border-top: 1px solid rgba(17, 17, 17, 0.18); } .evidence-band .proof-card--akpk { order: -1; margin: 0; padding: 18px 14px; } .evidence-band .proof-card--akpk .proof-stat { font-size: clamp(2.15rem, 11vw, 3.25rem); } .waitlist-modal { align-items: end; padding: 0; } .waitlist-modal-dialog { width: 100%; max-height: calc(100vh - 12px); border-radius: 24px 24px 0 0; } .waitlist-modal-dialog .form-conversion { padding: 40px 24px 48px; } }
     @media (prefers-reduced-motion: reduce) { .hero-screenshot-stack .hero-shot { transition: none; } .lc-orbit, .lc-circle-card { animation: none !important; } .hero-screenshot-stack::after { display: none; } }
   </style>
 
