@@ -2693,7 +2693,15 @@
               <span class="hero-game-browser-url">shop.example / new arrivals</span>
             </div>
             <div class="hero-game-stage">
-              <div class="hero-game-scene" data-game-scene="browse">
+              <div class="hero-game-scene" data-game-scene="start">
+                <div class="hero-game-surface hero-game-start">
+                  <p class="hero-game-scene-kicker">conscious friction</p>
+                  <h3>one pause can change the outcome.</h3>
+                  <p>browse as usual. take a second when it matters.</p>
+                  <button type="button" class="hero-game-primary" data-game-start>start playing →</button>
+                </div>
+              </div>
+              <div class="hero-game-scene" data-game-scene="browse" hidden>
                 <div class="hero-game-store-bar"><p class="hero-game-store-name">the everyday edit</p><p class="hero-game-store-meta">new arrivals · 08</p></div>
                 <div class="hero-game-browser-scroll" id="heroGameShopScroll" tabindex="0" role="region" aria-label="scrollable shop items">
                   <div class="hero-game-store-intro"><h3>things for your next version.</h3><p>take your time. there is no rush to decide.</p></div>
@@ -2708,12 +2716,55 @@
                     <button type="button" class="hero-game-product" data-game-amount="89.00" data-game-product="compact speaker"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><rect class="fill" x="35" y="13" width="50" height="66" rx="9"/><rect x="35" y="13" width="50" height="66" rx="9"/><circle cx="60" cy="50" r="14"/><circle cx="60" cy="50" r="6"/><path d="M48 24h24m-24 44h24"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">compact speaker</span><span class="hero-game-product-row"><strong>$89.00</strong><span class="hero-game-product-rating">★ 4.6</span></span><span class="hero-game-product-badge">giftable</span></span></button>
                   </div>
                 </div>
-                <div class="hero-game-browser-footer"><span>scroll to browse.</span><strong>choose an item →</strong></div>
+                <div class="hero-game-browser-footer"><span>scroll to browse <strong aria-hidden="true">↓</strong></span></div>
               </div>
               <div class="hero-game-scene" data-game-scene="nudge" hidden><div class="hero-game-surface"><p class="hero-game-kicker">a moment before checkout</p><h3>you found something you like.</h3><p>cognoscene makes room for a deliberate decision without taking the decision away.</p><div class="hero-game-nudge"><p class="hero-game-selected">selected: <strong id="heroGameSelectedProduct">everyday overshirt</strong> · <strong id="heroGameSelectedAmount">$64.90</strong></p><div class="hero-game-actions"><button type="button" class="hero-game-button hero-game-button--leave" data-game-leave>leave site<span>soft win</span></button><button type="button" class="hero-game-button hero-game-button--continue" data-game-next="hold">continue</button></div></div></div></div>
-              <div class="hero-game-scene" data-game-scene="hold" hidden><div class="hero-game-surface"><p class="hero-game-kicker">a short pause</p><h3>take a second before deciding.</h3><p>the item is still here. so is your choice.</p><div class="hero-game-pause"><div class="hero-game-pause-top"><strong id="heroGameHoldProduct">everyday overshirt</strong><span class="hero-game-pause-time" id="heroGameHoldTime" aria-live="polite">0:03</span></div><div class="hero-game-progress" aria-hidden="true"><span id="heroGameHoldProgress"></span></div><button type="button" class="hero-game-button hero-game-button--continue" id="heroGameHoldButton" data-game-next="deliberate" disabled>continue when ready →</button></div></div></div>
-              <div class="hero-game-scene" data-game-scene="deliberate" hidden><div class="hero-game-surface"><p class="hero-game-kicker">your decision</p><h3>what feels right now?</h3><p>there is no wrong answer. cognoscene leaves the purchase with you.</p><div class="hero-game-decisions"><button type="button" class="hero-game-button hero-game-button--save hero-game-decision" data-game-save><strong id="heroGameSaveLabel">save $64.90</strong><span>choose not to spend</span></button><button type="button" class="hero-game-button hero-game-button--buy hero-game-decision" data-game-buy><strong>continue purchase</strong><span>keep the item</span></button></div></div></div>
-              <div class="hero-game-scene" data-game-scene="result" hidden><div class="hero-game-surface"><p class="hero-game-kicker" id="heroGameResultLabel">your decision</p><h3 id="heroGameResultTitle">congratulations. you've just saved some money.</h3><p id="heroGameResultCopy">you chose to deliberate before spending.</p><div class="hero-game-dashboard" role="status" aria-live="polite"><div class="hero-game-dashboard-head"><span>your prudence record</span><span>this session</span></div><div class="hero-game-dashboard-metrics"><div class="hero-game-dashboard-metric"><strong id="heroGameSavedTotal">$0.00</strong><span>money not spent</span></div><div class="hero-game-dashboard-metric"><strong id="heroGameRationalised">0</strong><span>deliberated</span></div><div class="hero-game-dashboard-metric"><strong id="heroGameSoftWins">0</strong><span>soft wins</span></div></div><div class="hero-game-dashboard-latest">latest decision<strong id="heroGameLatestDecision">—</strong></div></div><button type="button" class="hero-game-button hero-game-button--continue hero-game-retry" data-game-retry>browse again →</button></div></div>
+              <div class="hero-game-scene" data-game-scene="hold" hidden>
+                <div class="hero-game-surface hero-game-hold">
+                  <div class="hero-game-hold-card">
+                    <p class="hero-game-scene-kicker">checkout pause</p>
+                    <h3>act with prudence — checkout paused.</h3>
+                    <p>the extension gives you time to think. this preview uses three seconds.</p>
+                    <p class="hero-game-selected">selected: <strong id="heroGameHoldProduct">everyday overshirt</strong> · <strong id="heroGameHoldAmount">$64.90</strong></p>
+                    <span class="hero-game-hold-time" id="heroGameHoldTime" aria-live="polite">0:03</span>
+                    <span class="hero-game-hold-caption">pause in progress</span>
+                  </div>
+                  <div class="hero-game-progress" aria-hidden="true"><span id="heroGameHoldProgress"></span></div>
+                  <button type="button" class="hero-game-primary" id="heroGameHoldButton" data-game-next="deliberate" disabled>continue when ready →</button>
+                </div>
+              </div>
+              <div class="hero-game-scene" data-game-scene="deliberate" hidden>
+                <div class="hero-game-surface hero-game-deliberation">
+                  <p class="hero-game-scene-kicker">decision window</p>
+                  <h3>do you still need this?</h3>
+                  <p>if you don’t need it, save the money. if you do, the purchase is still yours.</p>
+                  <div class="hero-game-decisions" id="heroGameDecisionChoices" role="group" aria-label="purchase decision">
+                    <button type="button" class="hero-game-decision hero-game-decision--save" data-game-save><strong id="heroGameSaveLabel">save $64.90</strong><span>if you don’t need it</span></button>
+                    <button type="button" class="hero-game-decision hero-game-decision--buy" data-game-buy><strong>continue purchase</strong><span>if you do</span></button>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-game-scene" data-game-scene="result" hidden>
+                <div class="hero-game-surface hero-game-success">
+                  <p class="hero-game-scene-kicker" id="heroGameResultLabel">your decision</p>
+                  <div class="hero-game-success-mark" id="heroGameSuccessMark" aria-hidden="true">✓</div>
+                  <h3 id="heroGameResultTitle">congratulations. you've just saved some money.</h3>
+                  <p id="heroGameResultCopy">you chose to rationalise your purchase.</p>
+                  <div class="hero-game-total"><span>this round</span><strong id="heroGameRoundAmount">+$64.90</strong></div>
+                  <div class="hero-game-dashboard" id="heroGameDashboard" role="status" aria-live="polite">
+                    <div class="hero-game-dashboard-head"><span>your prudence record</span><span id="heroGameDashboardMessage">this session</span></div>
+                    <div class="hero-game-dashboard-grid">
+                      <div class="hero-game-dashboard-metric"><strong id="heroGameSavedTotal">$0.00</strong><span>money not spent</span></div>
+                      <div class="hero-game-dashboard-metric"><strong id="heroGameRationalised">0</strong><span>rationalised</span></div>
+                      <div class="hero-game-dashboard-metric"><strong id="heroGameSoftWins">0</strong><span>soft wins</span></div>
+                      <div class="hero-game-dashboard-metric"><strong id="heroGameDecisions">0</strong><span>decisions made</span></div>
+                    </div>
+                    <div class="hero-game-dashboard-track" aria-hidden="true"><span id="heroGameDashboardTrack"></span></div>
+                    <div class="hero-game-dashboard-latest"><span>latest decision</span><strong id="heroGameLatestDecision">—</strong></div>
+                  </div>
+                  <button type="button" class="hero-game-primary hero-game-retry" data-game-retry>try again →</button>
+                </div>
+              </div>
             </div>
             <div class="hero-game-confetti" id="heroGameConfetti" aria-hidden="true"></div>
           </section>
@@ -5236,6 +5287,7 @@
       var selectedProductEl = document.getElementById('heroGameSelectedProduct');
       var selectedAmountEl = document.getElementById('heroGameSelectedAmount');
       var holdProductEl = document.getElementById('heroGameHoldProduct');
+      var holdAmountEl = document.getElementById('heroGameHoldAmount');
       var holdTimeEl = document.getElementById('heroGameHoldTime');
       var holdProgressEl = document.getElementById('heroGameHoldProgress');
       var holdButton = document.getElementById('heroGameHoldButton');
@@ -5243,40 +5295,43 @@
       var totalEl = document.getElementById('heroGameSavedTotal');
       var rationalisedEl = document.getElementById('heroGameRationalised');
       var softWinsEl = document.getElementById('heroGameSoftWins');
+      var decisionsEl = document.getElementById('heroGameDecisions');
+      var dashboardTrackEl = document.getElementById('heroGameDashboardTrack');
+      var dashboardMessageEl = document.getElementById('heroGameDashboardMessage');
       var latestDecisionEl = document.getElementById('heroGameLatestDecision');
       var resultLabel = document.getElementById('heroGameResultLabel');
       var resultTitle = document.getElementById('heroGameResultTitle');
       var resultCopy = document.getElementById('heroGameResultCopy');
+      var roundAmountEl = document.getElementById('heroGameRoundAmount');
+      var resultMark = document.getElementById('heroGameSuccessMark');
       var saveDecision = game.querySelector('[data-game-save]');
       var buyDecision = game.querySelector('[data-game-buy]');
       var confetti = document.getElementById('heroGameConfetti');
       var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       var holdTimer = null;
-      var flickerTimer = null;
       var confettiTimer = null;
       var roundAmount = 64.90;
       var selectedProduct = 'everyday overshirt';
       var savedTotal = 0;
       var rationalised = 0;
       var softWins = 0;
+      var decisions = 0;
 
       function money(value) { return '$' + Number(value).toFixed(2); }
 
       function stopTimers() {
         if (holdTimer) window.clearInterval(holdTimer);
-        if (flickerTimer) window.clearInterval(flickerTimer);
         holdTimer = null;
-        flickerTimer = null;
-        [saveDecision, buyDecision].forEach(function(button) {
-          if (button) button.classList.remove('is-flicker');
-        });
       }
 
-      function updateDashboard(latest) {
+      function updateDashboard(latest, message) {
         if (totalEl) totalEl.textContent = money(savedTotal);
         if (rationalisedEl) rationalisedEl.textContent = String(rationalised);
         if (softWinsEl) softWinsEl.textContent = String(softWins);
+        if (decisionsEl) decisionsEl.textContent = String(decisions);
+        if (dashboardMessageEl && message) dashboardMessageEl.textContent = message;
         if (latestDecisionEl && latest) latestDecisionEl.textContent = latest;
+        if (dashboardTrackEl) dashboardTrackEl.style.width = Math.min(100, decisions * 18) + '%';
       }
 
       function setScene(name) {
@@ -5286,7 +5341,6 @@
           scene.hidden = !active;
         });
         if (name === 'hold') startHold();
-        if (name === 'deliberate') startFlicker();
       }
 
       function setProduct(button) {
@@ -5297,6 +5351,7 @@
         if (selectedProductEl) selectedProductEl.textContent = selectedProduct;
         if (selectedAmountEl) selectedAmountEl.textContent = money(roundAmount);
         if (holdProductEl) holdProductEl.textContent = selectedProduct;
+        if (holdAmountEl) holdAmountEl.textContent = money(roundAmount);
         if (saveLabel) saveLabel.textContent = 'save ' + money(roundAmount);
         setScene('nudge');
       }
@@ -5319,18 +5374,6 @@
             if (holdButton) holdButton.disabled = false;
           }
         }, 80);
-      }
-
-      function startFlicker() {
-        if (!saveDecision || !buyDecision) return;
-        var options = [saveDecision, buyDecision];
-        var index = 0;
-        function step() {
-          options.forEach(function(option, optionIndex) { option.classList.toggle('is-flicker', optionIndex === index); });
-          index = (index + 1) % options.length;
-        }
-        step();
-        if (!reducedMotion.matches) flickerTimer = window.setInterval(step, 700);
       }
 
       function buildConfetti() {
@@ -5358,34 +5401,44 @@
         if (kind === 'save') {
           savedTotal = Math.round((savedTotal + roundAmount) * 100) / 100;
           rationalised += 1;
+          decisions += 1;
+          if (resultMark) resultMark.textContent = '✓';
           if (resultLabel) resultLabel.textContent = 'your decision';
           if (resultTitle) resultTitle.textContent = "congratulations. you've just saved some money.";
-          if (resultCopy) resultCopy.textContent = 'you chose to deliberate before spending.';
-          updateDashboard('saved ' + money(roundAmount));
+          if (resultCopy) resultCopy.textContent = 'you chose to rationalise your purchase.';
+          if (roundAmountEl) roundAmountEl.textContent = '+' + money(roundAmount);
+          updateDashboard('saved ' + money(roundAmount), 'a rationalised purchase');
           setScene('result');
           celebrate();
           return;
         }
         if (kind === 'leave') {
           softWins += 1;
+          decisions += 1;
+          if (resultMark) resultMark.textContent = '↗';
           if (resultLabel) resultLabel.textContent = 'a soft win';
           if (resultTitle) resultTitle.textContent = 'you chose to step away.';
           if (resultCopy) resultCopy.textContent = 'a little space can make a decision clearer. that counts.';
-          updateDashboard('left site');
+          if (roundAmountEl) roundAmountEl.textContent = '+$0.00';
+          updateDashboard('left site', 'a soft win');
           setScene('result');
           celebrate();
           return;
         }
+        decisions += 1;
+        if (resultMark) resultMark.textContent = '→';
         if (resultLabel) resultLabel.textContent = 'your decision';
         if (resultTitle) resultTitle.textContent = 'you chose to continue the purchase.';
         if (resultCopy) resultCopy.textContent = 'the decision stayed with you. try again whenever you are ready.';
-        updateDashboard('continued purchase');
+        if (roundAmountEl) roundAmountEl.textContent = '+$0.00';
+        updateDashboard('continued purchase', 'a completed purchase decision');
         setScene('result');
       }
 
       game.addEventListener('click', function(event) {
         var target = event.target;
         if (!(target instanceof Element)) return;
+        if (target.closest('[data-game-start]')) { setScene('browse'); return; }
         var product = target.closest('[data-game-amount]');
         if (product) { setProduct(product); return; }
         if (target.closest('[data-game-leave]')) { finish('leave'); return; }
@@ -5393,7 +5446,7 @@
         if (target.closest('[data-game-buy]')) { finish('buy'); return; }
         if (target.closest('[data-game-retry]')) {
           if (shopScroll) shopScroll.scrollTop = 0;
-          setScene('browse');
+          setScene('start');
           return;
         }
         var next = target.closest('[data-game-next]');
@@ -5401,7 +5454,7 @@
       });
 
       buildConfetti();
-      updateDashboard('—');
+      updateDashboard('—', 'this session');
     })();
   </script>
 
@@ -6019,6 +6072,64 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-game-scene, .hero-game-confetti.is-burst i { animation: none; }
       .hero-game-product, .hero-game-button { transition: none; }
+    }
+  </style>
+
+  <style>
+    /* Batch E — start/retry menu, restored pause/result treatment, and quiet browser chrome. */
+    .hero-game { border: 0; box-shadow: none; }
+    .hero-game-browser-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+    .hero-game-browser-scroll::-webkit-scrollbar { display: none; }
+    .hero-game-browser-footer { justify-content: center; text-align: center; }
+    .hero-game-browser-footer strong { display: inline-block; margin-left: 5px; font-size: 16px; line-height: .7; vertical-align: -2px; }
+    .hero-game-scene-kicker { margin: 0 0 9px !important; color: var(--muted) !important; font: 800 10px/1.1 var(--sans) !important; letter-spacing: .12em; text-transform: uppercase; }
+    .hero-game-primary { min-height: 44px; padding: 11px 14px; border: 1px solid var(--black); border-radius: 12px; background: var(--black); color: var(--lime); font: 800 10px/1.15 var(--sans); cursor: pointer; transition: transform .16s ease, box-shadow .16s ease; }
+    .hero-game-primary:hover, .hero-game-primary:focus-visible { outline: none; box-shadow: 0 3px 0 rgba(17,17,17,.2); transform: translateY(-1px); }
+    .hero-game-primary:disabled { cursor: wait; opacity: .42; transform: none; }
+    .hero-game-start { align-items: flex-start; justify-content: center; }
+    .hero-game-start h3 { max-width: 400px; }
+    .hero-game-start > p:not(.hero-game-scene-kicker) { margin-bottom: 22px; }
+    .hero-game-hold { align-items: center; text-align: center; }
+    .hero-game-hold-card { width: min(100%, 330px); margin: 0 auto 18px; padding: 18px; border: 1px solid var(--line); border-radius: 15px; background: #f5f2e9; }
+    .hero-game-hold-card h3 { max-width: none; margin-bottom: 6px; font-size: 25px; }
+    .hero-game-hold-card > p:not(.hero-game-scene-kicker):not(.hero-game-selected) { margin: 0 auto 14px; color: var(--mid); font: 500 12px/1.4 var(--sans); }
+    .hero-game-selected { margin: 0 auto 15px !important; color: var(--muted) !important; font: 800 10px/1.1 var(--sans) !important; letter-spacing: .08em; text-transform: uppercase; }
+    .hero-game-selected strong { color: var(--black); }
+    .hero-game-hold-time { display: block; margin-bottom: 5px; font: 800 clamp(2rem, 6vw, 3.1rem)/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+    .hero-game-hold-caption { display: block; color: var(--muted); font: 600 10px/1.2 var(--sans); }
+    .hero-game-hold .hero-game-progress { width: min(100%, 330px); height: 5px; margin: 0 auto 16px; }
+    .hero-game-hold .hero-game-primary { width: min(100%, 330px); }
+    .hero-game-deliberation { align-items: center; text-align: center; }
+    .hero-game-deliberation h3 { max-width: 370px; margin-inline: auto; }
+    .hero-game-deliberation > p:not(.hero-game-scene-kicker) { max-width: 380px; }
+    .hero-game-decision { min-height: 82px; padding: 15px 12px; border: 1px solid var(--black); border-radius: 12px; font: 800 10px/1.15 var(--sans); cursor: pointer; text-align: left; transition: transform .16s ease, box-shadow .16s ease; }
+    .hero-game-decision:hover, .hero-game-decision:focus-visible { outline: none; box-shadow: 0 3px 0 rgba(17,17,17,.2); transform: translateY(-1px); }
+    .hero-game-decision strong { display: block; font-size: 13px; }
+    .hero-game-decision span { display: block; margin-top: 4px; color: inherit; font-size: 9px; font-weight: 600; opacity: .72; }
+    .hero-game-decision.is-flicker { box-shadow: none; transform: none; }
+    .hero-game-success { align-items: center; text-align: center; }
+    .hero-game-success-mark { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 14px; border: 2px solid var(--black); border-radius: 50%; background: var(--lime); font: 800 28px/1 var(--sans); }
+    .hero-game-success h3 { max-width: 380px; margin-inline: auto; }
+    .hero-game-success > p:not(.hero-game-scene-kicker) { max-width: 360px; margin-inline: auto; }
+    .hero-game-total { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin: 4px 0 18px; }
+    .hero-game-total span { color: var(--muted); font: 800 10px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+    .hero-game-total strong { font: 800 22px/1 var(--sans); font-variant-numeric: tabular-nums; }
+    .hero-game-dashboard { width: min(100%, 420px); margin: 4px auto 16px; padding: 13px 14px 14px; border: 1px solid var(--black); border-radius: 15px; background: #f5f2e9; text-align: left; }
+    .hero-game-dashboard-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 11px; padding: 0; border: 0; }
+    .hero-game-dashboard-head span:first-child { color: var(--black); font: 800 10px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+    .hero-game-dashboard-head span:last-child { color: var(--muted); font: 600 9px/1 var(--sans); letter-spacing: 0; }
+    .hero-game-dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .hero-game-dashboard-metric { padding: 9px 0 0; border: 0; border-top: 1px solid var(--line); }
+    .hero-game-dashboard-metric strong { display: block; margin-bottom: 3px; font: 800 19px/1 var(--sans); font-variant-numeric: tabular-nums; }
+    .hero-game-dashboard-metric span { color: var(--muted); font: 600 9px/1.2 var(--sans); }
+    .hero-game-dashboard-track { height: 5px; margin-top: 13px; overflow: hidden; border-radius: 999px; background: var(--line); }
+    .hero-game-dashboard-track span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--green); transition: width .3s ease; }
+    .hero-game-dashboard-latest { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 10px; padding: 9px 0 0; border-top: 1px solid var(--line); color: var(--muted); font: 600 9px/1.2 var(--sans); }
+    .hero-game-dashboard-latest strong { color: var(--black); font-weight: 800; text-align: right; }
+    .hero-game-retry { width: min(100%, 420px); }
+    @media (max-width: 760px) {
+      .hero-game-start { padding: 20px; }
+      .hero-game-dashboard { width: 100%; }
     }
   </style>
 
