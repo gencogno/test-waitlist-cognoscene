@@ -2724,9 +2724,9 @@
                   <div class="hero-game-hold-card">
                     <p class="hero-game-scene-kicker">checkout pause</p>
                     <h3>act with prudence — checkout paused.</h3>
-                    <p>the extension gives you time to think. this preview uses three seconds.</p>
+                    <p>the extension gives you time to think. this preview uses fifteen seconds.</p>
                     <p class="hero-game-selected">selected: <strong id="heroGameHoldProduct">everyday overshirt</strong> · <strong id="heroGameHoldAmount">$64.90</strong></p>
-                    <span class="hero-game-hold-time" id="heroGameHoldTime" aria-live="polite">0:03</span>
+                    <span class="hero-game-hold-time" id="heroGameHoldTime" aria-live="polite">0:15</span>
                     <span class="hero-game-hold-caption">pause in progress</span>
                   </div>
                   <div class="hero-game-progress" aria-hidden="true"><span id="heroGameHoldProgress"></span></div>
@@ -5357,16 +5357,16 @@
       }
 
       function startHold() {
-        var duration = 3000;
+        var duration = 15000;
         var started = Date.now();
         if (holdButton) holdButton.disabled = true;
         if (holdProgressEl) holdProgressEl.style.width = '0%';
-        if (holdTimeEl) holdTimeEl.textContent = '0:03';
+        if (holdTimeEl) holdTimeEl.textContent = '0:15';
         holdTimer = window.setInterval(function() {
           var elapsed = Math.min(duration, Date.now() - started);
           var remaining = Math.max(0, Math.ceil((duration - elapsed) / 1000));
           if (holdProgressEl) holdProgressEl.style.width = ((elapsed / duration) * 100) + '%';
-          if (holdTimeEl) holdTimeEl.textContent = '0:0' + remaining;
+          if (holdTimeEl) holdTimeEl.textContent = remaining < 10 ? '0:0' + remaining : '0:' + remaining;
           if (elapsed >= duration) {
             window.clearInterval(holdTimer);
             holdTimer = null;
@@ -6106,6 +6106,10 @@
     .hero-game-decision:hover, .hero-game-decision:focus-visible { outline: none; box-shadow: 0 3px 0 rgba(17,17,17,.2); transform: translateY(-1px); }
     .hero-game-decision strong { display: block; font-size: 13px; }
     .hero-game-decision span { display: block; margin-top: 4px; color: inherit; font-size: 9px; font-weight: 600; opacity: .72; }
+    .hero-game-actions .hero-game-button--leave { background: var(--black); color: var(--lime); }
+    .hero-game-actions .hero-game-button--continue { background: var(--cream); color: var(--black); }
+    .hero-game-decision--save { background: var(--black); color: var(--lime); }
+    .hero-game-decision--buy { background: var(--cream); color: var(--black); }
     .hero-game-decision.is-flicker { box-shadow: none; transform: none; }
     .hero-game-success { align-items: center; text-align: center; }
     .hero-game-success-mark { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 14px; border: 2px solid var(--black); border-radius: 50%; background: var(--lime); font: 800 28px/1 var(--sans); }
