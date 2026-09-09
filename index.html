@@ -2678,7 +2678,7 @@
           <section class="hero-game" id="heroGame" aria-label="interactive conscious friction experience">
             <div class="hero-game-browser-head" aria-hidden="true">
               <span class="hero-game-browser-dots"><i></i><i></i><i></i></span>
-              <span class="hero-game-browser-url">shop.ongoc.example / new arrivals</span>
+              <span class="hero-game-browser-url">shop.ongoc / new arrivals</span>
             </div>
             <div class="hero-game-stage">
               <div class="hero-game-scene" data-game-scene="start">
@@ -6421,8 +6421,12 @@
     .hero-game-primary:hover, .hero-game-primary:focus-visible { outline: none; box-shadow: 0 3px 0 rgba(17,17,17,.2); transform: translateY(-1px); }
     .hero-game-primary:disabled { cursor: wait; opacity: .42; transform: none; }
     .hero-game-start { align-items: flex-start; justify-content: center; }
-    .hero-game-start h3 { max-width: 400px; }
+    .hero-game-start { position: relative; background: #e2d9c9; }
+    .hero-game-start h3 { max-width: 400px; font-size: clamp(32px, 5vw, 42px); }
+    .hero-game-start .hero-game-scene-kicker { display: inline-block; margin-bottom: 14px !important; padding: 6px 8px; border-radius: 4px; background: var(--black); color: var(--cream) !important; }
     .hero-game-start > p:not(.hero-game-scene-kicker) { margin-bottom: 22px; }
+    .hero-game-start .hero-game-primary { min-width: 166px; background: var(--black); color: var(--cream); box-shadow: 5px 5px 0 #b9ad98; }
+    .hero-game-start .hero-game-primary:hover, .hero-game-start .hero-game-primary:focus-visible { box-shadow: 7px 7px 0 #b9ad98; }
     .hero-game-hold { align-items: center; text-align: center; }
     .hero-game-hold-card { width: min(100%, 330px); margin: 0 auto 18px; padding: 18px; border: 1px solid var(--line); border-radius: 15px; background: #f5f2e9; }
     .hero-game-hold-card h3 { max-width: none; margin-bottom: 6px; font-size: 25px; }
