@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cognoscene — exact game state reference</title>
+  <style>
+    :root { color-scheme: light; --paper: #f4f2ea; --ink: #111; --muted: #6e6d65; --line: #c8c5b8; --panel: #fffdf7; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 28px; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+    header, .board { max-width: 1160px; margin-inline: auto; }
+    h1 { margin: 0 0 7px; font-size: 28px; font-weight: 700; letter-spacing: -.05em; }
+    header p { max-width: 690px; margin: 0 0 22px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .board { display: grid; grid-template-columns: repeat(2, minmax(0, 560px)); justify-content: center; gap: 24px 18px; }
+    .state { min-width: 0; }
+    .state-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 0 8px; }
+    .state-head strong { font-size: 13px; letter-spacing: .03em; }
+    .state-head span { color: var(--muted); font-size: 11px; text-align: right; }
+    .frame-wrap { position: relative; width: 100%; min-height: 430px; overflow: hidden; border: 1px solid var(--ink); border-radius: 24px; background: var(--panel); box-shadow: 8px 8px 0 rgba(17,17,17,.08); transition: height .16s ease; }
+    iframe { display: block; width: 100%; min-height: 430px; border: 0; visibility: hidden; background: var(--panel); }
+    .loading { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); font-size: 12px; }
+    .state.is-ready iframe { visibility: visible; }
+    .state.is-ready .loading { display: none; }
+    .note { grid-column: 1 / -1; margin: 0; padding: 12px 14px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .note strong { color: var(--ink); }
+    @media (max-width: 900px) {
+      body { padding: 18px 12px; }
+      .board { grid-template-columns: minmax(0, 560px); }
+      h1 { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>exact game state reference</h1>
+    <p>All current, reachable game states are shown below. Each panel is the live game implementation driven to that state; no card has been redrawn.</p>
+  </header>
+  <main class="board" id="board" aria-label="Exact Cognoscene game state board"></main>
+
+  <script>
+    (function () {
+      var board = document.getElementById('board');
+      var wait = function (ms) { return new Promise(function (resolve) { window.setTimeout(resolve, ms); }); };
+      var states = [
+        { id: 'A', title: 'Start menu', trigger: 'entry', actions: [] },
+        { id: 'B0', title: 'Shop — empty', trigger: 'A → start playing', actions: ['start'] },
+        { id: 'B1', title: 'Shop — one item', trigger: 'B0 → add first item', actions: ['start', 'first'] },
+        { id: 'C1', title: 'Observer — first pause', trigger: 'B1 → add second item', actions: ['start', 'first', 'second'] },
+        { id: 'B2', title: 'Shop — continue browsing', trigger: 'C1 → continue browsing', actions: ['start', 'first', 'second', 'observer-continue'] },
+        { id: 'C2', title: 'Observer — second pause', trigger: 'B2 → add third + fourth', actions: ['start', 'first', 'second', 'observer-continue', 'third', 'fourth'] },
+        { id: 'D', title: 'Cart — open', trigger: 'B2 → cart', actions: ['start', 'first', 'second', 'observer-continue', 'cart'] },
+        { id: 'E1', title: 'Pause — 15 seconds running', trigger: 'D → checkout', actions: ['start', 'first', 'second', 'observer-continue', 'cart', 'checkout'] },
+        { id: 'E2', title: 'Pause — complete', trigger: 'E1 → 0:00', actions: ['start', 'first', 'second', 'observer-continue', 'cart', 'checkout', 'pause-complete'] },
+        { id: 'F', title: 'Decision window', trigger: 'E2 → continue when ready', actions: ['start', 'first', 'second', 'observer-continue', 'cart', 'checkout', 'pause-complete', 'ready'] },
+        { id: 'G1', title: 'Result — saved', trigger: 'F → save', actions: ['start', 'first', 'second', 'observer-continue', 'cart', 'checkout', 'pause-complete', 'ready', 'save'] },
+        { id: 'G2', title: 'Result — purchase continued', trigger: 'F → continue purchase', actions: ['start', 'first', 'second', 'observer-continue', 'cart', 'checkout', 'pause-complete', 'ready', 'buy'] },
+        { id: 'G3', title: 'Result — soft win', trigger: 'C1 → leave site', actions: ['start', 'first', 'second', 'leave'] }
+      ];
+
+      function makeState(state) {
+        var section = document.createElement('section');
+        section.className = 'state';
+        section.innerHTML = '<div class="state-head"><strong>' + state.id + ' · ' + state.title + '</strong><span>' + state.trigger + '</span></div><div class="frame-wrap"><p class="loading">loading exact state…</p><iframe title="' + state.id + ' exact game state" loading="eager"></iframe></div>';
+        board.appendChild(section);
+        return { section: section, frame: section.querySelector('iframe'), wrap: section.querySelector('.frame-wrap') };
+      }
+
+      function isolate(doc) {
+        var game = doc.getElementById('heroGame');
+        if (!game) return null;
+        Array.prototype.slice.call(doc.querySelectorAll('style')).forEach(function (style) {
+          if (style.parentNode !== doc.head) doc.head.appendChild(style.cloneNode(true));
+        });
+        doc.body.innerHTML = '';
+        doc.body.appendChild(game);
+        doc.body.style.margin = '0';
+        doc.body.style.padding = '0';
+        doc.body.style.background = 'transparent';
+        game.style.display = 'block';
+        game.style.width = '100%';
+        game.style.maxWidth = '560px';
+        game.style.margin = '0';
+        game.style.borderRadius = '0';
+        game.style.boxShadow = 'none';
+        return game;
+      }
+
+      function click(doc, selector) {
+        var element = doc.querySelector(selector);
+        if (element) element.click();
+      }
+
+      async function drive(card, state) {
+        var doc = card.frame.contentDocument;
+        var game = isolate(doc);
+        if (!game) return;
+        await wait(80);
+        for (var index = 0; index < state.actions.length; index += 1) {
+          var action = state.actions[index];
+          if (action === 'start') click(doc, '[data-game-start]');
+          if (action === 'first') click(doc, '[data-game-product-id="everyday-overshirt"]');
+          if (action === 'second') click(doc, '[data-game-product-id="weekend-knit"]');
+          if (action === 'third') click(doc, '[data-game-product-id="limited-layer"]');
+          if (action === 'fourth') click(doc, '[data-game-product-id="daily-carry-bottle"]');
+          if (action === 'observer-continue') click(doc, '[data-game-observer-continue]');
+          if (action === 'cart') click(doc, '[data-game-cart-toggle]');
+          if (action === 'checkout') click(doc, '[data-game-checkout]');
+          if (action === 'pause-complete') {
+            await wait(100);
+            var time = doc.getElementById('heroGameHoldTime');
+            var progress = doc.getElementById('heroGameHoldProgress');
+            var holdButton = doc.getElementById('heroGameHoldButton');
+            if (time) time.textContent = '0:00';
+            if (progress) progress.style.width = '100%';
+            if (holdButton) holdButton.disabled = false;
+          }
+          if (action === 'ready') click(doc, '[data-game-next="deliberate"]');
+          if (action === 'save') click(doc, '[data-game-save]');
+          if (action === 'buy') click(doc, '[data-game-buy]');
+          if (action === 'leave') click(doc, '[data-game-leave]');
+          await wait(120);
+        }
+        await wait(60);
+        var height = Math.ceil(game.getBoundingClientRect().height);
+        card.frame.style.height = height + 'px';
+        card.wrap.style.height = height + 'px';
+        card.section.classList.add('is-ready');
+      }
+
+      states.forEach(function (state) {
+        var card = makeState(state);
+        card.frame.addEventListener('load', function () { drive(card, state); }, { once: true });
+        card.frame.src = 'index.html?review=' + encodeURIComponent(state.id) + '&v=' + Date.now();
+      });
+
+      var note = document.createElement('p');
+      note.className = 'note';
+      note.innerHTML = '<strong>Flow:</strong> A → B0 → B1 → C1 → B2 → C2 or D → E1 → E2 → F → G1/G2. C1 can also branch directly to G3. Retry returns to A. The old single-item nudge is excluded because it is unreachable in the current cart flow.';
+      board.appendChild(note);
+    }());
+  </script>
+</body>
+</html>

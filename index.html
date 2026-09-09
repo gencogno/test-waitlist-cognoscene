@@ -2678,40 +2678,55 @@
           <section class="hero-game" id="heroGame" aria-label="interactive conscious friction experience">
             <div class="hero-game-browser-head" aria-hidden="true">
               <span class="hero-game-browser-dots"><i></i><i></i><i></i></span>
-              <span class="hero-game-browser-url">shop.example / new arrivals</span>
+              <span class="hero-game-browser-url">shop.ongoc.example / new arrivals</span>
             </div>
             <div class="hero-game-stage">
               <div class="hero-game-scene" data-game-scene="start">
                 <div class="hero-game-surface hero-game-start">
-                  <p class="hero-game-scene-kicker">conscious friction</p>
-                  <h3>one pause can change the outcome.</h3>
-                  <p>browse as usual. take a second when it matters.</p>
-                  <button type="button" class="hero-game-primary" data-game-start>start playing →</button>
+                  <p class="hero-game-scene-kicker" id="heroGameStartKicker">mini-game</p>
+                  <h3 id="heroGameStartTitle">explore how you build prudence with cognoscene.</h3>
+                  <p id="heroGameStartCopy">one pause can change the outcome.</p>
+                  <button type="button" class="hero-game-primary" data-game-start id="heroGameStartButton">start playing →</button>
                 </div>
               </div>
               <div class="hero-game-scene" data-game-scene="browse" hidden>
                 <div class="hero-game-store-bar">
-                  <div class="hero-game-store-heading"><p class="hero-game-store-name">the everyday edit</p><p class="hero-game-store-meta">new arrivals · 08</p></div>
-                  <button type="button" class="hero-game-cart-toggle" data-game-cart-toggle aria-expanded="false" aria-controls="heroGameCart"><span>cart</span><strong id="heroGameCartCount">0</strong><em id="heroGameCartTotal">$0.00</em></button>
+                  <div class="hero-game-store-heading"><p class="hero-game-store-name">ongoc</p><p class="hero-game-store-meta">new arrivals · 08</p></div>
+                  <button type="button" class="hero-game-cart-toggle" data-game-cart-toggle aria-expanded="false" aria-controls="heroGameCart" aria-label="cart"><span>cart</span></button>
                 </div>
                 <div class="hero-game-cart" id="heroGameCart" hidden>
                   <div class="hero-game-cart-head"><span>your cart</span><strong id="heroGameCartSummary">$0.00</strong></div>
                   <div class="hero-game-cart-items" id="heroGameCartItems"></div>
+                  <div class="hero-game-cart-actions">
+                    <button type="button" class="hero-game-button hero-game-button--continue" data-game-cart-toggle>continue shopping</button>
+                    <button type="button" class="hero-game-primary" data-game-checkout disabled>proceed to checkout →</button>
+                  </div>
                 </div>
                 <div class="hero-game-browser-scroll" id="heroGameShopScroll" tabindex="0" role="region" aria-label="scrollable shop items">
                   <div class="hero-game-store-intro"><h3>things for your next version.</h3><p>take your time. there is no rush to decide.</p></div>
                   <div class="hero-game-feed">
-                    <button type="button" class="hero-game-product" data-game-amount="64.90" data-game-product-id="everyday-overshirt" data-game-product="everyday overshirt" aria-label="add everyday overshirt to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M43 19 60 9l17 10 18 17-11 19-9-7v31H45V48l-9 7-11-19z"/><path d="M43 19 60 30l17-11M60 30v49M45 48h30M52 19l-3 60m22-60 3 60"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">everyday overshirt</span><span class="hero-game-product-row"><strong>$64.90</strong><span class="hero-game-product-rating">★ 4.8</span></span><span class="hero-game-product-badge">just in</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
+                    <button type="button" class="hero-game-product" data-game-amount="64.90" data-game-product-id="everyday-overshirt" data-game-product="everyday overshirt" aria-label="add everyday overshirt to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M43 19 60 9l17 10 18 17-11 19-9-7v31H45V48l-9 7-11-19z"/><path d="M43 19 60 30l17-11M60 30v49M45 48h30M52 19l-3 60m22-60 3 60M60 30v49"/><path d="M54 42h12m-12 9h12m-12 9h12"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">everyday overshirt</span><span class="hero-game-product-row"><span><del>$84.90</del> <strong>$64.90</strong></span><span class="hero-game-product-rating">★ 4.8</span></span><span class="hero-game-product-badge">sale · only 4 left</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
                     <button type="button" class="hero-game-product" data-game-amount="42.00" data-game-product-id="weekend-knit" data-game-product="weekend knit" aria-label="add weekend knit to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M45 17 60 9l15 8 20 15-11 22-10-7v32H46V47l-10 7-11-22z"/><path d="M45 17 60 27l15-10M60 27v52M46 47h28M51 18l-2 61m20-61 2 61"/><path d="M49 37h22m-22 10h22m-22 10h22"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">weekend knit</span><span class="hero-game-product-row"><strong>$42.00</strong><span class="hero-game-product-rating">★ 4.6</span></span><span class="hero-game-product-badge">soft texture</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
-                    <button type="button" class="hero-game-product" data-game-amount="78.49" data-game-product-id="limited-layer" data-game-product="limited layer" aria-label="add limited layer to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M44 18 60 9l16 9 17 17-10 20-9-7v31H46V48l-9 7-10-20z"/><path d="M44 18 60 29l16-11M60 29v50M46 48h28M45 35l15 8 15-8"/><path d="M51 19v60m18-60v60"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">limited layer</span><span class="hero-game-product-row"><strong>$78.49</strong><span class="hero-game-product-rating">★ 4.9</span></span><span class="hero-game-product-badge">low stock</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
-                    <button type="button" class="hero-game-product" data-game-amount="24.90" data-game-product-id="daily-carry-bottle" data-game-product="daily carry bottle" aria-label="add daily carry bottle to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M48 19h24l-3 12v47H51V31z"/><path d="M48 19h24m-3 12H51m9-12V9m-8 34h16m-16 13h16"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">daily carry bottle</span><span class="hero-game-product-row"><strong>$24.90</strong><span class="hero-game-product-rating">★ 4.7</span></span><span class="hero-game-product-badge">best seller</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
-                    <button type="button" class="hero-game-product" data-game-amount="31.50" data-game-product-id="weekend-cap" data-game-product="weekend cap" aria-label="add weekend cap to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M35 49c1-25 14-35 31-35 14 0 26 10 28 33l-28 8z"/><path d="M35 49c1-25 14-35 31-35 14 0 26 10 28 33M35 49l31 6 28-8M46 42c10 5 20 5 30 0"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">weekend cap</span><span class="hero-game-product-row"><strong>$31.50</strong><span class="hero-game-product-rating">★ 4.5</span></span><span class="hero-game-product-badge">easy add-on</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
-                    <button type="button" class="hero-game-product" data-game-amount="96.00" data-game-product-id="soft-glow-lamp" data-game-product="soft glow lamp" aria-label="add soft glow lamp to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M38 47 48 19h24l10 28z"/><path d="M38 47h44M48 19h24M60 47v25m-16 7h32m-21-7h10"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">soft glow lamp</span><span class="hero-game-product-row"><strong>$96.00</strong><span class="hero-game-product-rating">★ 4.4</span></span><span class="hero-game-product-badge">home edit</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
-                    <button type="button" class="hero-game-product" data-game-amount="58.00" data-game-product-id="cotton-cardigan" data-game-product="cotton cardigan" aria-label="add cotton cardigan to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M44 18 60 9l16 9 17 17-10 20-9-7v31H46V48l-9 7-10-20z"/><path d="M44 18 60 29l16-11M60 29v50M46 48h28M52 20v59m16-59v59"/><path d="M54 39h12m-12 11h12m-12 11h12"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">cotton cardigan</span><span class="hero-game-product-row"><strong>$58.00</strong><span class="hero-game-product-rating">★ 4.8</span></span><span class="hero-game-product-badge">new colour</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
-                    <button type="button" class="hero-game-product" data-game-amount="89.00" data-game-product-id="compact-speaker" data-game-product="compact speaker" aria-label="add compact speaker to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><rect class="fill" x="35" y="13" width="50" height="66" rx="9"/><rect x="35" y="13" width="50" height="66" rx="9"/><circle cx="60" cy="50" r="14"/><circle cx="60" cy="50" r="6"/><path d="M48 24h24m-24 44h24"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">compact speaker</span><span class="hero-game-product-row"><strong>$89.00</strong><span class="hero-game-product-rating">★ 4.6</span></span><span class="hero-game-product-badge">giftable</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
+                    <button type="button" class="hero-game-product" data-game-amount="78.49" data-game-product-id="limited-layer" data-game-product="limited layer" aria-label="add limited layer to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M44 18 60 9l16 9 17 17-10 20-9-7v31H46V48l-9 7-10-20z"/><path d="M44 18 60 29l16-11M60 29v50M46 48h28M45 35l15 8 15-8M51 19v60m18-60v60"/><path d="M54 42h12m-12 9h12"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">limited layer</span><span class="hero-game-product-row"><span><del>$96.00</del> <strong>$78.49</strong></span><span class="hero-game-product-rating">★ 4.9</span></span><span class="hero-game-product-badge">sale · only 2 left</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
+                    <button type="button" class="hero-game-product" data-game-amount="54.00" data-game-product-id="linen-shirt" data-game-product="linen shirt" aria-label="add linen shirt to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M45 17 60 9l15 8 18 17-10 20-9-7v32H46V47l-10 7-10-20z"/><path d="M45 17 60 28l15-11M60 28v51M46 47h28M54 20l6 8 6-8M52 35h16m-8-7v51M52 44h16m-16 10h16"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">linen shirt</span><span class="hero-game-product-row"><strong>$54.00</strong><span class="hero-game-product-rating">★ 4.7</span></span><span class="hero-game-product-badge">only 5 left</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
+                    <button type="button" class="hero-game-product" data-game-amount="31.50" data-game-product-id="weekend-cap" data-game-product="weekend cap" aria-label="add weekend cap to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M35 49c1-25 14-35 31-35 14 0 26 10 28 33l-28 8z"/><path d="M35 49c1-25 14-35 31-35 14 0 26 10 28 33M35 49l31 6 28-8M46 42c10 5 20 5 30 0M44 31c8 4 17 5 27 1"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">weekend cap</span><span class="hero-game-product-row"><strong>$31.50</strong><span class="hero-game-product-rating">★ 4.5</span></span><span class="hero-game-product-badge">easy add-on</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
+                    <button type="button" class="hero-game-product" data-game-amount="58.00" data-game-product-id="cotton-cardigan" data-game-product="cotton cardigan" aria-label="add cotton cardigan to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M44 18 60 9l16 9 17 17-10 20-9-7v31H46V48l-9 7-10-20z"/><path d="M44 18 60 29l16-11M60 29v50M46 48h28M52 20v59m16-59v59M54 39h12m-12 11h12m-12 11h12"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">cotton cardigan</span><span class="hero-game-product-row"><strong>$58.00</strong><span class="hero-game-product-rating">★ 4.8</span></span><span class="hero-game-product-badge">only 3 left</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
+                    <button type="button" class="hero-game-product" data-game-amount="72.00" data-game-product-id="relaxed-trouser" data-game-product="relaxed trouser" aria-label="add relaxed trouser to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M42 12h36l5 28-12 42H57L52 50 47 82H33l12-42z"/><path d="M42 12h36M45 40h30M52 13l8 10 8-10M52 50l5 32m11-32-6 32M38 73h17m12 0h13"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">relaxed trouser</span><span class="hero-game-product-row"><span><del>$92.00</del> <strong>$72.00</strong></span><span class="hero-game-product-rating">★ 4.6</span></span><span class="hero-game-product-badge">sale · only 6 left</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
+                    <button type="button" class="hero-game-product" data-game-amount="49.00" data-game-product-id="denim-skirt" data-game-product="denim skirt" aria-label="add denim skirt to cart"><span class="hero-game-product-art"><svg viewBox="0 0 120 90" aria-hidden="true"><path class="fill" d="M48 12h24l3 22 13 45H32l13-45z"/><path d="M48 12h24m-12 0v22m-15 0h30M43 52h34M40 64h40M48 12h24l3 22 13 45H32l13-45z"/></svg></span><span class="hero-game-product-copy"><span class="hero-game-product-name">denim skirt</span><span class="hero-game-product-row"><strong>$49.00</strong><span class="hero-game-product-rating">★ 4.5</span></span><span class="hero-game-product-badge">new cut</span><span class="hero-game-product-action" aria-hidden="true">add to cart →</span></span></button>
                   </div>
                 </div>
                 <div class="hero-game-browser-footer"><span>scroll to browse <strong aria-hidden="true">↓</strong></span></div>
+                <div class="hero-game-observer" id="heroGameObserver" hidden role="dialog" aria-modal="true" aria-labelledby="heroGameObserverTitle">
+                  <div class="hero-game-observer-card">
+                    <p class="hero-game-scene-kicker">browse pause</p>
+                    <h3 id="heroGameObserverTitle">the scroll is paused.</h3>
+                    <p>take a breath before you keep scrolling.</p>
+                    <div class="hero-game-observer-actions">
+                      <button type="button" class="hero-game-button hero-game-button--leave" data-game-leave>yeah, i don’t need this<span>step away</span></button>
+                      <button type="button" class="hero-game-button hero-game-button--continue" data-game-observer-continue>continue with prudence<span>keep browsing</span></button>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="hero-game-scene" data-game-scene="nudge" hidden><div class="hero-game-surface"><p class="hero-game-kicker">a moment before checkout</p><h3>you found something you like.</h3><p>cognoscene makes room for a deliberate decision without taking the decision away.</p><div class="hero-game-nudge"><p class="hero-game-selected">selected: <strong id="heroGameSelectedProduct">everyday overshirt</strong> · <strong id="heroGameSelectedAmount">$64.90</strong></p><div class="hero-game-actions"><button type="button" class="hero-game-button hero-game-button--leave" data-game-leave>leave site<span>soft win</span></button><button type="button" class="hero-game-button hero-game-button--continue" data-game-next="hold">continue</button></div></div></div></div>
               <div class="hero-game-scene" data-game-scene="hold" hidden>
@@ -2719,9 +2734,9 @@
                   <div class="hero-game-hold-card">
                     <p class="hero-game-scene-kicker">checkout pause</p>
                     <h3>act with prudence — checkout paused.</h3>
-                    <p>the extension gives you time to think. this preview uses fifteen seconds.</p>
+                    <p>the extension gives you time to think. this preview uses twelve seconds.</p>
                     <p class="hero-game-selected">selected: <strong id="heroGameHoldProduct">everyday overshirt</strong> · <strong id="heroGameHoldAmount">$64.90</strong></p>
-                    <span class="hero-game-hold-time" id="heroGameHoldTime" aria-live="polite">0:15</span>
+                    <span class="hero-game-hold-time" id="heroGameHoldTime" aria-live="polite">0:12</span>
                     <span class="hero-game-hold-caption">pause in progress</span>
                   </div>
                   <div class="hero-game-progress" aria-hidden="true"><span id="heroGameHoldProgress"></span></div>
@@ -2730,9 +2745,9 @@
               </div>
               <div class="hero-game-scene" data-game-scene="deliberate" hidden>
                 <div class="hero-game-surface hero-game-deliberation">
-                  <p class="hero-game-scene-kicker">decision window</p>
-                  <h3>do you still need this?</h3>
-                  <p>if you don’t need it, save the money. if you do, the purchase is still yours.</p>
+                  <p class="hero-game-scene-kicker">rationalisation</p>
+                  <h3>think about it.</h3>
+                  <p>determine if you need or want this — or not, really.</p>
                   <div class="hero-game-decisions" id="heroGameDecisionChoices" role="group" aria-label="purchase decision">
                     <button type="button" class="hero-game-decision hero-game-decision--save" data-game-save><strong id="heroGameSaveLabel">save $64.90</strong><span>if you don’t need it</span></button>
                     <button type="button" class="hero-game-decision hero-game-decision--buy" data-game-buy><strong>continue purchase</strong><span>if you do</span></button>
@@ -2745,17 +2760,30 @@
                   <div class="hero-game-success-mark" id="heroGameSuccessMark" aria-hidden="true">✓</div>
                   <h3 id="heroGameResultTitle">congratulations. you've just saved some money.</h3>
                   <p id="heroGameResultCopy">you chose to rationalise your purchase.</p>
-                  <div class="hero-game-total"><span>this round</span><strong id="heroGameRoundAmount">+$64.90</strong></div>
+                  <div class="hero-game-total"><span id="heroGameRoundLabel">this decision</span><strong id="heroGameRoundAmount">$64.90</strong></div>
                   <div class="hero-game-dashboard" id="heroGameDashboard" role="status" aria-live="polite">
-                    <div class="hero-game-dashboard-head"><span>your prudence record</span><span id="heroGameDashboardMessage">this session</span></div>
+                    <div class="hero-game-dashboard-head"><span id="heroGameDashboardTitle">your prudence record</span><span id="heroGameDashboardMessage">this session</span></div>
                     <div class="hero-game-dashboard-grid">
-                      <div class="hero-game-dashboard-metric"><strong id="heroGameSavedTotal">$0.00</strong><span>money not spent</span></div>
-                      <div class="hero-game-dashboard-metric"><strong id="heroGameRationalised">0</strong><span>rationalised</span></div>
-                      <div class="hero-game-dashboard-metric"><strong id="heroGameSoftWins">0</strong><span>soft wins</span></div>
-                      <div class="hero-game-dashboard-metric"><strong id="heroGameDecisions">0</strong><span>decisions made</span></div>
+                      <div class="hero-game-dashboard-metric"><strong id="heroGameSavedTotal">$0.00</strong><span id="heroGameSavedLabel">money held back</span></div>
+                      <div class="hero-game-dashboard-metric"><strong id="heroGameRationalised">0</strong><span id="heroGameRationalisedLabel">items rationalised</span></div>
+                      <div class="hero-game-dashboard-metric"><strong id="heroGameSoftWins">0</strong><span id="heroGameSoftWinsLabel">times stepped away</span></div>
+                      <div class="hero-game-dashboard-metric"><strong id="heroGameDecisions">0</strong><span id="heroGameDecisionsLabel">intentional decisions</span></div>
                     </div>
                     <div class="hero-game-dashboard-track" aria-hidden="true"><span id="heroGameDashboardTrack"></span></div>
-                    <div class="hero-game-dashboard-latest"><span>latest decision</span><strong id="heroGameLatestDecision">—</strong></div>
+                    <div class="hero-game-dashboard-latest"><span id="heroGameLatestLabel">latest decision</span><strong id="heroGameLatestDecision">—</strong></div>
+                    <div class="hero-game-dashboard-followup" id="heroGameFollowup" hidden>follow-up pending · we’ll check in after the purchase.</div>
+                  </div>
+                  <button type="button" class="hero-game-button hero-game-followup-open" id="heroGameFollowupOpen" data-game-followup-open hidden>open later check-in →</button>
+                  <div class="hero-game-followup-card" id="heroGameFollowupCard" hidden>
+                    <p class="hero-game-scene-kicker">later check-in · demo</p>
+                    <h4>looking back, how do you feel about this purchase?</h4>
+                    <div class="hero-game-followup-options" role="group" aria-label="purchase follow-up">
+                      <button type="button" class="hero-game-button" data-game-followup-option="needed it">i needed it</button>
+                      <button type="button" class="hero-game-button" data-game-followup-option="wanted it and it was worth it">i wanted it; worth it</button>
+                      <button type="button" class="hero-game-button" data-game-followup-option="still deciding">still deciding</button>
+                      <button type="button" class="hero-game-button" data-game-followup-option="regret it">i regret it</button>
+                      <button type="button" class="hero-game-button" data-game-followup-option="skipped">skip</button>
+                    </div>
                   </div>
                   <button type="button" class="hero-game-primary hero-game-retry" data-game-retry>try again →</button>
                 </div>
@@ -2995,7 +3023,7 @@
         <figure class="proof-card proof-card--akpk">
           <strong class="proof-stat"><span>577,500</span></strong>
           <p>Malaysian respondents landed in debt after buying things they did not need.</p>
-          <figcaption><a href="https://www.utusan.com.my/nasional/2024/06/ketagih-berbelanja-punca-orang-muda-muflis/" target="_blank" rel="noopener noreferrer">Utusan Malaysia reporting AKPK · Malaysia · 2024 · 38.5% of debt-management respondents, n=1.5m.</a></figcaption>
+          <figcaption><a href="https://www.utusan.com.my/nasional/2024/06/ketagih-berbelanja-punca-orang-muda-muflis/" target="_blank" rel="noopener noreferrer">Utusan Malaysia reporting AKPK · Malaysia · 2024 · 38.5% of debt-management respondents, n=1,500,000.</a></figcaption>
         </figure>
         <figure class="proof-card proof-card--survey">
           <strong class="proof-stat"><span>43%</span></strong>
@@ -3551,7 +3579,7 @@
     @keyframes proof-swipe { 0% { transform: translateX(-105%); } 45% { transform: translateX(0); } 100% { transform: translateX(105%); } }
     .proof-card p { max-width: 620px; color: var(--mid); }
     .evidence-band .proof-quote { color: var(--black); font-style: italic; }
-    .proof-card figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .proof-card figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; font-weight: 400; }
     .proof-card figcaption a { color: inherit; text-underline-offset: 3px; }
 
     .waitlist-modal { position: fixed; inset: 0; z-index: 9500; display: grid; place-items: center; padding: 20px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease, visibility .2s ease; }
@@ -5311,6 +5339,10 @@
       if (!game) return;
 
       var scenes = Array.prototype.slice.call(game.querySelectorAll('[data-game-scene]'));
+      var startKickerEl = document.getElementById('heroGameStartKicker');
+      var startTitleEl = document.getElementById('heroGameStartTitle');
+      var startCopyEl = document.getElementById('heroGameStartCopy');
+      var startButtonEl = document.getElementById('heroGameStartButton');
       var shopScroll = document.getElementById('heroGameShopScroll');
       var cartToggleEl = game.querySelector('[data-game-cart-toggle]');
       var cartPanelEl = document.getElementById('heroGameCart');
@@ -5318,6 +5350,8 @@
       var cartTotalEl = document.getElementById('heroGameCartTotal');
       var cartSummaryEl = document.getElementById('heroGameCartSummary');
       var cartItemsEl = document.getElementById('heroGameCartItems');
+      var checkoutButton = game.querySelector('[data-game-checkout]');
+      var observerEl = document.getElementById('heroGameObserver');
       var selectedProductEl = document.getElementById('heroGameSelectedProduct');
       var selectedAmountEl = document.getElementById('heroGameSelectedAmount');
       var holdProductEl = document.getElementById('heroGameHoldProduct');
@@ -5332,17 +5366,29 @@
       var decisionsEl = document.getElementById('heroGameDecisions');
       var dashboardTrackEl = document.getElementById('heroGameDashboardTrack');
       var dashboardMessageEl = document.getElementById('heroGameDashboardMessage');
+      var dashboardTitleEl = document.getElementById('heroGameDashboardTitle');
+      var dashboardEl = document.getElementById('heroGameDashboard');
+      var savedLabelEl = document.getElementById('heroGameSavedLabel');
+      var rationalisedLabelEl = document.getElementById('heroGameRationalisedLabel');
+      var softWinsLabelEl = document.getElementById('heroGameSoftWinsLabel');
+      var decisionsLabelEl = document.getElementById('heroGameDecisionsLabel');
+      var latestLabelEl = document.getElementById('heroGameLatestLabel');
+      var followupEl = document.getElementById('heroGameFollowup');
+      var followupOpenEl = document.getElementById('heroGameFollowupOpen');
+      var followupCardEl = document.getElementById('heroGameFollowupCard');
       var latestDecisionEl = document.getElementById('heroGameLatestDecision');
       var resultLabel = document.getElementById('heroGameResultLabel');
       var resultTitle = document.getElementById('heroGameResultTitle');
       var resultCopy = document.getElementById('heroGameResultCopy');
       var roundAmountEl = document.getElementById('heroGameRoundAmount');
       var resultMark = document.getElementById('heroGameSuccessMark');
+      var roundLabelEl = document.getElementById('heroGameRoundLabel');
       var saveDecision = game.querySelector('[data-game-save]');
       var buyDecision = game.querySelector('[data-game-buy]');
       var confetti = document.getElementById('heroGameConfetti');
       var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       var holdTimer = null;
+      var browseTimer = null;
       var confettiTimer = null;
       var roundAmount = 64.90;
       var selectedProduct = 'everyday overshirt';
@@ -5351,6 +5397,13 @@
       var softWins = 0;
       var decisions = 0;
       var cart = [];
+      var observerShownCount = 0;
+      var observerReturnFocus = null;
+      var hasStarted = false;
+      var browseClockStarted = false;
+      var browseActiveMs = 0;
+      var browseLastTick = 0;
+      var browsePauseShown = false;
 
       function money(value) { return '$' + Number(value).toFixed(2); }
 
@@ -5414,14 +5467,66 @@
         });
       }
 
+      function hideObserver(restoreFocus) {
+        if (!observerEl) return;
+        observerEl.hidden = true;
+        if (restoreFocus && observerReturnFocus && document.contains(observerReturnFocus)) observerReturnFocus.focus();
+        observerReturnFocus = null;
+        if (browseClockStarted) {
+          browseLastTick = Date.now();
+          startBrowseTimer();
+        }
+      }
+
+      function showObserver(triggerButton) {
+        if (!observerEl) return;
+        observerShownCount += 1;
+        browsePauseShown = true;
+        stopBrowseTimer();
+        observerReturnFocus = triggerButton || null;
+        if (cartPanelEl && !cartPanelEl.hidden) cartPanelEl.hidden = true;
+        if (cartToggleEl) cartToggleEl.setAttribute('aria-expanded', 'false');
+        observerEl.hidden = false;
+        var continueButton = observerEl.querySelector('[data-game-observer-continue]');
+        if (continueButton) window.requestAnimationFrame(function() { continueButton.focus(); });
+      }
+
+      function stopBrowseTimer() {
+        if (browseTimer) window.clearInterval(browseTimer);
+        browseTimer = null;
+      }
+
+      function startBrowseTimer() {
+        if (browseTimer || !browseClockStarted || browsePauseShown) return;
+        browseLastTick = Date.now();
+        browseTimer = window.setInterval(function() {
+          if (document.hidden || !shopScroll || browsePauseShown || scenes.every(function(scene) { return scene.hidden || scene.getAttribute('data-game-scene') !== 'browse'; })) {
+            browseLastTick = Date.now();
+            return;
+          }
+          var now = Date.now();
+          browseActiveMs += Math.max(0, now - browseLastTick);
+          browseLastTick = now;
+          if (browseActiveMs >= 6000) showObserver(shopScroll);
+        }, 100);
+      }
+
+      function beginBrowseClock() {
+        if (browseClockStarted) return;
+        browseClockStarted = true;
+        browseLastTick = Date.now();
+        startBrowseTimer();
+      }
+
       function updateCart() {
         var count = getCartCount();
         var total = getCartTotal();
         if (cartCountEl) cartCountEl.textContent = String(count);
         if (cartTotalEl) cartTotalEl.textContent = money(total);
         if (cartSummaryEl) cartSummaryEl.textContent = money(total);
+        if (checkoutButton) checkoutButton.disabled = count === 0;
         if (cartToggleEl) {
-          cartToggleEl.setAttribute('aria-label', 'cart, ' + count + (count === 1 ? ' item, ' : ' items, ') + money(total));
+          cartToggleEl.setAttribute('aria-label', 'cart');
         }
         renderCart();
         updateProductStates();
@@ -5458,23 +5563,49 @@
         if (cartToggleEl) cartToggleEl.setAttribute('aria-expanded', String(open));
       }
 
+      function startCheckout() {
+        var count = getCartCount();
+        var total = getCartTotal();
+        if (!count || total <= 0) return;
+        roundAmount = Math.round(total * 100) / 100;
+        selectedProduct = count + (count === 1 ? ' item in cart' : ' items in cart');
+        if (selectedProductEl) selectedProductEl.textContent = selectedProduct;
+        if (selectedAmountEl) selectedAmountEl.textContent = money(roundAmount);
+        if (holdProductEl) holdProductEl.textContent = selectedProduct;
+        if (holdAmountEl) holdAmountEl.textContent = money(roundAmount);
+        if (saveLabel) saveLabel.textContent = 'save ' + money(roundAmount);
+        if (cartPanelEl) cartPanelEl.hidden = true;
+        if (cartToggleEl) cartToggleEl.setAttribute('aria-expanded', 'false');
+        setScene('hold');
+      }
+
       function stopTimers() {
         if (holdTimer) window.clearInterval(holdTimer);
         holdTimer = null;
       }
 
-      function updateDashboard(latest, message) {
-        if (totalEl) totalEl.textContent = money(savedTotal);
-        if (rationalisedEl) rationalisedEl.textContent = String(rationalised);
-        if (softWinsEl) softWinsEl.textContent = String(softWins);
+      function updateDashboard(latest, message, mode) {
+        var browseMode = mode === 'browse';
+        if (dashboardEl) dashboardEl.classList.toggle('is-browse', browseMode);
+        if (dashboardTitleEl) dashboardTitleEl.textContent = browseMode ? 'browse patience' : 'your prudence record';
+        if (totalEl) totalEl.textContent = browseMode ? String(softWins) : money(savedTotal);
+        if (rationalisedEl) rationalisedEl.textContent = browseMode ? String(observerShownCount) : String(rationalised);
+        if (softWinsEl) softWinsEl.textContent = browseMode ? '—' : String(softWins);
         if (decisionsEl) decisionsEl.textContent = String(decisions);
+        if (savedLabelEl) savedLabelEl.textContent = browseMode ? 'times stepped away' : 'money held back';
+        if (rationalisedLabelEl) rationalisedLabelEl.textContent = browseMode ? 'pause moments' : 'items rationalised';
+        if (softWinsLabelEl) softWinsLabelEl.textContent = browseMode ? 'follow-through' : 'times stepped away';
+        if (decisionsLabelEl) decisionsLabelEl.textContent = 'intentional decisions';
+        if (latestLabelEl) latestLabelEl.textContent = browseMode ? 'latest browse moment' : 'latest decision';
         if (dashboardMessageEl && message) dashboardMessageEl.textContent = message;
         if (latestDecisionEl && latest) latestDecisionEl.textContent = latest;
+        if (followupEl) followupEl.hidden = browseMode || message !== 'follow-up pending';
         if (dashboardTrackEl) dashboardTrackEl.style.width = Math.min(100, decisions * 18) + '%';
       }
 
       function setScene(name) {
         stopTimers();
+        if (name !== 'browse') hideObserver(false);
         scenes.forEach(function(scene) {
           var active = scene.getAttribute('data-game-scene') === name;
           scene.hidden = !active;
@@ -5496,11 +5627,11 @@
       }
 
       function startHold() {
-        var duration = 15000;
+        var duration = 12000;
         var started = Date.now();
         if (holdButton) holdButton.disabled = true;
         if (holdProgressEl) holdProgressEl.style.width = '0%';
-        if (holdTimeEl) holdTimeEl.textContent = '0:15';
+        if (holdTimeEl) holdTimeEl.textContent = '0:12';
         holdTimer = window.setInterval(function() {
           var elapsed = Math.min(duration, Date.now() - started);
           var remaining = Math.max(0, Math.ceil((duration - elapsed) / 1000));
@@ -5537,16 +5668,21 @@
       }
 
       function finish(kind) {
+        game.classList.toggle('is-prudence', kind === 'save');
+        if (confetti) confetti.classList.toggle('is-prudence', kind === 'save');
         if (kind === 'save') {
           savedTotal = Math.round((savedTotal + roundAmount) * 100) / 100;
           rationalised += 1;
           decisions += 1;
           if (resultMark) resultMark.textContent = '✓';
           if (resultLabel) resultLabel.textContent = 'your decision';
-          if (resultTitle) resultTitle.textContent = "congratulations. you've just saved some money.";
-          if (resultCopy) resultCopy.textContent = 'you chose to rationalise your purchase.';
-          if (roundAmountEl) roundAmountEl.textContent = '+' + money(roundAmount);
-          updateDashboard('saved ' + money(roundAmount), 'a rationalised purchase');
+          if (resultTitle) resultTitle.textContent = 'you made a deliberate decision.';
+          if (resultCopy) resultCopy.textContent = 'you chose to rationalise this purchase.';
+          if (roundLabelEl) roundLabelEl.textContent = 'money held back';
+          if (roundAmountEl) roundAmountEl.textContent = money(roundAmount);
+          if (followupOpenEl) followupOpenEl.hidden = true;
+          if (followupCardEl) followupCardEl.hidden = true;
+          updateDashboard('rationalised ' + money(roundAmount), 'a rationalised purchase', 'overview');
           setScene('result');
           celebrate();
           return;
@@ -5557,9 +5693,12 @@
           if (resultMark) resultMark.textContent = '↗';
           if (resultLabel) resultLabel.textContent = 'a soft win';
           if (resultTitle) resultTitle.textContent = 'you chose to step away.';
-          if (resultCopy) resultCopy.textContent = 'a little space can make a decision clearer. that counts.';
-          if (roundAmountEl) roundAmountEl.textContent = '+$0.00';
-          updateDashboard('left site', 'a soft win');
+          if (resultCopy) resultCopy.textContent = 'you created space before continuing. that counts.';
+          if (roundLabelEl) roundLabelEl.textContent = 'browse moment';
+          if (roundAmountEl) roundAmountEl.textContent = '—';
+          if (followupOpenEl) followupOpenEl.hidden = true;
+          if (followupCardEl) followupCardEl.hidden = true;
+          updateDashboard('stepped away', 'this session', 'browse');
           setScene('result');
           celebrate();
           return;
@@ -5567,18 +5706,23 @@
         decisions += 1;
         if (resultMark) resultMark.textContent = '→';
         if (resultLabel) resultLabel.textContent = 'your decision';
-        if (resultTitle) resultTitle.textContent = 'you chose to continue the purchase.';
-        if (resultCopy) resultCopy.textContent = 'the decision stayed with you. try again whenever you are ready.';
-        if (roundAmountEl) roundAmountEl.textContent = '+$0.00';
-        updateDashboard('continued purchase', 'a completed purchase decision');
+        if (resultTitle) resultTitle.textContent = 'you chose to continue.';
+        if (resultCopy) resultCopy.textContent = 'your follow-up is pending. the decision remains yours.';
+        if (roundLabelEl) roundLabelEl.textContent = 'follow-up';
+        if (roundAmountEl) roundAmountEl.textContent = 'pending';
+        if (followupOpenEl) followupOpenEl.hidden = false;
+        if (followupCardEl) followupCardEl.hidden = true;
+        updateDashboard('continued purchase', 'follow-up pending', 'overview');
         setScene('result');
       }
 
       game.addEventListener('click', function(event) {
         var target = event.target;
         if (!(target instanceof Element)) return;
-        if (target.closest('[data-game-start]')) { setScene('browse'); return; }
+        if (target.closest('[data-game-start]')) { hasStarted = true; setScene('browse'); return; }
         if (target.closest('[data-game-cart-toggle]')) { toggleCart(); return; }
+        if (target.closest('[data-game-observer-continue]')) { hideObserver(true); return; }
+        if (target.closest('[data-game-checkout]')) { startCheckout(); return; }
         var remove = target.closest('[data-game-remove]');
         if (remove) { removeFromCart(remove.getAttribute('data-game-remove')); return; }
         var product = target.closest('[data-game-amount]');
@@ -5586,10 +5730,45 @@
         if (target.closest('[data-game-leave]')) { finish('leave'); return; }
         if (target.closest('[data-game-save]')) { finish('save'); return; }
         if (target.closest('[data-game-buy]')) { finish('buy'); return; }
+        if (target.closest('[data-game-followup-open]')) {
+          if (followupOpenEl) followupOpenEl.hidden = true;
+          if (followupCardEl) {
+            followupCardEl.hidden = false;
+            var firstFollowup = followupCardEl.querySelector('[data-game-followup-option]');
+            if (firstFollowup) firstFollowup.focus();
+          }
+          return;
+        }
+        var followupOption = target.closest('[data-game-followup-option]');
+        if (followupOption) {
+          var reflection = followupOption.getAttribute('data-game-followup-option') || 'skipped';
+          if (followupCardEl) followupCardEl.hidden = true;
+          if (followupEl) followupEl.hidden = true;
+          if (resultCopy) resultCopy.textContent = 'your reflection is recorded. the decision remains yours.';
+          if (roundLabelEl) roundLabelEl.textContent = 'check-in';
+          if (roundAmountEl) roundAmountEl.textContent = 'recorded';
+          updateDashboard('check-in: ' + reflection, 'check-in recorded', 'overview');
+          return;
+        }
         if (target.closest('[data-game-retry]')) {
           if (shopScroll) shopScroll.scrollTop = 0;
           cart = [];
+          observerShownCount = 0;
+          browseClockStarted = false;
+          browseActiveMs = 0;
+          browseLastTick = 0;
+          browsePauseShown = false;
+          stopBrowseTimer();
+          hideObserver(false);
+          if (cartPanelEl) cartPanelEl.hidden = true;
+          if (cartToggleEl) cartToggleEl.setAttribute('aria-expanded', 'false');
+          if (followupOpenEl) followupOpenEl.hidden = true;
+          if (followupCardEl) followupCardEl.hidden = true;
           updateCart();
+          if (startKickerEl) startKickerEl.textContent = 'mini-game · again';
+          if (startTitleEl) startTitleEl.textContent = 'try another decision.';
+          if (startCopyEl) startCopyEl.textContent = 'one pause can change the outcome.';
+          if (startButtonEl) startButtonEl.textContent = 'play again →';
           setScene('start');
           return;
         }
@@ -5597,9 +5776,17 @@
         if (next && !next.disabled) setScene(next.getAttribute('data-game-next'));
       });
 
+      if (shopScroll) {
+        shopScroll.addEventListener('scroll', beginBrowseClock, { passive: true });
+      }
+      document.addEventListener('visibilitychange', function() {
+        browseLastTick = Date.now();
+        if (!document.hidden && browseClockStarted && !browsePauseShown) startBrowseTimer();
+      });
+
       buildConfetti();
       updateCart();
-      updateDashboard('—', 'this session');
+      updateDashboard('—', 'this session', 'overview');
     })();
   </script>
 
@@ -6161,8 +6348,9 @@
     .hero-game-product-copy { display: block; padding: 8px 9px 10px; }
     .hero-game-product-name { display: block; overflow: hidden; margin-bottom: 6px; font: 800 11px/1.1 var(--sans); white-space: nowrap; text-overflow: ellipsis; }
     .hero-game-product-row { display: flex; justify-content: space-between; gap: 4px; font: 800 11px/1 var(--sans); }
+    .hero-game-product-row del { color: var(--muted); font-size: 9px; font-weight: 600; }
     .hero-game-product-rating { color: var(--muted); font-size: 9px; }
-    .hero-game-product-badge { display: inline-block; margin-top: 7px; padding: 3px 5px; border-radius: 4px; background: var(--lime); font: 800 8px/1 var(--sans); letter-spacing: .05em; }
+    .hero-game-product-badge { display: inline-block; margin-top: 7px; padding: 3px 5px; border: 1px solid var(--line); border-radius: 4px; background: #e3decf; font: 800 8px/1 var(--sans); letter-spacing: .05em; }
     .hero-game-browser-footer { display: flex; justify-content: space-between; gap: 10px; padding: 10px 15px 12px; border-top: 1px solid var(--line); color: var(--muted); font: 600 10px/1.25 var(--sans); }
     .hero-game-browser-footer strong { color: var(--black); font-size: 10px; letter-spacing: .08em; }
     .hero-game-surface { display: flex; min-height: 390px; flex-direction: column; justify-content: center; padding: 24px; }
@@ -6184,7 +6372,7 @@
     .hero-game-progress span { display: block; width: 0; height: 100%; background: var(--black); transition: width .1s linear; }
     .hero-game-pause .hero-game-button { width: 100%; }
     .hero-game-pause .hero-game-button:disabled { cursor: wait; opacity: .45; }
-    .hero-game-decisions { display: grid; grid-template-columns: 1.35fr 1fr; gap: 9px; }
+    .hero-game-decisions { display: grid; grid-template-columns: 1fr; gap: 9px; }
     .hero-game-decision { min-height: 82px; padding: 15px 12px; text-align: left; }
     .hero-game-decision strong { display: block; font-size: 13px; }
     .hero-game-decision.is-flicker { box-shadow: 0 0 0 4px var(--lime), 0 4px 0 rgba(17,17,17,.22); transform: translateY(-2px); }
@@ -6199,9 +6387,10 @@
     .hero-game-dashboard-latest strong { display: block; margin-top: 3px; color: var(--black); font-size: 11px; }
     .hero-game-retry { width: 100%; margin-top: 12px; }
     .hero-game-confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .hero-game-confetti i { position: absolute; top: 40%; width: 7px; height: 11px; border-radius: 2px; background: var(--lime); opacity: 0; }
+    .hero-game-confetti i { position: absolute; top: 40%; width: 7px; height: 11px; border-radius: 2px; background: #c5c0b2; opacity: 0; }
     .hero-game-confetti i:nth-child(3n) { background: var(--black); }
     .hero-game-confetti i:nth-child(4n) { background: #d9e0d6; }
+    .hero-game-confetti.is-prudence i:first-child { background: var(--lime); }
     .hero-game-confetti.is-burst i { animation: heroConfetti .95s ease-out both; }
     @keyframes heroConfetti { 0% { opacity: 1; transform: translate(0,0) rotate(0); } 100% { opacity: 0; transform: translate(var(--x), var(--y)) rotate(280deg); } }
     @media (max-width: 760px) {
@@ -6228,7 +6417,7 @@
     .hero-game-browser-footer { justify-content: center; text-align: center; }
     .hero-game-browser-footer strong { display: inline-block; margin-left: 5px; font-size: 16px; line-height: .7; vertical-align: -2px; }
     .hero-game-scene-kicker { margin: 0 0 9px !important; color: var(--muted) !important; font: 800 10px/1.1 var(--sans) !important; letter-spacing: .12em; text-transform: uppercase; }
-    .hero-game-primary { min-height: 44px; padding: 11px 14px; border: 1px solid var(--black); border-radius: 12px; background: var(--black); color: var(--lime); font: 800 10px/1.15 var(--sans); cursor: pointer; transition: transform .16s ease, box-shadow .16s ease; }
+    .hero-game-primary { min-height: 44px; padding: 11px 14px; border: 1px solid var(--black); border-radius: 12px; background: var(--cream); color: var(--black); font: 800 10px/1.15 var(--sans); cursor: pointer; transition: transform .16s ease, box-shadow .16s ease; }
     .hero-game-primary:hover, .hero-game-primary:focus-visible { outline: none; box-shadow: 0 3px 0 rgba(17,17,17,.2); transform: translateY(-1px); }
     .hero-game-primary:disabled { cursor: wait; opacity: .42; transform: none; }
     .hero-game-start { align-items: flex-start; justify-content: center; }
@@ -6251,13 +6440,14 @@
     .hero-game-decision:hover, .hero-game-decision:focus-visible { outline: none; box-shadow: 0 3px 0 rgba(17,17,17,.2); transform: translateY(-1px); }
     .hero-game-decision strong { display: block; font-size: 13px; }
     .hero-game-decision span { display: block; margin-top: 4px; color: inherit; font-size: 9px; font-weight: 600; opacity: .72; }
-    .hero-game-actions .hero-game-button--leave { background: var(--black); color: var(--lime); }
+    .hero-game-actions .hero-game-button--leave { background: var(--cream); color: var(--black); }
     .hero-game-actions .hero-game-button--continue { background: var(--cream); color: var(--black); }
     .hero-game-decision--save { background: var(--black); color: var(--lime); }
     .hero-game-decision--buy { background: var(--cream); color: var(--black); }
     .hero-game-decision.is-flicker { box-shadow: none; transform: none; }
     .hero-game-success { align-items: center; text-align: center; }
-    .hero-game-success-mark { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 14px; border: 2px solid var(--black); border-radius: 50%; background: var(--lime); font: 800 28px/1 var(--sans); }
+    .hero-game-success-mark { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 14px; border: 2px solid var(--black); border-radius: 50%; background: var(--cream); font: 800 28px/1 var(--sans); }
+    .hero-game.is-prudence .hero-game-success-mark { background: var(--lime); }
     .hero-game-success h3 { max-width: 380px; margin-inline: auto; }
     .hero-game-success > p:not(.hero-game-scene-kicker) { max-width: 360px; margin-inline: auto; }
     .hero-game-total { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin: 4px 0 18px; }
@@ -6277,10 +6467,8 @@
     .hero-game-dashboard-latest strong { color: var(--black); font-weight: 800; text-align: right; }
     .hero-game-retry { width: min(100%, 420px); }
     .hero-game-store-heading { min-width: 0; }
-    .hero-game-cart-toggle { display: grid; grid-template-columns: auto auto; gap: 2px 6px; min-width: 92px; padding: 7px 9px; border: 1px solid var(--black); border-radius: 10px; background: var(--black); color: var(--lime); font: 800 9px/1 var(--sans); text-align: right; cursor: pointer; }
-    .hero-game-cart-toggle span { grid-row: span 2; align-self: center; color: var(--cream); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
-    .hero-game-cart-toggle strong { font-size: 11px; }
-    .hero-game-cart-toggle em { color: var(--lime); font-size: 9px; font-style: normal; font-variant-numeric: tabular-nums; }
+    .hero-game-cart-toggle { min-width: 64px; padding: 7px 9px; border: 1px solid var(--black); border-radius: 10px; background: var(--cream); color: var(--black); font: 800 9px/1 var(--sans); text-align: center; cursor: pointer; }
+    .hero-game-cart-toggle span { color: var(--black); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
     .hero-game-cart-toggle:hover, .hero-game-cart-toggle:focus-visible { outline: none; box-shadow: 0 3px 0 rgba(17,17,17,.2); transform: translateY(-1px); }
     .hero-game-cart { margin: 0 15px 10px; padding: 12px; border: 1px solid var(--black); border-radius: 14px; background: #f5f2e9; }
     .hero-game-cart[hidden] { display: none !important; }
@@ -6294,14 +6482,38 @@
     .hero-game-cart-row-copy span { color: var(--muted); font: 800 10px/1 var(--sans); font-variant-numeric: tabular-nums; }
     .hero-game-cart-remove { flex: 0 0 auto; padding: 4px 0; border: 0; background: transparent; color: var(--muted); font: 700 9px/1 var(--sans); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
     .hero-game-cart-remove:hover, .hero-game-cart-remove:focus-visible { color: var(--black); outline: none; }
+    .hero-game-cart-actions { display: grid; grid-template-columns: 1fr 1.25fr; gap: 8px; margin-top: 12px; }
+    .hero-game-cart-actions .hero-game-button, .hero-game-cart-actions .hero-game-primary { min-height: 36px; padding-block: 8px; background: var(--cream); color: var(--black); }
+    .hero-game-cart-actions .hero-game-primary:disabled { cursor: not-allowed; opacity: .35; transform: none; }
     .hero-game-product-action { display: block; margin-top: 7px; color: var(--muted); font: 800 8px/1 var(--sans); letter-spacing: .04em; text-transform: uppercase; }
     .hero-game-product.is-in-cart { border-color: var(--black); }
     .hero-game-product.is-in-cart .hero-game-product-action { color: var(--black); }
+    .hero-game-stage { position: relative; }
+    .hero-game-observer { position: absolute; inset: 0; z-index: 2; display: grid; align-items: end; padding: 14px; background: rgba(245,242,233,.56); }
+    .hero-game-observer[hidden] { display: none !important; }
+    .hero-game-observer-card { width: min(100%, 420px); margin: 0 auto; padding: 18px; border: 1px solid var(--black); border-radius: 16px; background: #f5f2e9; box-shadow: 0 4px 0 rgba(17,17,17,.16); }
+    .hero-game-observer-card h3 { max-width: none; margin-bottom: 8px; font-size: 25px; }
+    .hero-game-observer-card > p:not(.hero-game-scene-kicker) { margin: 0 0 16px; color: var(--black); font: 500 12px/1.4 var(--sans); }
+    .hero-game-observer-card > p strong { font-weight: 800; }
+    .hero-game-observer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .hero-game-observer-actions .hero-game-button--continue { background: var(--cream); color: var(--black); }
+    .hero-game-observer-actions .hero-game-button--leave { background: var(--cream); color: var(--black); }
+    .hero-game-dashboard.is-browse .hero-game-dashboard-track span { background: var(--black); }
+    .hero-game-dashboard-followup { margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--line); color: var(--muted); font: 700 9px/1.3 var(--sans); }
+    .hero-game-followup-open { width: min(100%, 420px); margin: 0 auto 10px; background: var(--cream); color: var(--black); }
+    .hero-game-followup-card { width: min(100%, 420px); margin: 0 auto 10px; padding: 13px 14px 14px; border: 1px solid var(--black); border-radius: 15px; background: #f5f2e9; text-align: left; }
+    .hero-game-followup-card[hidden], .hero-game-followup-open[hidden] { display: none !important; }
+    .hero-game-followup-card h4 { margin: 0 0 11px; font: 800 16px/1.05 var(--display); letter-spacing: -.04em; }
+    .hero-game-followup-options { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .hero-game-followup-options .hero-game-button { min-height: 34px; padding: 8px; background: var(--cream); color: var(--black); font-size: 9px; }
     @media (max-width: 760px) {
       .hero-game-start { padding: 20px; }
       .hero-game-dashboard { width: 100%; }
       .hero-game-cart { margin-inline: 12px; }
       .hero-game-cart-toggle { min-width: 86px; }
+      .hero-game-cart-actions { grid-template-columns: 1fr; }
+      .hero-game-observer { padding: 12px; }
+      .hero-game-observer-card { padding: 15px; }
     }
   </style>
 
