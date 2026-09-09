@@ -1306,27 +1306,6 @@
       margin-bottom: 0;
     }
     .problem-band strong { font-weight: 800; color: var(--black); }
-    .problem-band .quote-line {
-      font-size: 17px;
-      font-style: italic;
-      color: var(--black);
-      margin: 8px 0 22px;
-      padding: 16px 20px;
-      background: var(--cream);
-      border: 0;
-      border-left: 4px solid var(--black);
-      border-radius: 0 12px 12px 0;
-      line-height: 1.45;
-    }
-    .problem-band .quote-line cite {
-      display: block;
-      margin-top: 8px;
-      font-family: var(--sans);
-      font-size: 11px;
-      font-style: normal;
-      font-weight: 800;
-      color: var(--muted);
-    }
     .problem-band .pivot-line {
       font-size: 17px;
       font-weight: 800;
@@ -1499,6 +1478,14 @@
       color: var(--black);
       margin: 0 auto 28px;
       max-width: 720px;
+      text-align: center;
+    }
+    .solution-bridge-lead {
+      max-width: 700px;
+      margin: 0 auto 14px;
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--mid);
       text-align: center;
     }
     .layers-index-label-mobile { display: none; }
@@ -2485,18 +2472,14 @@
         order: 2;
         margin-bottom: 0;
       }
-      .problem-copy > .quote-line {
-        order: 3;
-        margin: 0;
-      }
-      .problem-beat--cycle-pre { order: 4; }
+      .problem-beat--cycle-pre { order: 3; }
       .problem-loop-visual {
         position: static;
-        order: 5;
+        order: 4;
         margin: 0.5cm auto 0;
         transform: translateY(-16px);
       }
-      .problem-beat--cycle-post { order: 6; }
+      .problem-beat--cycle-post { order: 5; }
       .problem-loop-visual .lc-circle-stage {
         --loop-scale: 1.117;
       }
@@ -2509,9 +2492,14 @@
         order: 1;
         margin-bottom: 8px;
       }
+      .solution-bridge .solution-bridge-lead {
+        order: 2;
+        margin: 0 auto 12px;
+        font-size: 15px;
+      }
       .solution-bridge .solution-bridge-mobile-title {
         display: block;
-        order: 2;
+        order: 3;
         max-width: none;
         margin: 0 auto 12px !important;
         font-family: var(--serif);
@@ -2526,13 +2514,13 @@
       }
       .solution-bridge .layers-index-label {
         display: block;
-        order: 3;
+        order: 4;
         margin: 0 0 24px !important;
       }
       .layers-index-label-desktop { display: none; }
       .layers-index-label-mobile { display: inline; }
       .solution-bridge .layers-index {
-        order: 4;
+        order: 5;
         gap: 16px;
       }
       .solution-bridge-sub {
@@ -2946,17 +2934,14 @@
         <div class="problem-copy">
           <p class="section-eyebrow">the problem · how it begins</p>
           <div class="problem-beat">
-            <p class="highlight-swipe-text problem-dropcap"><span class="problem-dropcap-letter">u</span>nexpected impulses — mostly from social feeds. influencers selling you gadgets you don't need, still making you feel like you're missing out. you end up buying not just the gadget — but the case, the bundle, the accessories. shopping platforms are built to keep you spending.</p>
+            <p class="highlight-swipe-text problem-dropcap"><span class="problem-dropcap-letter">u</span>nexpected impulses start in social feeds. influencers sell gadgets you don't need, then make you feel like you're missing out. you buy not just the gadget, but the case, bundle and accessories. shopping platforms are built to keep you spending.</p>
           </div>
-
-          <blockquote class="quote-line">“literally wasted nearly s$230 on clothes because of fomo.”<cite>— adam, founder of cognoscene</cite></blockquote>
 
           <div class="problem-beat problem-beat--cycle-pre">
-            <p>and you'll do it again. despite controlling yourself, the dopamine from social media and shopping makes checkout feel irresistible.</p>
+            <p>and you'll do it again. even when you try to stop, social media and shopping cues make checkout feel irresistible.</p>
           </div>
           <div class="problem-beat problem-beat--cycle-post">
-            <p>there's nothing to interrupt the urges when it hits you, leaving you prone to financially vulnerabilities & unnecessary purchase guilt.</p>
-            <p class="highlight-swipe-text"><strong><span class="highlight-swipe is-glow">hence, we built an extension to prevent you from shopping destructively using friction.</span></strong></p>
+            <p>with nothing to interrupt the urge, you're left vulnerable to financial strain and unnecessary purchase guilt.</p>
           </div>
         </div>
 
@@ -2996,18 +2981,35 @@
       </div>
     </section>
 
-    <section class="proof-band" aria-label="what impulse buying can cost">
-      <div class="wrap proof-cards">
-        <figure class="proof-card">
+    <section class="proof-band evidence-band" aria-labelledby="evidence-heading">
+      <div class="wrap evidence-band-inner">
+        <p class="section-eyebrow">what shoppers report</p>
+        <h2 id="evidence-heading">the pattern is measurable.</h2>
+        <p class="evidence-band-intro">across different surveys, shoppers report debt and regret after impulsive or emotional spending.</p>
+        <div class="proof-cards">
+        <figure class="proof-card proof-card--akpk">
           <strong class="proof-stat"><span>577,500</span></strong>
-          <p>of 1.5 million respondents incurred debt through buying goods and services without considering their usefulness.</p>
+          <p>of 1.5 million respondents incurred debt buying goods and services without considering their usefulness.</p>
+          <p class="proof-quote">“the four financial facilities ... are credit cards and personal loans.”</p>
           <figcaption><a href="https://www.utusan.com.my/nasional/2024/06/ketagih-berbelanja-punca-orang-muda-muflis/" target="_blank" rel="noopener noreferrer">utusan malaysia reporting akpk, 2024.</a></figcaption>
         </figure>
+        <figure class="proof-card proof-card--survey">
+          <strong class="proof-stat"><span>51%</span></strong>
+          <p>of impulsive spenders reported debt in the past year; 64% reported regretting an impulsive decision.</p>
+          <figcaption><a href="https://www.prnewswire.com/news-releases/from-little-treats-to-trouble-new-study-exposes-the-hidden-financial-impacts-of-impulsive-spending-301896365.html" target="_blank" rel="noopener noreferrer">ynab / harris poll, us, 2023 · n=2,051.</a></figcaption>
+        </figure>
+        <figure class="proof-card proof-card--survey">
+          <strong class="proof-stat"><span>43%</span></strong>
+          <p>of emotional spenders reported going into debt; 69% reported regretting acting on their emotions; 44% reported harm to their financial wellbeing.</p>
+          <figcaption><a href="https://www.lendingtree.com/credit-cards/study/emotional-shopping/" target="_blank" rel="noopener noreferrer">lendingtree, us, 2025 · n=2,000 · ages 18–79.</a></figcaption>
+        </figure>
+        </div>
       </div>
     </section>
 
     <section class="solution-bridge wrap" id="solution" aria-label="the solution — three layers">
       <p class="section-eyebrow">the solution · cognoscene</p>
+      <p class="solution-bridge-lead">hence, we built an extension to prevent you from shopping destructively using friction.</p>
       <p class="solution-bridge-sub">pause shopping impulses using designed friction.</p>
       <p class="layers-index-label" style="margin-bottom: 24px;"><span class="layers-index-label-desktop">3 layers — click to see each layer.</span><span class="layers-index-label-mobile">3 layers — tap to see each layer.</span></p>
       <h2 class="solution-bridge-mobile-title mobile-only">pause shopping impulses using designed friction.</h2>
@@ -3527,8 +3529,16 @@
     .lc-hub-img-wrap { transform: translate(-50%, -50%); }
 
     .proof-band { padding: 0 0 44px; }
+    .evidence-band { padding: 8px 0 48px; }
+    .evidence-band-inner { max-width: var(--max); }
+    .evidence-band > .evidence-band-inner > .section-eyebrow { margin-bottom: 10px; text-align: center; }
+    .evidence-band h2 { margin: 0 auto 10px; font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 400; letter-spacing: -0.05em; line-height: 1.08; text-align: center; color: var(--black); }
+    .evidence-band-intro { max-width: 620px; margin: 0 auto 24px; color: var(--mid); text-align: center; }
     .proof-cards { display: grid; gap: 14px; max-width: 760px; margin: 0 auto; }
+    .evidence-band .proof-cards { max-width: none; padding: 18px; border: 1px solid var(--black); border-radius: 24px; background: var(--white); }
     .proof-card { margin: 0; padding: 22px 24px; border: 1px solid var(--black); border-radius: 16px; background: var(--white); }
+    .evidence-band .proof-card { padding: 12px 18px; border: 0; border-radius: 0; background: transparent; }
+    .evidence-band .proof-card + .proof-card { border-left: 1px solid rgba(17, 17, 17, 0.18); }
     .proof-stat { position: relative; display: block; width: max-content; max-width: 100%; margin-bottom: 6px; overflow: hidden; font-family: var(--serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 400; line-height: 1; color: var(--black); }
     .proof-stat span { display: block; opacity: 0; transform: translateX(-105%); }
     .proof-stat::after { content: ""; position: absolute; inset: 0; background: var(--lime); transform: translateX(-105%); pointer-events: none; }
@@ -3537,6 +3547,7 @@
     @keyframes proof-number-in { to { opacity: 1; transform: translateX(0); } }
     @keyframes proof-swipe { 0% { transform: translateX(-105%); } 45% { transform: translateX(0); } 100% { transform: translateX(105%); } }
     .proof-card p { max-width: 620px; color: var(--mid); }
+    .evidence-band .proof-quote { color: var(--black); font-style: italic; }
     .proof-card figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; font-weight: 800; }
     .proof-card figcaption a { color: inherit; text-underline-offset: 3px; }
 
@@ -3551,8 +3562,8 @@
     body.waitlist-modal-open .mobile-cta-bar,
     body.tpsm-open .mobile-cta-bar { display: none !important; }
 
-    @media (min-width: 761px) { .demo-layout { grid-template-columns: 1fr; } .proof-cards { grid-template-columns: 1fr; } .form-conversion { grid-template-areas: "offer form"; } }
-    @media (max-width: 760px) { .hero-screenshot-stack { height: 290px !important; min-height: 290px !important; margin-top: 0 !important; } .hero-screenshot-stack .hero-shot { width: 86% !important; min-height: 192px; } .hero-visual { min-height: 320px; } .demo-band { padding: 36px 0; } .waitlist-modal { align-items: end; padding: 0; } .waitlist-modal-dialog { width: 100%; max-height: calc(100vh - 12px); border-radius: 24px 24px 0 0; } .waitlist-modal-dialog .form-conversion { padding: 40px 24px 48px; } }
+    @media (min-width: 761px) { .demo-layout { grid-template-columns: 1fr; } .proof-cards { grid-template-columns: 1fr; } .evidence-band .proof-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } .form-conversion { grid-template-areas: "offer form"; } }
+    @media (max-width: 760px) { .hero-screenshot-stack { height: 290px !important; min-height: 290px !important; margin-top: 0 !important; } .hero-screenshot-stack .hero-shot { width: 86% !important; min-height: 192px; } .hero-visual { min-height: 320px; } .demo-band { padding: 36px 0; } .evidence-band { padding: 8px 0 36px; } .evidence-band h2 { font-size: 1.65rem; } .evidence-band-intro { font-size: 14px; margin-bottom: 18px; } .evidence-band .proof-cards { padding: 10px 12px; border-radius: 20px; } .evidence-band .proof-card { padding: 16px 8px; } .evidence-band .proof-card + .proof-card { border-left: 0; border-top: 1px solid rgba(17, 17, 17, 0.18); } .waitlist-modal { align-items: end; padding: 0; } .waitlist-modal-dialog { width: 100%; max-height: calc(100vh - 12px); border-radius: 24px 24px 0 0; } .waitlist-modal-dialog .form-conversion { padding: 40px 24px 48px; } }
     @media (prefers-reduced-motion: reduce) { .hero-screenshot-stack .hero-shot { transition: none; } .lc-orbit, .lc-circle-card { animation: none !important; } .hero-screenshot-stack::after { display: none; } }
   </style>
 
@@ -5945,10 +5956,10 @@
         demoVideo.controls = false;
       }
 
-      var proofStat = document.querySelector('.proof-stat');
-      if (proofStat) {
+      var proofStats = document.querySelectorAll('.proof-stat');
+      if (proofStats.length) {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-          proofStat.classList.add('is-visible');
+          proofStats.forEach(function (stat) { stat.classList.add('is-visible'); });
         } else {
           var proofObserver = new IntersectionObserver(function (entries, observer) {
             entries.forEach(function (entry) {
@@ -5957,7 +5968,7 @@
               observer.unobserve(entry.target);
             });
           }, { threshold: 0.45 });
-          proofObserver.observe(proofStat);
+          proofStats.forEach(function (stat) { proofObserver.observe(stat); });
         }
       }
     })();
