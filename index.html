@@ -1758,52 +1758,17 @@
       transform: translateX(-50%);
     }
     .form-conversion {
-      max-width: var(--max);
+      max-width: var(--form-max);
       margin: 0 auto;
-      display: grid;
-      gap: 28px;
-      align-items: start;
+      display: block;
     }
-    .form-offer {
+    .form-conversion-note {
+      margin: 0 auto 18px;
       max-width: 420px;
-      text-align: left;
-    }
-    .form-offer-eyebrow {
-      margin-bottom: 8px;
-      font-size: 13px;
-      color: inherit;
-    }
-    .form-offer-eyebrow-mobile,
-    .form-offer-status-mobile {
-      display: none;
-    }
-    .form-offer h2 {
-      max-width: 390px;
-      margin-bottom: 16px;
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.05em;
-    }
-    .form-offer-build {
-      margin-bottom: 22px;
       color: var(--mid);
-      font-size: 15px;
-      line-height: 1.65;
-    }
-    .form-offer-benefit {
-      margin: 0 0 18px;
-      padding-left: 14px;
-      border-left: 3px solid var(--lime);
-      color: var(--black);
-      font-size: 15px;
-      font-weight: 800;
-      line-height: 1.55;
-    }
-    .form-offer-status {
-      color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
     }
     .form-inner {
       max-width: var(--form-max);
@@ -1820,17 +1785,7 @@
     .form-pricing-guardrail-mobile { display: none; }
     @media (min-width: 761px) {
       .form-conversion {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        grid-template-areas: "form offer";
-        gap: 48px;
-      }
-      .form-offer {
-        grid-area: offer;
-        align-self: start;
-        min-height: 300px;
-      }
-      .form-inner {
-        grid-area: form;
+        display: block;
       }
     }
     .form-inner .section-eyebrow {
@@ -2531,28 +2486,7 @@
       }
       .form-pricing-guardrail-desktop { display: none; }
       .form-pricing-guardrail-mobile { display: inline; }
-      .form-offer-eyebrow { text-align: left; }
-      .form-offer h2 {
-        margin-bottom: 0.5cm;
-      }
-      .form-offer h2,
-      .form-offer-build {
-        margin-left: 0;
-        margin-right: 0;
-        text-align: left;
-      }
-      .form-offer-eyebrow-desktop,
-      .form-offer-status-desktop {
-        display: none;
-      }
-      .form-offer-eyebrow-mobile,
-      .form-offer-status-mobile {
-        display: inline;
-      }
       .form-pricing-mobile-price {
-        display: none;
-      }
-      .form-waitlist-eyebrow {
         display: none;
       }
       .solution-details { margin: 0; padding: 36px 0; }
@@ -3151,17 +3085,10 @@
 
     <section class="form-band" id="waitlist" aria-labelledby="form-heading">
       <div class="form-conversion">
-        <aside class="form-offer" aria-labelledby="founding-heading">
-          <p class="section-eyebrow form-offer-eyebrow"><span class="form-offer-eyebrow-desktop">founding beta</span><span class="form-offer-eyebrow-mobile">founding beta</span></p>
-          <h2 id="founding-heading">help test cognoscene before launch.</h2>
-          <p class="form-offer-build">improve your spending habits by introducing conscious friction. test cognoscene, report what could be improved and help shape the public release.</p>
-          <p class="form-offer-benefit">free to use. no subscription, no future charge.</p>
-          <p class="form-offer-status"><span class="form-offer-status-desktop">first 100 get early access + bragging rights.</span><span class="form-offer-status-mobile">first 100 get early access + bragging rights.</span></p>
-        </aside>
-
         <div class="form-inner">
-        <p class="section-eyebrow form-waitlist-eyebrow">beta waitlist</p>
-        <h2 id="form-heading">apply to test cognoscene.</h2>
+        <p class="section-eyebrow form-compact-eyebrow">founding beta waitlist</p>
+        <h2 id="form-heading">we invite you to test cognoscene.</h2>
+        <p class="form-conversion-note">free to use · no subscription or future charge · first 100 get early access.</p>
 
         <div class="waitlist-gate-status" id="waitlistGateStatus" aria-live="polite">
           <span id="waitlistGatePrefix">checking waitlist availability</span>
@@ -3595,7 +3522,7 @@
     body.waitlist-modal-open .mobile-cta-bar,
     body.tpsm-open .mobile-cta-bar { display: none !important; }
 
-    @media (min-width: 761px) { .demo-layout { grid-template-columns: 1fr; } .proof-cards { grid-template-columns: 1fr; } .evidence-band .proof-cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr); } .form-conversion { grid-template-areas: "offer form"; } }
+    @media (min-width: 761px) { .demo-layout { grid-template-columns: 1fr; } .proof-cards { grid-template-columns: 1fr; } .evidence-band .proof-cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr); } }
     @media (max-width: 760px) { .hero-screenshot-stack { height: 290px !important; min-height: 290px !important; margin-top: 0 !important; } .hero-screenshot-stack .hero-shot { width: 86% !important; min-height: 192px; } .hero-visual { min-height: 320px; } .demo-band { padding: 36px 0; } .evidence-band { padding: 8px 0 36px; } .evidence-band h2 { font-size: 1.65rem; } .evidence-band-intro { font-size: 14px; margin-bottom: 18px; } .evidence-band .proof-cards { padding: 10px 12px; border-radius: 20px; } .evidence-band .proof-card { padding: 16px 8px; } .evidence-band .proof-card + .proof-card { border-left: 0; border-top: 1px solid rgba(17, 17, 17, 0.18); } .evidence-band .proof-card--akpk { order: -1; margin: 0; padding: 18px 14px; } .evidence-band .proof-card--akpk .proof-stat { font-size: clamp(2.15rem, 11vw, 3.25rem); } .waitlist-modal { align-items: end; padding: 0; } .waitlist-modal-dialog { width: 100%; max-height: calc(100vh - 12px); border-radius: 24px 24px 0 0; } .waitlist-modal-dialog .form-conversion { padding: 40px 24px 48px; } }
     @media (max-width: 760px) {
       .evidence-band .proof-cards { display: flex; gap: 12px; overflow-x: auto; padding: 10px 12px 14px; scroll-snap-type: x mandatory; scroll-padding-inline: 12px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
