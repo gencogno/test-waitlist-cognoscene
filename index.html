@@ -301,7 +301,7 @@
       overflow: hidden;
       isolation: isolate;
       background-color: var(--black);
-      background-image: linear-gradient(105deg, transparent 42%, rgba(184, 216, 120, 0.48) 50%, transparent 58%);
+      background-image: linear-gradient(105deg, transparent 32%, rgba(184, 216, 120, 0.34) 40%, rgba(184, 216, 120, 0.9) 47%, var(--lime) 50%, rgba(184, 216, 120, 0.9) 53%, rgba(184, 216, 120, 0.34) 60%, transparent 68%);
       background-position: 155% 0;
       background-repeat: no-repeat;
       background-size: 250% 100%;
@@ -317,10 +317,10 @@
       transition: transform 0.34s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s ease;
     }
     .btn-primary.is-cta-visible,
-    .btn-submit.is-cta-visible { animation: cta-lime-sheen 8s ease-in-out 0.9s infinite; }
+    .btn-submit.is-cta-visible { animation: cta-lime-sheen 6.4s ease-in-out 0.75s infinite; }
     @keyframes cta-lime-sheen {
-      0%, 74%, 100% { background-position: 155% 0; }
-      10%, 15% { background-position: -55% 0; }
+      0%, 20%, 69%, 100% { background-position: 155% 0; box-shadow: none; }
+      10%, 18% { background-position: -55% 0; box-shadow: 0 0 0 2px rgba(184, 216, 120, 0.42), 0 0 24px rgba(184, 216, 120, 0.24); }
     }
     .btn-primary:hover {
       transform: translateY(-1px);
@@ -1913,7 +1913,7 @@
       width: 100%;
       margin-top: 0.35cm;
       background-color: var(--black);
-      background-image: linear-gradient(105deg, transparent 42%, rgba(184, 216, 120, 0.48) 50%, transparent 58%);
+      background-image: linear-gradient(105deg, transparent 32%, rgba(184, 216, 120, 0.34) 40%, rgba(184, 216, 120, 0.9) 47%, var(--lime) 50%, rgba(184, 216, 120, 0.9) 53%, rgba(184, 216, 120, 0.34) 60%, transparent 68%);
       background-position: 155% 0;
       background-repeat: no-repeat;
       background-size: 250% 100%;
