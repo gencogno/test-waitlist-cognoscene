@@ -2683,13 +2683,15 @@
             <div class="hero-game-stage">
               <div class="hero-game-scene" data-game-scene="start">
                 <div class="hero-game-surface hero-game-start">
-                  <p class="hero-game-scene-kicker" id="heroGameStartKicker">mini-game</p>
-                  <h3 id="heroGameStartTitle">explore how you build prudence with cognoscene.</h3>
-                  <p id="heroGameStartCopy">one pause can change the outcome.</p>
-                  <button type="button" class="hero-game-primary" data-game-start id="heroGameStartButton">start playing →</button>
+                  <div class="hero-game-start-panel">
+                    <p class="hero-game-scene-kicker" id="heroGameStartKicker">mini-game</p>
+                    <h3 id="heroGameStartTitle">notice what pulls you in.</h3>
+                    <p id="heroGameStartCopy">browse as usual. cognoscene steps in when it matters.</p>
+                    <button type="button" class="hero-game-primary" data-game-start id="heroGameStartButton">start browsing →</button>
+                  </div>
                 </div>
               </div>
-              <div class="hero-game-scene" data-game-scene="browse" hidden>
+              <div class="hero-game-scene" data-game-scene="browse">
                 <div class="hero-game-store-bar">
                   <div class="hero-game-store-heading"><p class="hero-game-store-name">ongoc</p><p class="hero-game-store-meta">new arrivals · 08</p></div>
                   <button type="button" class="hero-game-cart-toggle" data-game-cart-toggle aria-expanded="false" aria-controls="heroGameCart" aria-label="cart"><span>cart</span></button>
@@ -5607,7 +5609,11 @@
         stopTimers();
         if (name !== 'browse') hideObserver(false);
         scenes.forEach(function(scene) {
-          var active = scene.getAttribute('data-game-scene') === name;
+          var sceneName = scene.getAttribute('data-game-scene');
+          var active = sceneName === name;
+          /* The start prompt is an overlay on the shop, so keep the shop
+             visible underneath it until the visitor begins browsing. */
+          if (name === 'start' && sceneName === 'browse') active = true;
           scene.hidden = !active;
         });
         if (name === 'hold') startHold();
@@ -6327,7 +6333,9 @@
     .hero-game-browser-dots { display: flex; gap: 5px; }
     .hero-game-browser-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--black); opacity: .8; }
     .hero-game-browser-url { flex: 1; padding: 6px 10px; overflow: hidden; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font: 600 10px/1 var(--sans); white-space: nowrap; text-overflow: ellipsis; }
+    .hero-game-stage { position: relative; }
     .hero-game-scene { min-height: 390px; animation: heroGameIn .2s ease both; }
+    .hero-game-scene[data-game-scene="start"] { position: absolute; inset: 0; z-index: 3; }
     .hero-game-scene[hidden] { display: none !important; }
     @keyframes heroGameIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     .hero-game-store-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 15px 10px; border-bottom: 1px solid var(--line); }
@@ -6420,13 +6428,13 @@
     .hero-game-primary { min-height: 44px; padding: 11px 14px; border: 1px solid var(--black); border-radius: 12px; background: var(--cream); color: var(--black); font: 800 10px/1.15 var(--sans); cursor: pointer; transition: transform .16s ease, box-shadow .16s ease; }
     .hero-game-primary:hover, .hero-game-primary:focus-visible { outline: none; box-shadow: 0 3px 0 rgba(17,17,17,.2); transform: translateY(-1px); }
     .hero-game-primary:disabled { cursor: wait; opacity: .42; transform: none; }
-    .hero-game-start { align-items: flex-start; justify-content: center; }
-    .hero-game-start { position: relative; background: #e2d9c9; }
-    .hero-game-start h3 { max-width: 400px; font-size: clamp(32px, 5vw, 42px); }
-    .hero-game-start .hero-game-scene-kicker { display: inline-block; margin-bottom: 14px !important; padding: 6px 8px; border-radius: 4px; background: var(--black); color: var(--cream) !important; }
-    .hero-game-start > p:not(.hero-game-scene-kicker) { margin-bottom: 22px; }
-    .hero-game-start .hero-game-primary { min-width: 166px; background: var(--black); color: var(--cream); box-shadow: 5px 5px 0 #b9ad98; }
-    .hero-game-start .hero-game-primary:hover, .hero-game-start .hero-game-primary:focus-visible { box-shadow: 7px 7px 0 #b9ad98; }
+    .hero-game-start { align-items: stretch; justify-content: flex-end; min-height: 390px; padding: 18px; background: linear-gradient(180deg, rgba(245,242,233,.04) 30%, rgba(245,242,233,.82) 100%); }
+    .hero-game-start-panel { width: min(100%, 365px); padding: 16px 18px 17px; border: 1px solid var(--black); border-radius: 14px; background: rgba(245,242,233,.96); box-shadow: 5px 5px 0 rgba(17,17,17,.15); }
+    .hero-game-start h3 { max-width: 330px; margin-bottom: 7px; font-size: clamp(25px, 4vw, 34px); }
+    .hero-game-start .hero-game-scene-kicker { display: inline-block; margin-bottom: 11px !important; padding: 5px 7px; border-radius: 4px; background: var(--black); color: var(--cream) !important; }
+    .hero-game-start > .hero-game-start-panel > p:not(.hero-game-scene-kicker) { max-width: 315px; margin-bottom: 16px; }
+    .hero-game-start .hero-game-primary { min-width: 150px; background: var(--black); color: var(--cream); box-shadow: none; }
+    .hero-game-start .hero-game-primary:hover, .hero-game-start .hero-game-primary:focus-visible { box-shadow: 3px 3px 0 rgba(17,17,17,.22); }
     .hero-game-hold { align-items: center; text-align: center; }
     .hero-game-hold-card { width: min(100%, 330px); margin: 0 auto 18px; padding: 18px; border: 1px solid var(--line); border-radius: 15px; background: #f5f2e9; }
     .hero-game-hold-card h3 { max-width: none; margin-bottom: 6px; font-size: 25px; }
@@ -6511,7 +6519,8 @@
     .hero-game-followup-options { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
     .hero-game-followup-options .hero-game-button { min-height: 34px; padding: 8px; background: var(--cream); color: var(--black); font-size: 9px; }
     @media (max-width: 760px) {
-      .hero-game-start { padding: 20px; }
+      .hero-game-start { min-height: 350px; padding: 14px; }
+      .hero-game-start-panel { width: 100%; padding: 14px 15px 15px; }
       .hero-game-dashboard { width: 100%; }
       .hero-game-cart { margin-inline: 12px; }
       .hero-game-cart-toggle { min-width: 86px; }
